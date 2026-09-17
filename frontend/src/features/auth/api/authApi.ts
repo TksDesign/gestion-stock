@@ -22,6 +22,13 @@ export interface AuthResponse {
   role: 'ADMIN' | 'SHOP_MANAGER' | 'CLIENT';
 }
 
+export interface CreateManagerRequest {
+  firstname: string;
+  lastname: string;
+  email: string;
+  password: string;
+}
+
 const BASE_URL = '/api/v1/auth';
 
 export const authApi = {
@@ -32,6 +39,11 @@ export const authApi = {
 
   register: async (request: RegisterRequest): Promise<AuthResponse> => {
     const { data } = await api.post<AuthResponse>(`${BASE_URL}/register`, request);
+    return data;
+  },
+
+  createShopManager: async (request: CreateManagerRequest): Promise<AuthResponse> => {
+    const { data } = await api.post<AuthResponse>(`${BASE_URL}/admin/managers`, request);
     return data;
   },
 

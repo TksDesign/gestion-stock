@@ -9,6 +9,7 @@
 /Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/auth/src/main/java/com/franck/ecommerce/auth/AuthenticationRequest.java
 /Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/auth/src/main/java/com/franck/ecommerce/auth/AuthenticationResponse.java
 /Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/auth/src/main/java/com/franck/ecommerce/config/ApplicationConfig.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/auth/src/main/java/com/franck/ecommerce/auth/CreateManagerRequest.java
 /Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/auth/src/main/java/com/franck/ecommerce/AuthApplication.java
 /Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/auth/src/main/java/com/franck/ecommerce/user/Role.java
 /Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/auth/src/main/java/com/franck/ecommerce/auth/AuthenticationController.java

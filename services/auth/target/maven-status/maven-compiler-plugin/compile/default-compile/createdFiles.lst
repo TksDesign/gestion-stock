@@ -7,6 +7,7 @@ com/franck/ecommerce/config/ApplicationConfig.class
 com/franck/ecommerce/auth/CustomerClient.class
 com/franck/ecommerce/auth/AuthenticationController.class
 com/franck/ecommerce/config/JwtAuthenticationFilter.class
+com/franck/ecommerce/auth/CreateManagerRequest.class
 com/franck/ecommerce/user/UserRepository.class
 com/franck/ecommerce/user/User.class
 com/franck/ecommerce/handler/ErrorResponse.class

@@ -20,6 +20,15 @@ import { Footer } from './components/layout/Footer';
 import { MiniCart } from './components/cart/MiniCart';
 import { AuthModal } from './components/auth/AuthModal';
 
+import { ManagerLayout } from './components/layout/ManagerLayout';
+import { ManagerDashboard } from './pages/manager/ManagerDashboard';
+import { ManagerStock } from './pages/manager/ManagerStock';
+import { ManagerSales } from './pages/manager/ManagerSales';
+import { ManagerSettings } from './pages/manager/ManagerSettings';
+
+import { AdminLayout } from './components/layout/AdminLayout';
+import { AdminShops } from './pages/admin/AdminShops';
+
 // Layout pour la page d'accueil
 const HomeLayout = () => (
   <div className="flex flex-col min-h-screen">
@@ -82,6 +91,23 @@ function App() {
           className="flex flex-col min-h-screen"
         >
           <Routes location={location}>
+            {/* Espace Admin (Protégé) */}
+            <Route element={<ProtectedRoute allowedRoles={['ADMIN']} />}>
+              <Route path="/admin" element={<AdminLayout />}>
+                <Route path="shops" element={<AdminShops />} />
+              </Route>
+            </Route>
+
+            {/* Espace Gérante (Protégé) */}
+            <Route element={<ProtectedRoute allowedRoles={['SHOP_MANAGER', 'ADMIN']} />}>
+              <Route path="/manager" element={<ManagerLayout />}>
+                <Route path="dashboard" element={<ManagerDashboard />} />
+                <Route path="stock" element={<ManagerStock />} />
+                <Route path="sales" element={<ManagerSales />} />
+                <Route path="settings" element={<ManagerSettings />} />
+              </Route>
+            </Route>
+
             {/* Layout Accueil */}
             <Route element={<HomeLayout />}>
               <Route path="/" element={<Home />} />

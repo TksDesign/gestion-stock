@@ -98,3 +98,11 @@ export const useCreateShop = () => {
     onSuccess: () => qc.invalidateQueries({ queryKey: shopKeys.allShops }),
   });
 };
+
+export const useUpdateShopStatus = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id, status }: { id: number; status: 'ACTIVE' | 'INACTIVE' }) => shopAdminApi.setStatus(id, status),
+    onSuccess: () => qc.invalidateQueries({ queryKey: shopKeys.allShops }),
+  });
+};
