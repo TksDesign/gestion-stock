@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { shopManagerApi, shopAdminApi } from '../api/shopApi';
-import type { ShopRequest, StockItemRequest, StockAdjustmentRequest, SaleRequest, CreateShopRequest } from '../types';
+import { shopManagerApi, shopAdminApi, shopCustomerApi, categoryApi } from '../api/shopApi';
+import type { ShopRequest, StockItemRequest, StockAdjustmentRequest, SaleRequest, CreateShopRequest, SaleItemStatusUpdateRequest } from '../types';
 
 // ─── Query keys ───────────────────────────────────────────────
 export const shopKeys = {
@@ -11,6 +11,7 @@ export const shopKeys = {
   sales: ['shop', 'sales'] as const,
   sale: (id: number) => ['shop', 'sales', id] as const,
   dashboard: ['shop', 'dashboard'] as const,
+  myOrders: ['shop', 'orders', 'mine'] as const,
 };
 
 // ─── Gérante ──────────────────────────────────────────────────
@@ -83,9 +84,22 @@ export const useCreateSale = () => {
   });
 };
 
+export const useUpdateSaleItemStatus = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({ saleId, itemId, data }: { saleId: number; itemId: number; data: SaleItemStatusUpdateRequest }) =>
+      shopManagerApi.updateSaleItemStatus(saleId, itemId, data),
+    onSuccess: () => qc.invalidateQueries({ queryKey: shopKeys.sales }),
+  });
+};
+
 // ─── Dashboard ────────────────────────────────────────────────
 export const useDashboard = () =>
   useQuery({ queryKey: shopKeys.dashboard, queryFn: shopManagerApi.getDashboard });
+
+// ─── Client : suivi de ses commandes ────────────────────────────
+export const useMyOrders = () =>
+  useQuery({ queryKey: shopKeys.myOrders, queryFn: shopCustomerApi.getMyOrders });
 
 // ─── Admin ────────────────────────────────────────────────────
 export const useAllShops = () =>
@@ -106,3 +120,11 @@ export const useUpdateShopStatus = () => {
     onSuccess: () => qc.invalidateQueries({ queryKey: shopKeys.allShops }),
   });
 };
+
+// ─── Catégories ───────────────────────────────────────────────
+export const useCategories = () =>
+  useQuery({
+    queryKey: ['shop', 'categories'] as const,
+    queryFn: categoryApi.findAll,
+    staleTime: 10 * 60 * 1000, // référentiel peu changeant
+  });

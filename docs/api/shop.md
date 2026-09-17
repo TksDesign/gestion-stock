@@ -8,12 +8,19 @@
 | **Nom Eureka** | `SHOP-SERVICE` |
 | **Base path (via gateway)** | `/api/v1/shops` (préfixe de route : `Path=/api/v1/shops/**`) |
 | **Base de données** | PostgreSQL (`shop`), migrations Flyway (`V1__init_database.sql`), `ddl-auto: validate` |
-| **Authentification** | JWT requis sur **tous** les endpoints, vérification locale (même secret que `auth-service`) + autorisation par rôle (`@PreAuthorize`) |
-| **Package** | `com.franck.ecommerce.shop`, `.stock`, `.sale`, `.dashboard`, `.config`, `.handler` |
+| **Authentification** | JWT requis sur `/shops`, `/shops/mine/**` (vérification locale, même secret que `auth-service`) + autorisation par rôle (`@PreAuthorize`). **`/shops/catalog/**` est public** (voir ci-dessous). |
+| **Package** | `com.franck.ecommerce.shop`, `.stock`, `.sale`, `.dashboard`, `.catalog`, `.config`, `.handler` |
 
-Service métier central de la fonctionnalité "gestion de boutique". Chaque boutique (`Shop`) est rattachée à **une seule** gérante (`managerId`, unique). Le stock (`StockItem`), les ventes (`Sale`/`SaleItem`) et le dashboard sont **strictement scopés à la boutique de la gérante connectée** — aucun paramètre `shopId` n'est jamais accepté en entrée sur les routes `/mine/**` : il est toujours résolu côté serveur à partir du JWT (`userId` → `Shop.managerId`).
+Service métier central de la fonctionnalité "gestion de boutique" **et catalogue produit unique du storefront** depuis le 2026-09-17 (voir revirement de décision ci-dessous). Chaque boutique (`Shop`) est rattachée à **une seule** gérante (`managerId`, unique — sauf la "boutique par défaut", sans gérante, qui héberge les produits migrés). Le stock (`StockItem`), les ventes (`Sale`/`SaleItem`) et le dashboard sous `/mine/**` sont **strictement scopés à la boutique de la gérante connectée**.
 
-⚠️ **Domaine indépendant du catalogue `product-service`** : `StockItem` ne référence **pas** les `Product` de `product-service` (pas de FK, pas d'appel réseau). C'est un choix architectural délibéré (voir décision de conception ci-dessous) — le stock de boutique est un inventaire local à la gérante, distinct du catalogue e-commerce central.
+## ✅ Revirement de décision (2026-09-17) : `StockItem` est désormais LE catalogue
+
+L'ancienne section documentait `StockItem` comme un domaine volontairement séparé du catalogue `product-service`. **Ce choix a été inversé** : le stock de chaque boutique **est** désormais le catalogue consulté et achetable par le storefront. Concrètement :
+
+- **`GET /api/v1/shops/catalog/products`** (public, sans authentification) — liste tous les `StockItem` des boutiques `ACTIVE`, toutes gérantes confondues. C'est ce qu'appelle le frontend (`productApi.ts`) à la place de l'ancien `/api/v1/products`.
+- **`POST /api/v1/shops/catalog/products/purchase`** / **`/restore`** (publics, appelés par `order-service`) — remplacent exactement l'ancien contrat `product-service` (mêmes noms de champs `productId`/`quantity`), sans aucun changement de code côté `order-service` : seule la valeur `application.config.product-url` a été repointée dans `order-service.yml` (config-server).
+- **Migration automatique au démarrage** (`LegacyProductMigrationRunner`, `CommandLineRunner`) : au premier lancement de `shop-service`, tous les produits de l'ancien `product-service` (`GET http://localhost:8050/api/v1/products`, appel direct, hors gateway car `product-service` démarre avant `shop-service` dans `start-backend.sh`) sont copiés dans une **boutique par défaut** (`name: "Catalogue Général"`, `managerId: null`, `status: ACTIVE`). Idempotent : si cette boutique a déjà des `StockItem`, la migration est sautée (aucun risque de doublon au redémarrage).
+- **`product-service` n'est plus consommé par personne** après cette migration (ni `order-service`, ni le frontend) — il continue de tourner mais devient vestigial. Non décommissionné à ce jour (voir Points d'attention).
 
 ---
 
@@ -201,6 +208,68 @@ Vérification à deux niveaux :
 
 ---
 
+## Endpoints — Catalogue public (`/api/v1/shops/catalog/products`)
+
+**Aucune authentification.** Consommés par le storefront (frontend) et par `order-service` (achat/compensation lors d'une commande). Agrège le stock de **toutes** les boutiques `ACTIVE` (y compris la boutique par défaut issue de la migration).
+
+### `GET /catalog/products` — Lister tout le catalogue
+- **Réponse `200 OK`** : `CatalogProductResponse[]`
+
+```json
+[
+  { "id": 1, "name": "T-shirt bleu", "description": "Coton", "availableQuantity": 43.0,
+    "price": 19.99, "shopId": 1, "shopName": "Boutique Marie", "categoryName": "Vetements" },
+  { "id": 1602, "name": "Mechanical Keyboard 1", "description": "...", "availableQuantity": 8.0,
+    "price": 99.99, "shopId": 1602, "shopName": "Catalogue Général", "categoryName": "Keyboards" }
+]
+```
+
+### `GET /catalog/products/{product-id}` — Détail d'un produit
+- **Réponse `200 OK`** : `CatalogProductResponse` / **`404`** si id inconnu (peu importe la boutique)
+
+### `POST /catalog/products/purchase` — Achat (appelé par `order-service`)
+- **Body** : `[{ "productId": Integer, "quantity": double }]` — **contrat identique** à l'ancien `product-service`
+- **Comportement (transactionnel)** : décrémente `StockItem.quantity` pour chaque ligne, peu importe à quelle boutique chaque `productId` appartient (un même panier peut mélanger des articles de plusieurs boutiques)
+- **Réponse `200 OK`** : `CatalogPurchaseResponse[]`
+- **Réponse `400 Bad Request`** : stock insuffisant ou `productId` inconnu (rollback complet, comme l'ancien `product-service`)
+
+### `POST /catalog/products/restore` — Compensation (appelé par `order-service`)
+- **Body** : identique à `/purchase`
+- **Comportement** : réincrémente le stock ; `productId` disparu depuis → ignoré silencieusement (best-effort, comme l'ancien `product-service`)
+- **Réponse `200 OK`**
+
+✅ **Corrigé le 2026-09-17** : ces deux endpoints décrémentent `StockItem.quantity` de façon synchrone, mais ne créent **pas** de `Sale`/`SaleItem` directement. C'est `OrderIngestionService` (consommateur Kafka, voir section suivante) qui s'en charge **de façon asynchrone**, juste après — la gérante voit donc la commande apparaître avec un très léger délai (quelques centaines de ms en pratique), pas instantanément dans la même requête.
+
+---
+
+## Suivi de commande — consommation Kafka (`order-topic`)
+
+`shop-service` consomme désormais le topic `order-topic` (déjà publié par `order-service` après paiement réussi, voir [notification.md](notification.md) qui le consomme aussi indépendamment, groupe Kafka distinct `shopOrderGroup`). Pour chaque `OrderConfirmation` reçue (`OrderIngestionService`) :
+
+1. Les produits commandés sont regroupés par `StockItem.shopId` (**un panier peut mélanger plusieurs boutiques** → une `Sale` distincte est créée par boutique concernée, toutes partageant le même `orderReference`)
+2. Pour chaque groupe, une `Sale` est créée avec `source: ONLINE`, `orderReference` (traçabilité vers la commande `order-service`), et les infos client dénormalisées (`customerId`, `customerFirstname`, `customerLastname`, `customerEmail`) — la gérante voit qui commande **sans appel réseau** à `customer-service`
+3. Chaque ligne (`SaleItem`) démarre avec `status: CONFIRMED`
+4. **Le stock n'est pas re-décrémenté ici** (déjà fait de façon synchrone par `CatalogService.purchase()` au moment de la commande) — ce service ne fait qu'enregistrer la vente pour la rendre visible
+
+Produit non reconnu (`productId` sans `StockItem` correspondant) → ligne ignorée avec un `WARN` en log, le reste de la commande est traité normalement.
+
+### `PATCH /api/v1/shops/mine/sales/{sale-id}/items/{item-id}/status` — Faire avancer le statut d'une ligne
+
+- **Auth** : `SHOP_MANAGER`, scopé à sa boutique (`404` si la ligne appartient à une autre boutique — testé : `403`/`404` confirmés)
+- **Body** (`SaleItemStatusUpdateRequest`) : `status*` — `PENDING` \| `CONFIRMED` \| `PREPARING` \| `SHIPPED` \| `DELIVERED` \| `CANCELLED` \| `EXPIRED` (flux normal linéaire `PENDING → ... → DELIVERED`, `CANCELLED`/`EXPIRED` accessibles à tout moment comme sorties)
+- **Comportement** : met à jour **une seule ligne**, jamais la `Sale` entière — une gérante ne fait avancer que ses propres produits dans une commande qui peut en contenir d'autres d'une boutique différente
+- **Réponse `200 OK`** : `SaleItemResponse`
+- Aucune contrainte de transition n'est imposée côté serveur (on peut passer directement `CONFIRMED` → `DELIVERED`, ou revenir en arrière) — le frontend gérante propose une progression linéaire mais l'API ne l'impose pas
+
+### `GET /api/v1/shops/catalog/orders/mine` — Suivi de commande côté client
+
+- **Auth** : requise (n'importe quel rôle authentifié, mais utile pour `CLIENT`) — route **plus spécifique** que le `permitAll` de `/catalog/**`, résolue via un matcher dédié dans `SecurityConfig`
+- **Résolution** : filtre les `Sale` par `customerId` (claim JWT `customerId`, présent uniquement pour les comptes `CLIENT` créés via `POST /auth/register` — voir [auth.md](auth.md)) et `source: ONLINE`
+- **Réponse `200 OK`** : `SaleResponse[]` — **une entrée par boutique concernée**, pas une par commande (une commande à 2 boutiques = 2 entrées, même `orderReference`, `shopId` différent)
+- **Réponse `409 Conflict`** : `{"error": "No customer profile associated with this account"}` si le compte n'a pas de `customerId` (ex. un `SHOP_MANAGER`/`ADMIN` qui appellerait cette route par erreur)
+
+---
+
 ## Endpoint — Dashboard (`GET /api/v1/shops/mine/dashboard`)
 
 Agrégats calculés **à la volée** à chaque appel (pas de cache, pas de table de stats pré-calculée) :
@@ -240,19 +309,20 @@ Contrairement à `auth-service`, `shop-service` **ne dépend pas** d'un appel r�
 
 `AuthenticatedUser(userId, email, role)` est injecté dans les contrôleurs via `@AuthenticationPrincipal` — c'est le principal Spring Security posé par `JwtAuthenticationFilter`, pas un objet rechargé depuis une base.
 
-## Décision de conception : stock indépendant du catalogue `product-service`
+## Historique — ancienne décision de conception (inversée le 2026-09-17)
 
-Le stock de boutique (`StockItem`) a été conçu comme un **domaine séparé** de `product` (`product-service`, PostgreSQL, catalogue e-commerce central utilisé par le flux de commande `order → product → payment`), plutôt que d'ajouter un `shopId` sur l'entité `Product` existante. Raisons :
-- Isolation forte multi-tenant (chaque gérante gère un inventaire qui lui est propre, sans risque de collision avec le catalogue public)
-- Pas de couplage supplémentaire entre `shop-service` et `product-service` (pas d'appel Feign/RestTemplate croisé)
-- Le domaine "gestion de stock de boutique" (ventes en direct, réapprovisionnement) est fonctionnellement distinct du domaine "achat en ligne" (`order-service`)
-
-**Conséquence documentée** : les articles de stock d'une boutique **n'apparaissent pas** dans le catalogue consulté par le frontend e-commerce (`/api/v1/products`), et une vente enregistrée via `POST /shops/mine/sales` ne crée **aucune** `Order`/`Payment` dans `order-service`/`payment-service`. Si un besoin futur de synchronisation catalogue ↔ stock de boutique apparaît, il faudra un pont explicite (événement Kafka ou appel REST) entre les deux domaines — non implémenté à ce jour.
+`StockItem` avait initialement été conçu comme un domaine **séparé** de `product-service`, avec la justification suivante : isolation multi-tenant forte, pas de couplage `shop-service` ↔ `product-service`, "gestion de stock" jugée fonctionnellement distincte d'"achat en ligne". **Ce choix a été explicitement inversé** (voir section en tête de document) : un client ne pouvait alors acheter aucun produit d'une boutique gérée, et les produits pré-existants n'étaient rattachés à aucune boutique — ce qui ne correspondait pas au besoin réel (un client doit pouvoir acheter les produits qu'une gérante vend). `StockItem` est désormais LE catalogue unique.
 
 ## Points d'attention
 
-- **`status: INACTIVE` d'une boutique n'a aucun effet** sur les endpoints `/mine/**` : une gérante dont la boutique est désactivée par un admin garde un accès total (CRUD stock, ventes, dashboard). Aucune vérification du `status` n'est faite dans `ShopService.getShopEntityByManagerId` ni dans les contrôleurs `/mine/**`. À corriger si la désactivation doit réellement bloquer l'accès.
-- **`StockAdjustmentRequest.reason` n'est pas persisté** : le champ est accepté et validé mais jamais sauvegardé — pas d'historique/audit des ajustements de stock (seul le nouvel état de `quantity` est visible, pas la raison ni la date de l'ajustement individuel).
-- **Pas de pagination** sur `GET /stock`, `GET /sales`, ni sur les calculs du dashboard — tout est chargé en mémoire.
-- **`403` (pas `401`) sur token absent/invalide** : comportement par défaut de `@PreAuthorize` sans `AuthenticationEntryPoint` custom — à garder en tête côté frontend pour différencier "non connecté" de "rôle insuffisant" (actuellement indifférenciable par le code HTTP seul).
-- **`GET /shops/{shop-id}` (admin) ne vérifie pas les autres méthodes CRUD** manquantes côté admin : pas de `DELETE /shops/{id}` (suppression de boutique), pas de `PUT /shops/{id}` générique (seuls `status` et `manager` sont modifiables individuellement par un admin — la gérante modifie le reste via `/mine`).
+- ~~🔴 Une commande client ne crée aucun `Sale`/`SaleItem`~~ — ✅ **corrigé le 2026-09-17** via `OrderIngestionService` (consommateur Kafka `order-topic`), voir section dédiée ci-dessus.
+- **Pas de déduplication Kafka** : si `OrderIngestionService` traite deux fois le même message (redélivraison après crash avant commit d'offset), une `Sale` en double serait créée — aucune clé d'idempotence (ex. `orderReference` + `shopId` unique) n'est appliquée aujourd'hui. Risque faible en pratique (offsets auto-commit, pas de retry applicatif), mais non garanti.
+- **`OrderIngestionService` traite `order-topic` depuis `auto-offset-reset: earliest`** avec un `group-id` (`shopOrderGroup`) jamais utilisé auparavant : au tout premier démarrage après l'ajout de cette fonctionnalité, **tout l'historique Kafka encore rétenu** est rejoué (constaté : 6 commandes de test antérieures rattrapées rétroactivement en une fois). Comportement attendu et sans risque (le topic n'a pas de doublons à ce stade), mais à garder en tête si le topic contient un jour un vrai volume de production au moment d'activer cette fonctionnalité.
+- **Aucune contrainte de transition de statut côté serveur** (`PATCH .../status`) : rien n'empêche de revenir de `DELIVERED` à `CONFIRMED`, ou de sauter directement à `CANCELLED` — seul le frontend gérante impose une progression linéaire (bouton "suivant" uniquement).
+- **`status: INACTIVE` d'une boutique n'a aucun effet** sur les endpoints `/mine/**` **ni sur le catalogue public** : une boutique désactivée par un admin reste achetable via `/catalog/products` (le filtre `findByStatus(ACTIVE)` de `CatalogService.findAll()` l'exclurait de la liste, mais `findById` ne vérifie pas le statut — un lien direct vers un produit d'une boutique `INACTIVE` reste acheteur). Aucune vérification du `status` n'est faite non plus dans `ShopService.getShopEntityByManagerId`.
+- **`StockAdjustmentRequest.reason` n'est pas persisté** : le champ est accepté et validé mais jamais sauvegardé — pas d'historique/audit des ajustements de stock.
+- **Pas de pagination** sur `GET /stock`, `GET /sales`, `GET /catalog/products`, ni sur les calculs du dashboard — tout est chargé en mémoire (le catalogue combiné toutes boutiques confondues peut grossir vite).
+- **`403` (pas `401`) sur token absent/invalide** sur les routes protégées — comportement par défaut de `@PreAuthorize` sans `AuthenticationEntryPoint` custom.
+- **Pas de `DELETE /shops/{id}`** ni de `PUT /shops/{id}` générique côté admin (seuls `status` et `manager` sont modifiables individuellement).
+- **`product-service` devient vestigial** après la migration initiale : plus aucun appelant (ni `order-service`, ni le frontend) ne le consomme. Il continue de tourner (démarré par `start-backend.sh`) mais n'a plus d'utilité fonctionnelle — à décommissionner explicitement si confirmé inutile durablement (garder pour l'instant : c'est la source de la migration au premier démarrage de `shop-service`, la couper avant une nouvelle migration sur une base `shop` vierge romprait `LegacyProductMigrationRunner`).
+- **La "boutique par défaut" (`Catalogue Général`, `managerId: null`) n'est gérée par personne** : aucune gérante n'y a accès via `/mine/**` (elle n'a pas de `managerId` correspondant à un compte), et l'admin n'a pas d'endpoint pour créer/modifier son stock directement (seul `POST /shops/mine/stock` existe, réservé à une gérante avec boutique assignée). Ses 25 produits migrés sont donc **en lecture seule** en pratique jusqu'à ce qu'un mécanisme d'administration dédié soit ajouté.

@@ -7,80 +7,194 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.2.5)
 
-2026-09-17T12:59:44.477+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] com.franck.ecommerce.ShopApplication     : Starting ShopApplication v0.0.1-SNAPSHOT using Java 17.0.12 with PID 63367 (/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/target/shop-0.0.1-SNAPSHOT.jar started by daphane in /Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop)
-2026-09-17T12:59:44.481+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] com.franck.ecommerce.ShopApplication     : No active profile set, falling back to 1 default profile: "default"
-2026-09-17T12:59:45.025+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : http://localhost:8888
-2026-09-17T12:59:45.026+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=shop-service, profiles=[default], label=null, version=null, state=null
-2026-09-17T12:59:54.955+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-09-17T12:59:56.360+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1348 ms. Found 4 JPA repository interfaces.
-2026-09-17T12:59:58.382+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] o.s.cloud.context.scope.GenericScope     : BeanFactory id=ccf3475a-4d45-38d4-919b-948e2078194d
-2026-09-17T13:00:00.565+01:00  WARN 63367 --- [shop-service] [           main] [                                                 ] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig' of type [org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [lbRestClientPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
-2026-09-17T13:00:00.582+01:00  WARN 63367 --- [shop-service] [           main] [                                                 ] trationDelegate$BeanPostProcessorChecker : Bean 'deferringLoadBalancerInterceptor' of type [org.springframework.cloud.client.loadbalancer.DeferringLoadBalancerInterceptor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
-2026-09-17T13:00:03.291+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8100 (http)
-2026-09-17T13:00:03.410+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2026-09-17T13:00:03.410+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
-2026-09-17T13:00:03.779+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2026-09-17T13:00:03.781+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 18751 ms
-2026-09-17T13:00:11.270+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] o.f.c.internal.license.VersionPrinter    : Flyway Community Edition 9.22.3 by Redgate
-2026-09-17T13:00:11.272+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] o.f.c.internal.license.VersionPrinter    : See release notes here: https://rd.gt/416ObMi
-2026-09-17T13:00:11.274+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] o.f.c.internal.license.VersionPrinter    : 
-2026-09-17T13:00:11.607+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5433/shop (PostgreSQL 18.6)
-2026-09-17T13:00:11.629+01:00  WARN 63367 --- [shop-service] [           main] [                                                 ] o.f.c.internal.database.base.Database    : Flyway upgrade recommended: PostgreSQL 18.6 is newer than this version of Flyway and support has not been tested. The latest supported version of PostgreSQL is 15.
-2026-09-17T13:00:11.880+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.223s)
-2026-09-17T13:00:12.095+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 1
-2026-09-17T13:00:12.099+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
-2026-09-17T13:00:12.779+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-09-17T13:00:13.062+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
-2026-09-17T13:00:13.244+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2026-09-17T13:00:14.497+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-09-17T13:00:14.737+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-09-17T13:00:15.058+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@65fa56f7
-2026-09-17T13:00:15.062+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-09-17T13:00:15.298+01:00  WARN 63367 --- [shop-service] [           main] [                                                 ] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-09-17T13:00:19.683+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-09-17T13:00:19.795+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-09-17T13:00:20.925+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2026-09-17T13:00:22.071+01:00  WARN 63367 --- [shop-service] [           main] [                                                 ] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-09-17T13:00:22.224+01:00  WARN 63367 --- [shop-service] [           main] [                                                 ] .s.s.UserDetailsServiceAutoConfiguration : 
+2026-09-17T16:00:59.028+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] com.franck.ecommerce.ShopApplication     : Starting ShopApplication v0.0.1-SNAPSHOT using Java 17.0.20.1 with PID 18956 (C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\target\shop-0.0.1-SNAPSHOT.jar started by SAMA_PC in C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop)
+2026-09-17T16:00:59.032+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] com.franck.ecommerce.ShopApplication     : No active profile set, falling back to 1 default profile: "default"
+2026-09-17T16:00:59.130+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : http://localhost:8888
+2026-09-17T16:00:59.131+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=shop-service, profiles=[default], label=null, version=null, state=null
+2026-09-17T16:01:00.507+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-17T16:01:00.690+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 173 ms. Found 5 JPA repository interfaces.
+2026-09-17T16:01:01.144+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] o.s.cloud.context.scope.GenericScope     : BeanFactory id=a239985d-3b55-3926-b1c9-e29eb978c227
+2026-09-17T16:01:01.762+01:00  WARN 18956 --- [shop-service] [           main] [                                                 ] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig' of type [org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [lbRestClientPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
+2026-09-17T16:01:01.762+01:00  WARN 18956 --- [shop-service] [           main] [                                                 ] trationDelegate$BeanPostProcessorChecker : Bean 'deferringLoadBalancerInterceptor' of type [org.springframework.cloud.client.loadbalancer.DeferringLoadBalancerInterceptor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+2026-09-17T16:01:02.408+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8100 (http)
+2026-09-17T16:01:02.439+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-09-17T16:01:02.439+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-09-17T16:01:02.564+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-09-17T16:01:02.564+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3428 ms
+2026-09-17T16:01:04.240+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] o.f.c.internal.license.VersionPrinter    : Flyway Community Edition 9.22.3 by Redgate
+2026-09-17T16:01:04.240+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] o.f.c.internal.license.VersionPrinter    : See release notes here: https://rd.gt/416ObMi
+2026-09-17T16:01:04.240+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] o.f.c.internal.license.VersionPrinter    : 
+2026-09-17T16:01:04.298+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5433/shop (PostgreSQL 18.6)
+2026-09-17T16:01:04.319+01:00  WARN 18956 --- [shop-service] [           main] [                                                 ] o.f.c.internal.database.base.Database    : Flyway upgrade recommended: PostgreSQL 18.6 is newer than this version of Flyway and support has not been tested. The latest supported version of PostgreSQL is 15.
+2026-09-17T16:01:04.394+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] o.f.core.internal.command.DbValidate     : Successfully validated 3 migrations (execution time 00:00.045s)
+2026-09-17T16:01:04.430+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 2
+2026-09-17T16:01:04.449+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "3 - categories"
+2026-09-17T16:01:04.537+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] o.f.core.internal.command.DbMigrate      : Successfully applied 1 migration to schema "public", now at version v3 (execution time 00:00.064s)
+2026-09-17T16:01:04.635+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-09-17T16:01:04.684+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2026-09-17T16:01:04.723+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-09-17T16:01:04.923+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-17T16:01:04.955+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-09-17T16:01:04.980+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4dc5b887
+2026-09-17T16:01:04.982+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-09-17T16:01:05.011+01:00  WARN 18956 --- [shop-service] [           main] [                                                 ] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-09-17T16:01:06.088+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-17T16:01:06.140+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-17T16:01:06.599+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-09-17T16:01:07.395+01:00  WARN 18956 --- [shop-service] [           main] [                                                 ] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-09-17T16:01:07.452+01:00  WARN 18956 --- [shop-service] [           main] [                                                 ] .s.s.UserDetailsServiceAutoConfiguration : 
 
-Using generated security password: 908c82be-b2fc-4794-a52e-9a9bd01f4945
+Using generated security password: b2da8bac-bbad-44c0-94c6-cc34ff05a4dd
 
 This generated password is for development use only. Your security configuration must be updated before running your application in production.
 
-2026-09-17T13:00:23.761+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
-2026-09-17T13:00:23.972+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@47a363a8, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@632a1d4e, org.springframework.security.web.context.SecurityContextHolderFilter@78067cc4, org.springframework.security.web.header.HeaderWriterFilter@332815a3, org.springframework.web.filter.CorsFilter@5d77efc8, org.springframework.security.web.authentication.logout.LogoutFilter@4bfd9e3a, com.franck.ecommerce.config.JwtAuthenticationFilter@511d568f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1ee1c0cc, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@768b79db, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@d6ff21e, org.springframework.security.web.session.SessionManagementFilter@32ca397b, org.springframework.security.web.access.ExceptionTranslationFilter@7d963aca, org.springframework.security.web.access.intercept.AuthorizationFilter@6fe27001]
-2026-09-17T13:00:25.490+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
-2026-09-17T13:00:25.584+01:00  WARN 63367 --- [shop-service] [           main] [                                                 ] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
-2026-09-17T13:00:25.671+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
-2026-09-17T13:00:25.788+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
-2026-09-17T13:00:25.796+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2026-09-17T13:00:25.848+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
-2026-09-17T13:00:25.849+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
-2026-09-17T13:00:25.849+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
-2026-09-17T13:00:25.849+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Application is null : false
-2026-09-17T13:00:25.849+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
-2026-09-17T13:00:25.849+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
-2026-09-17T13:00:25.850+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
-2026-09-17T13:00:26.050+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : The response status is 200
-2026-09-17T13:00:26.053+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
-2026-09-17T13:00:26.056+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
-2026-09-17T13:00:26.061+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1789646426060 with initial instances count: 3
-2026-09-17T13:00:26.074+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application SHOP-SERVICE with eureka with status UP
-2026-09-17T13:00:26.075+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1789646426075, current=UP, previous=STARTING]
-2026-09-17T13:00:26.080+01:00  INFO 63367 --- [shop-service] [nfoReplicator-0] [                                                 ] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SHOP-SERVICE/192.168.2.25:shop-service:8100: registering service...
-2026-09-17T13:00:26.117+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8100 (http) with context path ''
-2026-09-17T13:00:26.118+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8100
-2026-09-17T13:00:26.147+01:00  INFO 63367 --- [shop-service] [           main] [                                                 ] com.franck.ecommerce.ShopApplication     : Started ShopApplication in 53.44 seconds (process running for 59.762)
-2026-09-17T13:00:26.154+01:00  INFO 63367 --- [shop-service] [nfoReplicator-0] [                                                 ] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SHOP-SERVICE/192.168.2.25:shop-service:8100 - registration status: 204
-2026-09-17T13:01:29.095+01:00  INFO 63367 --- [shop-service] [nio-8100-exec-1] [                                                 ] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-09-17T13:01:29.105+01:00  INFO 63367 --- [shop-service] [nio-8100-exec-1] [                                                 ] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2026-09-17T13:01:29.148+01:00  INFO 63367 --- [shop-service] [nio-8100-exec-1] [                                                 ] o.s.web.servlet.DispatcherServlet        : Completed initialization in 43 ms
-2026-09-17T13:05:25.876+01:00  INFO 63367 --- [shop-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2026-09-17T13:07:15.220+01:00  WARN 63367 --- [shop-service] [l-1 housekeeper] [                                                 ] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Retrograde clock change detected (housekeeper delta=29s791ms), soft-evicting connections from pool.
-2026-09-17T13:10:25.701+01:00  INFO 63367 --- [shop-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2026-09-17T13:15:25.732+01:00  INFO 63367 --- [shop-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2026-09-17T13:20:25.747+01:00  INFO 63367 --- [shop-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2026-09-17T13:25:25.772+01:00  INFO 63367 --- [shop-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2026-09-17T13:30:25.787+01:00  INFO 63367 --- [shop-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2026-09-17T13:35:25.818+01:00  INFO 63367 --- [shop-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2026-09-17T13:40:25.851+01:00  INFO 63367 --- [shop-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-09-17T16:01:09.497+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-09-17T16:01:09.681+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2026-09-17T16:01:09.765+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3b866e7d, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6e7b0234, org.springframework.security.web.context.SecurityContextHolderFilter@3ee640fa, org.springframework.security.web.header.HeaderWriterFilter@f47bd4d, org.springframework.web.filter.CorsFilter@1fb0c411, org.springframework.security.web.authentication.logout.LogoutFilter@66b98075, com.franck.ecommerce.config.JwtAuthenticationFilter@3f40568e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4a05902b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@bdc2f96, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@34784a86, org.springframework.security.web.session.SessionManagementFilter@692c5533, org.springframework.security.web.access.ExceptionTranslationFilter@72464f26, org.springframework.security.web.access.intercept.AuthorizationFilter@625cb9b]
+2026-09-17T16:01:11.663+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-09-17T16:01:11.681+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
+2026-09-17T16:01:11.735+01:00  WARN 18956 --- [shop-service] [           main] [                                                 ] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-09-17T16:01:11.838+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2026-09-17T16:01:11.913+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2026-09-17T16:01:11.923+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-09-17T16:01:11.938+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2026-09-17T16:01:11.938+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2026-09-17T16:01:11.938+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2026-09-17T16:01:11.938+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2026-09-17T16:01:11.938+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2026-09-17T16:01:11.938+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+2026-09-17T16:01:11.938+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2026-09-17T16:01:12.071+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2026-09-17T16:01:12.075+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
+2026-09-17T16:01:12.075+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2026-09-17T16:01:12.080+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1789657272080 with initial instances count: 8
+2026-09-17T16:01:12.080+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application SHOP-SERVICE with eureka with status UP
+2026-09-17T16:01:12.080+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1789657272080, current=UP, previous=STARTING]
+2026-09-17T16:01:12.087+01:00  INFO 18956 --- [shop-service] [nfoReplicator-0] [                                                 ] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SHOP-SERVICE/localhost:shop-service:8100: registering service...
+2026-09-17T16:01:12.118+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8100 (http) with context path ''
+2026-09-17T16:01:12.122+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8100
+2026-09-17T16:01:12.133+01:00  INFO 18956 --- [shop-service] [nfoReplicator-0] [                                                 ] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SHOP-SERVICE/localhost:shop-service:8100 - registration status: 204
+2026-09-17T16:01:13.287+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-09-17T16:01:13.336+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] o.a.k.clients.consumer.ConsumerConfig    : ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.include.jmx.reporter = true
+	auto.offset.reset = earliest
+	bootstrap.servers = [localhost:9092]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-shopOrderGroup-1
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = shopOrderGroup
+	group.instance.id = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 45000
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.springframework.kafka.support.serializer.JsonDeserializer
+
+2026-09-17T16:01:13.423+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 3.6.2
+2026-09-17T16:01:13.423+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: c4deed513057c94e
+2026-09-17T16:01:13.424+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1789657273422
+2026-09-17T16:01:13.432+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] fkaConsumerFactory$ExtendedKafkaConsumer : [Consumer clientId=consumer-shopOrderGroup-1, groupId=shopOrderGroup] Subscribed to topic(s): order-topic
+2026-09-17T16:01:13.464+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] com.franck.ecommerce.ShopApplication     : Started ShopApplication in 16.95 seconds (process running for 17.87)
+2026-09-17T16:01:13.837+01:00  INFO 18956 --- [shop-service] [           main] [                                                 ] c.f.e.c.LegacyProductMigrationRunner     : Legacy product migration already done — skipping (default shop already has 25 items)
+2026-09-17T16:01:14.173+01:00  INFO 18956 --- [shop-service] [ntainer#0-0-C-1] [                                                 ] org.apache.kafka.clients.Metadata        : [Consumer clientId=consumer-shopOrderGroup-1, groupId=shopOrderGroup] Cluster ID: X4uZyIDVRPq8FaSAbtX75A
+2026-09-17T16:01:14.175+01:00  INFO 18956 --- [shop-service] [ntainer#0-0-C-1] [                                                 ] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-shopOrderGroup-1, groupId=shopOrderGroup] Discovered group coordinator localhost:9092 (id: 2147482646 rack: null)
+2026-09-17T16:01:14.179+01:00  INFO 18956 --- [shop-service] [ntainer#0-0-C-1] [                                                 ] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-shopOrderGroup-1, groupId=shopOrderGroup] (Re-)joining group
+2026-09-17T16:01:14.203+01:00  INFO 18956 --- [shop-service] [ntainer#0-0-C-1] [                                                 ] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-shopOrderGroup-1, groupId=shopOrderGroup] Request joining group due to: need to re-join with the given member-id: consumer-shopOrderGroup-1-1fb8f739-7567-47ae-9e59-beabe24de9c7
+2026-09-17T16:01:14.204+01:00  INFO 18956 --- [shop-service] [ntainer#0-0-C-1] [                                                 ] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-shopOrderGroup-1, groupId=shopOrderGroup] Request joining group due to: rebalance failed due to 'The group member needs to have a valid member id before actually entering a consumer group.' (MemberIdRequiredException)
+2026-09-17T16:01:14.204+01:00  INFO 18956 --- [shop-service] [ntainer#0-0-C-1] [                                                 ] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-shopOrderGroup-1, groupId=shopOrderGroup] (Re-)joining group
+2026-09-17T16:01:21.594+01:00  INFO 18956 --- [shop-service] [ntainer#0-0-C-1] [                                                 ] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-shopOrderGroup-1, groupId=shopOrderGroup] Successfully joined group with generation Generation{generationId=6, memberId='consumer-shopOrderGroup-1-1fb8f739-7567-47ae-9e59-beabe24de9c7', protocol='range'}
+2026-09-17T16:01:21.600+01:00  INFO 18956 --- [shop-service] [ntainer#0-0-C-1] [                                                 ] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-shopOrderGroup-1, groupId=shopOrderGroup] Finished assignment for group at generation 6: {consumer-shopOrderGroup-1-1fb8f739-7567-47ae-9e59-beabe24de9c7=Assignment(partitions=[order-topic-0])}
+2026-09-17T16:01:21.615+01:00  INFO 18956 --- [shop-service] [ntainer#0-0-C-1] [                                                 ] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-shopOrderGroup-1, groupId=shopOrderGroup] Successfully synced group in generation Generation{generationId=6, memberId='consumer-shopOrderGroup-1-1fb8f739-7567-47ae-9e59-beabe24de9c7', protocol='range'}
+2026-09-17T16:01:21.615+01:00  INFO 18956 --- [shop-service] [ntainer#0-0-C-1] [                                                 ] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-shopOrderGroup-1, groupId=shopOrderGroup] Notifying assignor about the new Assignment(partitions=[order-topic-0])
+2026-09-17T16:01:21.618+01:00  INFO 18956 --- [shop-service] [ntainer#0-0-C-1] [                                                 ] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-shopOrderGroup-1, groupId=shopOrderGroup] Adding newly assigned partitions: order-topic-0
+2026-09-17T16:01:21.627+01:00  INFO 18956 --- [shop-service] [ntainer#0-0-C-1] [                                                 ] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-shopOrderGroup-1, groupId=shopOrderGroup] Setting offset for partition order-topic-0 to the committed offset FetchPosition{offset=8, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 1001 rack: null)], epoch=0}}
+2026-09-17T16:01:21.628+01:00  INFO 18956 --- [shop-service] [ntainer#0-0-C-1] [                                                 ] o.s.k.l.KafkaMessageListenerContainer    : shopOrderGroup: partitions assigned: [order-topic-0]
+2026-09-17T16:01:23.937+01:00  INFO 18956 --- [shop-service] [nio-8100-exec-2] [                                                 ] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-09-17T16:01:23.937+01:00  INFO 18956 --- [shop-service] [nio-8100-exec-2] [                                                 ] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-09-17T16:01:23.952+01:00  INFO 18956 --- [shop-service] [nio-8100-exec-2] [                                                 ] o.s.web.servlet.DispatcherServlet        : Completed initialization in 15 ms
+2026-09-17T16:06:11.963+01:00  INFO 18956 --- [shop-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-09-17T16:10:14.613+01:00  INFO 18956 --- [shop-service] [ntainer#0-0-C-1] [                                                 ] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-shopOrderGroup-1, groupId=shopOrderGroup] Node -1 disconnected.
+2026-09-17T16:11:11.972+01:00  INFO 18956 --- [shop-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-09-17T16:16:11.984+01:00  INFO 18956 --- [shop-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-09-17T16:21:11.986+01:00  INFO 18956 --- [shop-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-09-17T16:26:11.995+01:00  INFO 18956 --- [shop-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-09-17T16:31:12.011+01:00  INFO 18956 --- [shop-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration

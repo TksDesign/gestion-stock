@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useStock, useSales, useCreateSale } from '../../features/shop/hooks/useShop';
 import { toast } from 'react-hot-toast';
-import { ShoppingCart, Receipt, CheckCircle2, Search, X, History, Plus, Minus } from 'lucide-react';
+import { ShoppingCart, Receipt, CheckCircle2, Search, X, Users } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { CustomerOrdersPanel } from './CustomerOrdersPanel';
 
 type CartItem = {
   stockItemId: number;
@@ -18,6 +19,9 @@ export const ManagerSales = () => {
 
   const [cart, setCart] = useState<CartItem[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [tab, setTab] = useState<'pos' | 'orders'>('pos');
+
+  const onlineOrdersCount = (sales ?? []).filter(s => s.source === 'ONLINE').length;
 
   const addToCart = (item: any) => {
     if (item.quantity <= 0) return toast.error("Out of stock!");
@@ -75,14 +79,40 @@ export const ManagerSales = () => {
   }
 
   return (
-    <div className="h-[calc(100vh-6rem)] flex flex-col space-y-6">
-      <div>
-        <h1 className="text-4xl font-serif font-black text-gray-900 dark:text-white tracking-tight">Point of Sale</h1>
-        <p className="text-gray-500 dark:text-gray-400 mt-2 font-medium">Quickly process in-store transactions.</p>
+    <div className="lg:h-[calc(100vh-6rem)] flex flex-col space-y-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h1 className="text-3xl sm:text-4xl font-serif font-black text-gray-900 dark:text-white tracking-tight">
+            {tab === 'pos' ? 'Point of Sale' : 'Commandes clients'}
+          </h1>
+          <p className="text-gray-500 dark:text-gray-400 mt-2 font-medium text-sm sm:text-base">
+            {tab === 'pos' ? 'Quickly process in-store transactions.' : 'Commandes passées en ligne sur votre boutique.'}
+          </p>
+        </div>
+        <div className="flex gap-2 bg-gray-100 dark:bg-white/5 rounded-full p-1 self-start sm:self-auto">
+          <button
+            onClick={() => setTab('pos')}
+            className={`px-4 py-2 rounded-full text-xs sm:text-sm font-bold flex items-center gap-2 transition-colors whitespace-nowrap ${tab === 'pos' ? 'bg-black text-white dark:bg-white dark:text-black' : 'text-gray-500'}`}
+          >
+            <ShoppingCart size={16} /> Caisse
+          </button>
+          <button
+            onClick={() => setTab('orders')}
+            className={`px-4 py-2 rounded-full text-xs sm:text-sm font-bold flex items-center gap-2 transition-colors whitespace-nowrap ${tab === 'orders' ? 'bg-black text-white dark:bg-white dark:text-black' : 'text-gray-500'}`}
+          >
+            <Users size={16} /> <span className="hidden xs:inline">Commandes clients</span><span className="xs:hidden">Commandes</span>
+            {onlineOrdersCount > 0 && (
+              <span className="bg-red-500 text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center">{onlineOrdersCount}</span>
+            )}
+          </button>
+        </div>
       </div>
-      
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 flex-1 min-h-0">
-        
+
+      {tab === 'orders' ? (
+        <CustomerOrdersPanel />
+      ) : (
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 flex-1 lg:min-h-0">
+
         {/* POS Products Grid */}
         <div className="lg:col-span-8 flex flex-col space-y-6 min-h-0">
           <div className="relative">
@@ -204,6 +234,7 @@ export const ManagerSales = () => {
           </div>
         </div>
       </div>
+      )}
     </div>
   );
 };

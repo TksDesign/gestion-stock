@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -43,5 +44,15 @@ public class SaleController {
             @PathVariable("sale-id") Integer saleId
     ) {
         return ResponseEntity.ok(saleService.findById(user.userId(), saleId));
+    }
+
+    @PatchMapping("/{sale-id}/items/{item-id}/status")
+    public ResponseEntity<SaleItemResponse> updateItemStatus(
+            @AuthenticationPrincipal AuthenticatedUser user,
+            @PathVariable("sale-id") Integer saleId,
+            @PathVariable("item-id") Integer itemId,
+            @RequestBody @Valid SaleItemStatusUpdateRequest request
+    ) {
+        return ResponseEntity.ok(saleService.updateItemStatus(user.userId(), saleId, itemId, request));
     }
 }

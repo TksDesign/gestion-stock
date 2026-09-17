@@ -18,8 +18,20 @@ spring:
     baseline-version: 0
     user: ${spring.datasource.username}
     password: ${spring.datasource.password}
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: shopOrderGroup
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: '*'
+        spring.json.type.mapping: orderConfirmation:com.franck.ecommerce.kafka.OrderConfirmation
 
 application:
   security:
     jwt:
       secret-key: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+  config:
+    legacy-product-url: http://localhost:8050/api/v1/products

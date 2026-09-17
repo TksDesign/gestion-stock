@@ -38,7 +38,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             if (jwtService.isTokenValid(jwt) && SecurityContextHolder.getContext().getAuthentication() == null) {
                 String userId = jwtService.extractUserId(jwt);
                 String role = jwtService.extractRole(jwt);
-                var principal = new AuthenticatedUser(userId, jwtService.extractUsername(jwt), role);
+                String customerId = jwtService.extractCustomerId(jwt);
+                var principal = new AuthenticatedUser(userId, jwtService.extractUsername(jwt), role, customerId);
                 var authToken = new UsernamePasswordAuthenticationToken(
                         principal, null, List.of(new SimpleGrantedAuthority("ROLE_" + role))
                 );

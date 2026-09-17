@@ -28,7 +28,7 @@ Il n'y a **pas de route déclarée vers `notification-service`**, ce qui est coh
 
 ## CORS
 
-`spring.cloud.gateway.globalcors` autorise toutes origines (`allowedOriginPatterns: "*"`) et toutes méthodes/en-têtes sur `/**`. **`allowCredentials: true`** depuis l'introduction de l'authentification JWT (nécessaire pour que le frontend puisse envoyer l'en-tête `Authorization` en cross-origin). `allowedOriginPatterns: "*"` reste compatible avec `allowCredentials: true` côté Spring (contrairement à `allowedOrigins: "*"`, qui l'interdirait).
+`spring.cloud.gateway.globalcors` autorise toutes origines (`allowedOriginPatterns: "*"`) et toutes méthodes/en-têtes sur `/**` (`GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `OPTIONS` — ✅ `PATCH` ajouté le 2026-09-17, absent initialement, ce qui bloquait en `403` le preflight `OPTIONS` de tout endpoint `PATCH`, notamment `/shops/mine/sales/{id}/items/{id}/status`). **`allowCredentials: true`** depuis l'introduction de l'authentification JWT (nécessaire pour que le frontend puisse envoyer l'en-tête `Authorization` en cross-origin). `allowedOriginPatterns: "*"` reste compatible avec `allowCredentials: true` côté Spring (contrairement à `allowedOrigins: "*"`, qui l'interdirait).
 
 ## Découverte automatique de routes
 

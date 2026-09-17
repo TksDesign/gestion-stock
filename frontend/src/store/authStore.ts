@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { queryClient } from '../lib/queryClient';
 
 export type UserRole = 'ADMIN' | 'SHOP_MANAGER' | 'CLIENT';
 
@@ -26,8 +27,18 @@ export const useAuthStore = create<AuthState>()(
       isAuthenticated: false,
       user: null,
       token: null,
-      login: (user, token) => set({ isAuthenticated: true, user, token }),
-      logout: () => set({ isAuthenticated: false, user: null, token: null }),
+      login: (user, token) => {
+        // Vide le cache React Query : sans ça, un changement de compte (ex. une gérante
+        // qui se déconnecte et se reconnecte sous un autre compte) pouvait afficher
+        // transitoirement les données en cache du compte précédent (commandes/ventes
+        // d'une autre boutique) avant que le premier refetch ne les remplace.
+        queryClient.clear();
+        set({ isAuthenticated: true, user, token });
+      },
+      logout: () => {
+        queryClient.clear();
+        set({ isAuthenticated: false, user: null, token: null });
+      },
     }),
     {
       name: 'auth-storage',

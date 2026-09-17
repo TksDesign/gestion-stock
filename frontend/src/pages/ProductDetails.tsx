@@ -158,7 +158,7 @@ export const ProductDetails = () => {
 
          {/* RIGHT COLUMN: Sticky Info */}
          <div className="lg:w-[40%] relative">
-            <div className="sticky top-24 pt-4 pb-24">
+            <div className="lg:sticky lg:top-24 pt-4 pb-24">
               
               <div className="mb-8">
                 <p className="text-xs font-bold text-gray-500 uppercase tracking-[0.3em] mb-4">{product.categoryName}</p>
@@ -247,7 +247,7 @@ export const ProductDetails = () => {
                  </Accordion>
                  <Accordion title="Category Details">
                    <p className="mb-2"><strong>{product.categoryName}</strong></p>
-                   <p className="text-gray-500">{product.categoryDescription}</p>
+                   {product.shopName && <p className="text-gray-500">Sold by {product.shopName}</p>}
                  </Accordion>
                  <Accordion title="Shipping & Returns">
                    <p className="mb-2"><strong>Free standard shipping</strong> on orders over $200.</p>

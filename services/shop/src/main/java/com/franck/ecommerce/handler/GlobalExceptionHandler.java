@@ -3,6 +3,7 @@ package com.franck.ecommerce.handler;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.franck.ecommerce.catalog.CatalogPurchaseException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -12,6 +13,14 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
+    // 400, pas 409 : réplique exactement le contrat de l'ancien product-service
+    // (ProductPurchaseException -> BAD_REQUEST) consommé par order-service.
+    @ExceptionHandler(CatalogPurchaseException.class)
+    public ResponseEntity<ErrorResponse> handleCatalogPurchase(CatalogPurchaseException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(new ErrorResponse(Map.of("error", ex.getMessage())));
+    }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> handleValidation(MethodArgumentNotValidException ex) {
