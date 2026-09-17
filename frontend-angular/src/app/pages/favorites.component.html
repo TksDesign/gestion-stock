@@ -1,0 +1,53 @@
+<div class="w-full dark:bg-gray-900 min-h-screen pt-24 pb-20">
+  <div class="container mx-auto px-4 md:px-8">
+    <div class="mb-12 text-center md:text-left">
+      <h1 class="text-4xl md:text-5xl font-serif font-black text-gray-900 dark:text-white mb-4 uppercase tracking-tighter">Your Wishlist</h1>
+      <p class="text-sm text-gray-500 dark:text-gray-400 uppercase tracking-[0.2em] font-semibold">
+        {{ favoriteProducts().length }} {{ favoriteProducts().length === 1 ? 'Item' : 'Items' }} Saved
+      </p>
+    </div>
+
+    @if (isLoading()) {
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        @for (i of [1, 2, 3, 4]; track i) {
+          <div class="animate-pulse">
+            <div class="bg-gray-200 dark:bg-gray-800 aspect-[3/4] mb-4"></div>
+            <div class="h-4 bg-gray-200 dark:bg-gray-800 w-3/4 mb-2"></div>
+            <div class="h-4 bg-gray-200 dark:bg-gray-800 w-1/2"></div>
+          </div>
+        }
+      </div>
+    }
+
+    @if (isError()) {
+      <div class="text-center py-20 text-red-500 font-medium">Failed to load favorites. Please try again.</div>
+    }
+
+    @if (!isLoading() && !isError() && favoriteProducts().length === 0) {
+      <div class="flex flex-col items-center justify-center py-32 text-center animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div class="w-24 h-24 bg-gray-50 dark:bg-gray-800 rounded-full flex items-center justify-center mb-6 shadow-inner">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-gray-400"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+        </div>
+        <h2 class="text-2xl font-serif font-bold text-gray-900 dark:text-white mb-2">It's empty here</h2>
+        <p class="text-gray-500 dark:text-gray-400 mb-8 max-w-md">You haven't saved any items to your wishlist yet. Start shopping and add your favorite items!</p>
+        <a routerLink="/products">
+          <app-button variant="primary" extraClass="uppercase text-xs tracking-widest px-10 py-4 shadow-xl hover:scale-105 transition-transform bg-black text-white dark:bg-white dark:text-black">Discover Products</app-button>
+        </a>
+      </div>
+    }
+
+    @if (!isLoading() && !isError() && favoriteProducts().length > 0) {
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        @for (product of favoriteProducts(); track product.id) {
+          <div class="animate-in fade-in zoom-in-95 duration-400">
+            <app-product-card [product]="product" (quickView)="quickViewProduct.set(product)"></app-product-card>
+          </div>
+        }
+      </div>
+    }
+  </div>
+
+  @if (quickViewProduct(); as product) {
+    <app-quick-view-modal [product]="product" (close)="quickViewProduct.set(null)"></app-quick-view-modal>
+  }
+</div>

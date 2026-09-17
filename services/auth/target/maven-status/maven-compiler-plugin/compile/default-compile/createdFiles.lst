@@ -8,12 +8,15 @@ com\franck\ecommerce\user\Role.class
 com\franck\ecommerce\auth\AuthenticationController.class
 com\franck\ecommerce\handler\GlobalExceptionHandler.class
 com\franck\ecommerce\auth\CreateManagerRequest.class
+com\franck\ecommerce\auth\UserSummaryResponse.class
 com\franck\ecommerce\auth\AuthenticationService.class
 com\franck\ecommerce\auth\RegisterRequest.class
 com\franck\ecommerce\config\DataInitializer.class
 com\franck\ecommerce\AuthApplication.class
 com\franck\ecommerce\config\ApplicationConfig.class
 com\franck\ecommerce\config\SecurityConfig.class
+com\franck\ecommerce\config\RestAccessDeniedHandler.class
+com\franck\ecommerce\config\RestAuthenticationEntryPoint.class
 com\franck\ecommerce\handler\ErrorResponse.class
 com\franck\ecommerce\user\User$UserBuilder.class
 com\franck\ecommerce\config\JwtAuthenticationFilter.class

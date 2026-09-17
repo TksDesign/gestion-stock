@@ -9,6 +9,8 @@ com\franck\ecommerce\catalog\CatalogService.class
 com\franck\ecommerce\handler\BusinessException.class
 com\franck\ecommerce\config\SecurityConfig.class
 com\franck\ecommerce\sale\SaleResponse.class
+com\franck\ecommerce\config\RestAccessDeniedHandler.class
+com\franck\ecommerce\config\RestAuthenticationEntryPoint.class
 com\franck\ecommerce\catalog\LegacyProductMigrationRunner.class
 com\franck\ecommerce\shop\ShopStatus.class
 com\franck\ecommerce\sale\SaleController.class

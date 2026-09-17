@@ -24,6 +24,9 @@ export const shopAdminApi = {
 
   reassignManager: (id: number, managerId: string, managerEmail: string) =>
     api.put<ShopResponse>(`${BASE}/${id}/manager`, null, { params: { managerId, managerEmail } }).then(r => r.data),
+
+  updateShop: (id: number, data: ShopRequest) =>
+    api.put<ShopResponse>(`${BASE}/${id}`, data).then(r => r.data),
 };
 
 // ─── Gérante : sa boutique ────────────────────────────────────

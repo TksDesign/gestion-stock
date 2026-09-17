@@ -51,6 +51,20 @@ public class ShopService {
                 .orElseThrow(() -> new ResourceNotFoundException("No shop assigned to this manager"));
     }
 
+    // Édition admin : contrairement à updateMyShop, pas de scope par managerId — l'admin
+    // peut modifier n'importe quelle boutique, y compris la "boutique par défaut" sans
+    // gérante (issue de la migration de l'ancien product-service).
+    public ShopResponse updateShopByAdmin(Integer id, ShopRequest request) {
+        var shop = shopRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Shop not found with id: " + id));
+        shop.setName(request.name());
+        shop.setDescription(request.description());
+        shop.setStreet(request.street());
+        shop.setCity(request.city());
+        shop.setZipCode(request.zipCode());
+        return ShopResponse.from(shopRepository.save(shop));
+    }
+
     public ShopResponse updateShopStatus(Integer id, ShopStatus status) {
         var shop = shopRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Shop not found with id: " + id));

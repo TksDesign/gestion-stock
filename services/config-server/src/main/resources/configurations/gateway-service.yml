@@ -3,6 +3,12 @@ server:
 spring:
   cloud:
     gateway:
+      # Sans ces timeouts, un service en aval qui ne répond plus (bloqué, surchargé)
+      # laissait la requête en attente indéfiniment côté frontend au lieu de déclencher
+      # une vraie erreur 504 exploitable (voir GlobalErrorWebExceptionHandler).
+      httpclient:
+        connect-timeout: 5000
+        response-timeout: 15s
       discovery:
         locator:
           enabled: true

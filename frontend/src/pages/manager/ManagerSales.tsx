@@ -50,11 +50,11 @@ export const ManagerSales = () => {
       { items: cart.map(i => ({ stockItemId: i.stockItemId, quantity: i.quantity })) },
       {
         onSuccess: () => {
-          toast.success("Sale completed successfully!");
+          toast.success("Vente enregistrée avec succès !");
           setCart([]);
         },
         onError: (err: any) => {
-          toast.error(err.response?.data?.error || "Error processing sale");
+          toast.error(err.response?.data?.errors?.error || "Erreur lors de l'enregistrement de la vente");
         }
       }
     );

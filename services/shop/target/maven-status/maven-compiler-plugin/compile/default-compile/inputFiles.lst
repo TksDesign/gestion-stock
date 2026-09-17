@@ -1,5 +1,6 @@
 C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\catalog\CustomerOrderController.java
 C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\sale\SaleItemRepository.java
+C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\config\RestAccessDeniedHandler.java
 C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\catalog\CatalogProductResponse.java
 C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\dashboard\DashboardService.java
 C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\sale\SaleItemResponse.java
@@ -8,6 +9,7 @@ C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\s
 C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\ShopApplication.java
 C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\handler\ResourceNotFoundException.java
 C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\shop\ShopController.java
+C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\config\RestAuthenticationEntryPoint.java
 C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\catalog\CatalogPurchaseRequest.java
 C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\category\CategoryResponse.java
 C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\sale\SaleItem.java

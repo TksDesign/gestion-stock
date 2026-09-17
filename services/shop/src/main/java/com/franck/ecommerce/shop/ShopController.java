@@ -46,6 +46,15 @@ public class ShopController {
         return ResponseEntity.ok(shopService.findById(shopId));
     }
 
+    @PutMapping("/{shop-id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<ShopResponse> updateShop(
+            @PathVariable("shop-id") Integer shopId,
+            @RequestBody @Valid ShopRequest request
+    ) {
+        return ResponseEntity.ok(shopService.updateShopByAdmin(shopId, request));
+    }
+
     @PutMapping("/{shop-id}/status")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ShopResponse> updateStatus(

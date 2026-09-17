@@ -12,6 +12,8 @@ export const AdminLayout = () => {
 
   const links = [
     { to: '/admin/shops', label: 'Boutiques', icon: '🏪' },
+    { to: '/admin/managers', label: 'Gérantes', icon: '👤' },
+    { to: '/admin/clients', label: 'Clients', icon: '🛍️' },
   ];
 
   const sidebarContent = (

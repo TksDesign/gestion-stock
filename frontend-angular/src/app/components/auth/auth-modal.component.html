@@ -1,0 +1,91 @@
+@if (authModal.isOpen()) {
+  <div class="fixed inset-0 z-[200] flex items-center justify-center p-4 sm:p-6 font-sans">
+    <div class="absolute inset-0 bg-black/60 backdrop-blur-md animate-in fade-in duration-300" (click)="closeModal()"></div>
+
+    <div class="bg-white dark:bg-gray-900 w-full max-w-5xl rounded-3xl overflow-hidden shadow-2xl relative flex flex-col md:flex-row min-h-[600px] z-10 animate-in zoom-in-95 slide-in-from-bottom-4 duration-500">
+      <button (click)="closeModal()" class="absolute top-6 right-6 text-gray-400 hover:text-black dark:hover:text-white z-20 transition-transform hover:scale-110">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
+      </button>
+
+      <div class="hidden md:block md:w-[45%] relative bg-gray-100 dark:bg-gray-800 overflow-hidden">
+        <img [src]="imgLeft" class="absolute inset-0 w-full h-full object-cover" alt="" />
+      </div>
+
+      <div class="w-full md:w-[55%] p-10 lg:p-16 flex flex-col relative overflow-hidden">
+        <h2 class="text-3xl font-serif font-bold text-gray-900 dark:text-white mb-8">KSHOP</h2>
+
+        <div class="flex-1 flex flex-col justify-center max-w-md relative">
+          @if (authModal.view() === 'signin') {
+            <div class="animate-in fade-in slide-in-from-left-2 duration-300">
+              <h3 class="text-xl font-serif font-bold text-gray-900 dark:text-white mb-6">Se connecter</h3>
+              <form (submit)="handleLogin($event)">
+                <input name="email" required placeholder="Email" type="email" class="w-full border-0 border-b border-gray-200 dark:border-gray-700 bg-transparent py-3 text-sm focus:outline-none focus:border-black dark:focus:border-white focus:ring-0 mb-4 dark:text-white" />
+                <input name="password" required placeholder="Mot de passe" type="password" class="w-full border-0 border-b border-gray-200 dark:border-gray-700 bg-transparent py-3 text-sm focus:outline-none focus:border-black dark:focus:border-white focus:ring-0 mb-4 dark:text-white" />
+                <app-button type="submit" variant="primary" [disabled]="loading()" extraClass="w-full rounded-md mt-4 mb-4 bg-black text-white shadow-lg hover:scale-[1.02] transition-transform disabled:opacity-50">
+                  {{ loading() ? 'Connexion...' : 'Se connecter' }}
+                </app-button>
+                <app-button type="button" variant="outline" extraClass="w-full rounded-md text-blue-600 border-blue-200 hover:bg-blue-50" (click)="setView('signup')">Créer un compte</app-button>
+              </form>
+            </div>
+          }
+
+          @if (authModal.view() === 'signup') {
+            <div class="animate-in fade-in slide-in-from-left-2 duration-300">
+              <h3 class="text-xl font-serif font-bold text-gray-900 dark:text-white mb-6">Créer un compte</h3>
+              <form (submit)="handleRegister($event)">
+                <div class="grid grid-cols-2 gap-4">
+                  <input name="firstname" required placeholder="Prénom" class="w-full border-0 border-b border-gray-200 dark:border-gray-700 bg-transparent py-3 text-sm focus:outline-none focus:border-black dark:focus:border-white focus:ring-0 mb-4 dark:text-white" />
+                  <input name="lastname" required placeholder="Nom" class="w-full border-0 border-b border-gray-200 dark:border-gray-700 bg-transparent py-3 text-sm focus:outline-none focus:border-black dark:focus:border-white focus:ring-0 mb-4 dark:text-white" />
+                  <input name="email" required placeholder="Adresse email" type="email" class="w-full border-0 border-b border-gray-200 dark:border-gray-700 bg-transparent py-3 text-sm focus:outline-none focus:border-black dark:focus:border-white focus:ring-0 mb-4 dark:text-white col-span-2" />
+                  <input name="password" required placeholder="Mot de passe" type="password" minlength="6" class="w-full border-0 border-b border-gray-200 dark:border-gray-700 bg-transparent py-3 text-sm focus:outline-none focus:border-black dark:focus:border-white focus:ring-0 mb-4 dark:text-white" />
+                  <input name="confirmPassword" required placeholder="Confirmer le mot de passe" type="password" class="w-full border-0 border-b border-gray-200 dark:border-gray-700 bg-transparent py-3 text-sm focus:outline-none focus:border-black dark:focus:border-white focus:ring-0 mb-4 dark:text-white" />
+                </div>
+                <app-button type="submit" variant="primary" [disabled]="loading()" extraClass="w-full rounded-md mt-6 mb-4 bg-black text-white shadow-lg hover:scale-[1.02] transition-transform disabled:opacity-50">
+                  {{ loading() ? 'Création...' : 'Créer le compte' }}
+                </app-button>
+              </form>
+              <div class="text-center mt-2">
+                <p class="text-xs text-gray-500 font-semibold">Déjà un compte ? <button type="button" (click)="setView('signin')" class="text-blue-600 hover:underline">Se connecter</button></p>
+              </div>
+            </div>
+          }
+
+          @if (authModal.view() === 'forgot') {
+            <div class="animate-in fade-in slide-in-from-left-2 duration-300">
+              <h3 class="text-xl font-serif font-bold text-gray-900 dark:text-white mb-8 mt-12">Mot de passe oublié</h3>
+              <form (submit)="handleForgotSubmit($event)">
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                  <input name="firstname" required placeholder="Prénom" class="w-full border-0 border-b border-gray-200 dark:border-gray-700 bg-transparent py-3 text-sm focus:outline-none focus:border-black dark:focus:border-white focus:ring-0 mb-4 dark:text-white" />
+                  <input name="lastname" required placeholder="Nom" class="w-full border-0 border-b border-gray-200 dark:border-gray-700 bg-transparent py-3 text-sm focus:outline-none focus:border-black dark:focus:border-white focus:ring-0 mb-4 dark:text-white" />
+                  <input name="email" required placeholder="Adresse email" type="email" class="w-full border-0 border-b border-gray-200 dark:border-gray-700 bg-transparent py-3 text-sm focus:outline-none focus:border-black dark:focus:border-white focus:ring-0 mb-4 dark:text-white" />
+                  <input name="phone" placeholder="Téléphone" type="tel" class="w-full border-0 border-b border-gray-200 dark:border-gray-700 bg-transparent py-3 text-sm focus:outline-none focus:border-black dark:focus:border-white focus:ring-0 mb-4 dark:text-white" />
+                </div>
+                <app-button type="submit" variant="primary" extraClass="w-full rounded-md mt-6 mb-4 bg-black text-white shadow-lg hover:scale-[1.02] transition-transform">Envoyer le code</app-button>
+              </form>
+              <div class="text-center mt-2">
+                <p class="text-xs text-gray-500 font-semibold">Déjà un compte ? <button type="button" (click)="setView('signin')" class="text-blue-600 hover:underline">Se connecter</button></p>
+              </div>
+            </div>
+          }
+
+          @if (authModal.view() === 'verify') {
+            <div class="animate-in fade-in slide-in-from-left-2 duration-300">
+              <h3 class="text-xl font-serif font-bold text-gray-900 dark:text-white mb-8 mt-12">Entrer le code de confirmation</h3>
+              <form (submit)="handleVerifySubmit($event)">
+                <input name="code" required placeholder="Code de confirmation" class="w-full border-0 border-b border-gray-200 dark:border-gray-700 bg-transparent py-3 text-sm focus:outline-none focus:border-black dark:focus:border-white focus:ring-0 mb-4 dark:text-white" />
+                <app-button type="submit" variant="primary" extraClass="w-full rounded-md mt-6 mb-4 bg-black text-white shadow-lg hover:scale-[1.02] transition-transform">Récupérer le compte</app-button>
+              </form>
+              <div class="text-center mt-2">
+                <p class="text-xs text-gray-500 font-semibold">Code non reçu ? <button type="button" class="text-blue-600 hover:underline">Renvoyer</button></p>
+              </div>
+            </div>
+          }
+        </div>
+
+        <div class="absolute bottom-6 right-8">
+          <p class="text-[10px] text-gray-500 font-medium">KSHOP Terms &amp; Conditions</p>
+        </div>
+      </div>
+    </div>
+  </div>
+}

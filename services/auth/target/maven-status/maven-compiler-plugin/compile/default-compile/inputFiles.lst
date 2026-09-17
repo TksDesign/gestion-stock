@@ -5,14 +5,17 @@ C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\a
 C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\auth\AuthenticationService.java
 C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\handler\ErrorResponse.java
 C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\user\Role.java
+C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\config\RestAccessDeniedHandler.java
 C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\config\SecurityConfig.java
 C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\auth\CreateManagerRequest.java
+C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\auth\UserSummaryResponse.java
 C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\auth\AuthenticationRequest.java
 C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\auth\CustomerClient.java
 C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\config\JwtAuthenticationFilter.java
 C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\auth\AuthenticationResponse.java
 C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\config\ApplicationConfig.java
 C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\user\User.java
+C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\config\RestAuthenticationEntryPoint.java
 C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\auth\RegisterRequest.java
 C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\AuthApplication.java
 C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\handler\GlobalExceptionHandler.java
