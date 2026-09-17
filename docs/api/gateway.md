@@ -7,7 +7,7 @@
 | **Port local** | `8222` |
 | **Nom Eureka** | `GATEWAY-SERVICE` (s'enregistre aussi comme client Eureka, en plus de router vers les autres) |
 | **Technologie** | Spring Cloud Gateway (réactif, WebFlux) |
-| **Authentification** | **Aucune** — pas de filtre de sécurité, pas de vérification de token, aucun endpoint n'est protégé au niveau de la gateway ni des services en aval |
+| **Authentification** | **Aucune au niveau de la gateway elle-même** — pas de filtre de sécurité, pas de vérification de token côté gateway (simple routeur transparent). Les services en aval (`auth-service`, `shop-service`) valident désormais le JWT **eux-mêmes** — voir [auth.md](auth.md) et [shop.md](shop.md). |
 | **Package** | `com.franck.gateway` |
 
 Point d'entrée unique attendu pour un frontend. C'est le seul composant que les tests de flow (Phase 3) doivent appeler — jamais les services directement.
@@ -21,12 +21,14 @@ Point d'entrée unique attendu pour un frontend. C'est le seul composant que les
 | `order-lines-service` | `/api/v1/order-lines/**` | `ORDER-SERVICE` |
 | `product-service` | `/api/v1/products/**` | `PRODUCT-SERVICE` |
 | `payment-service` | `/api/v1/payments/**` | `PAYMENT-SERVICE` |
+| `auth-service` | `/api/v1/auth/**` | `AUTH-SERVICE` |
+| `shop-service` | `/api/v1/shops/**` | `SHOP-SERVICE` |
 
 Il n'y a **pas de route déclarée vers `notification-service`**, ce qui est cohérent : ce service n'expose aucun endpoint REST (voir [notification.md](notification.md)).
 
 ## CORS
 
-✅ **Configuré le 2026-08-20** (voir « Points d'attention » historique ci-dessous). `spring.cloud.gateway.globalcors` autorise toutes origines/méthodes/en-têtes sur `/**`, sans `allowCredentials` (cohérent avec l'absence totale d'authentification dans ce backend). Revalidé par une requête `OPTIONS` preflight réelle avec `Origin: http://localhost:3000` → `Access-Control-Allow-Origin` correctement renvoyé dans la réponse.
+`spring.cloud.gateway.globalcors` autorise toutes origines (`allowedOriginPatterns: "*"`) et toutes méthodes/en-têtes sur `/**`. **`allowCredentials: true`** depuis l'introduction de l'authentification JWT (nécessaire pour que le frontend puisse envoyer l'en-tête `Authorization` en cross-origin). `allowedOriginPatterns: "*"` reste compatible avec `allowCredentials: true` côté Spring (contrairement à `allowedOrigins: "*"`, qui l'interdirait).
 
 ## Découverte automatique de routes
 
@@ -44,5 +46,6 @@ La présente documentation (`docs/api/*.md`) est produite par lecture directe du
 ## Points d'attention
 
 - ~~**CORS non configuré**~~ — ✅ corrigé (voir section dédiée ci-dessus).
-- Aucune authentification/autorisation à aucun niveau (gateway ou services) : à considérer comme un point bloquant si le frontend doit gérer des comptes utilisateurs différenciés (voir décision actée en Phase 0 : documenté tel quel, hors périmètre de cette mission).
+- ~~**Aucune authentification/autorisation à aucun niveau**~~ — ✅ **partiellement corrigé** : `auth-service` (émission JWT) et `shop-service` (vérification JWT + rôles) sont protégés. **`customer`, `product`, `order`, `payment` restent totalement ouverts** — aucune vérification de token sur ces 4 services ni sur leurs routes gateway. Voir [auth.md](auth.md) et [shop.md](shop.md) pour le détail du nouveau flux.
+- La gateway elle-même ne fait **aucune vérification de token** : elle route en aveugle vers `auth-service`/`shop-service`, qui appliquent leur propre filtre JWT en interne. Un WAF/filtre de gateway centralisé pourrait être ajouté plus tard pour éviter la duplication de la logique de validation entre `auth-service` et `shop-service` (actuellement dupliquée : même secret, même code `JwtService` copié dans les deux modules).
 - La double exposition (route explicite + découverte automatique) peut prêter à confusion en observabilité (deux chemins pour le même endpoint) — sans impact fonctionnel direct.

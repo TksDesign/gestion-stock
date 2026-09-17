@@ -39,7 +39,7 @@ export const Checkout = () => {
       await createOrderMutation.mutateAsync({
         amount: total,
         paymentMethod: PaymentMethod.CREDIT_CARD, // Hardcodé pour l'instant
-        customerId: user.id,
+        customerId: user.customerId || user.id,
         products: items.map(item => ({
           productId: Number(item.productId),
           quantity: item.quantity

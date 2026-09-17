@@ -1,6 +1,6 @@
 # Documentation API — ms-stock-management
 
-Documentation produite par lecture directe du code source (contrôleurs, DTOs, handlers d'exception), **pas** par extraction d'une spécification OpenAPI/Swagger : aucune dépendance `springdoc-openapi` n'existe dans le repo (vérifié sur les 8 modules). Voir [gateway.md](api/gateway.md#agrégation-swagger) pour le détail.
+Documentation produite par lecture directe du code source (contrôleurs, DTOs, handlers d'exception), **pas** par extraction d'une spécification OpenAPI/Swagger : aucune dépendance `springdoc-openapi` n'existe dans le repo (vérifié initialement sur les 8 modules d'origine, toujours vrai sur `auth`/`shop` ajoutés le 2026-09-17 — 10 modules au total). Voir [gateway.md](api/gateway.md#agrégation-swagger) pour le détail.
 
 Toutes les données ci-dessous ont été vérifiées contre le code du package `com.franck.*` (post-renommage Phase 1), sur la branche `refactor/rename-to-franck`.
 
@@ -9,6 +9,8 @@ Toutes les données ci-dessous ont été vérifiées contre le code du package `
 | Service | Rôle | Endpoints REST | Base path (via gateway) |
 |---|---|---|---|
 | [gateway](api/gateway.md) | Point d'entrée unique, routage | — (routeur) | `http://localhost:8222` |
+| [auth](api/auth.md) | Authentification, émission JWT, rôles `ADMIN`/`SHOP_MANAGER` | 3 | `/api/v1/auth` |
+| [shop](api/shop.md) | Gestion boutique + stock + ventes (gérante), création boutique (admin) | 15 | `/api/v1/shops` |
 | [customer](api/customer.md) | Référentiel clients (CRUD) | 6 | `/api/v1/customers` |
 | [product](api/product.md) | Catalogue produits + décrément de stock | 4 | `/api/v1/products` |
 | [order](api/order.md) | Orchestration des commandes | 4 (2 contrôleurs) | `/api/v1/orders`, `/api/v1/order-lines` |
@@ -17,7 +19,7 @@ Toutes les données ci-dessous ont été vérifiées contre le code du package `
 
 Services d'infrastructure non documentés ici (pas d'API métier) : `discovery` (Eureka, `:8761`), `config-server` (Spring Cloud Config natif, `:8888`).
 
-**Authentification** : aucune, sur l'ensemble des services et de la gateway (pas de Spring Security/Keycloak/OAuth2 dans le repo — hypothèse initiale invalidée en Phase 0, décision actée : documenté tel quel).
+**Authentification** : **JWT (HS384) sur `auth-service` et `shop-service`** uniquement, introduit après la rédaction initiale de cette documentation (voir [auth.md](api/auth.md) et [shop.md](api/shop.md) pour le détail complet — rôles, endpoints, modèle de données, exemples de requêtes). **`customer`, `product`, `order`, `payment` restent sans aucune authentification** (hypothèse initiale de la Phase 0, toujours vraie pour ces 4 services).
 
 ---
 
@@ -70,6 +72,43 @@ sequenceDiagram
     ORD-->>Client: 200 orderId
 ```
 
+### Authentification et gestion de boutique (JWT)
+
+```mermaid
+sequenceDiagram
+    actor Gerante as Gérante (frontend)
+    actor Admin as Admin (frontend)
+    participant GW as Gateway (:8222)
+    participant AUTH as auth-service (:8095)
+    participant SHOP as shop-service (:8100)
+    participant CUS as customer-service (:8090)
+
+    Gerante->>GW: POST /api/v1/auth/register
+    GW->>AUTH: route lb://AUTH-SERVICE
+    AUTH->>AUTH: hash password (BCrypt), role=SHOP_MANAGER
+    AUTH->>GW: POST /api/v1/customers (best-effort)
+    GW->>CUS: route lb://CUSTOMER-SERVICE
+    CUS-->>AUTH: customerId (ou échec silencieux)
+    AUTH-->>Gerante: 201 { token JWT, userId, role }
+
+    Admin->>GW: POST /api/v1/auth/login (admin@kshop.com)
+    GW->>AUTH: route lb://AUTH-SERVICE
+    AUTH-->>Admin: 200 { token JWT, role: ADMIN }
+
+    Admin->>GW: POST /api/v1/shops (Bearer admin token, managerId=Gérante.userId)
+    GW->>SHOP: route lb://SHOP-SERVICE
+    Note over SHOP: JwtAuthenticationFilter vérifie<br/>la signature localement (même secret que AUTH)<br/>@PreAuthorize("hasRole('ADMIN')")
+    SHOP-->>Admin: 201 Shop créée, gérante assignée
+
+    Gerante->>GW: GET /api/v1/shops/mine/dashboard (Bearer gérante token)
+    GW->>SHOP: route lb://SHOP-SERVICE
+    Note over SHOP: userId (JWT) → Shop.managerId → shopId<br/>résolu serveur, jamais transmis par le client
+    SHOP-->>Gerante: 200 stats agrégées (stock, ventes, top produits)
+```
+
+- `shop-service` **ne dépend pas** d'un appel réseau à `auth-service` pour valider un token : la clé secrète JWT est dupliquée dans `shop-service.yml` (config-server), permettant une vérification locale et stateless.
+- Tout le stock/ventes/dashboard de `shop-service` est un **domaine séparé** de `product-service` (pas de FK, pas d'appel croisé) — voir [shop.md](api/shop.md#décision-de-conception--stock-indépendant-du-catalogue-product-service) pour la justification complète.
+
 ### Asynchrone — confirmations via Kafka
 
 ```mermaid
@@ -96,6 +135,8 @@ flowchart TB
     end
 
     GW[gateway :8222] -.->|Eureka client| DISC
+    AUTH[auth :8095] -.->|Eureka client| DISC
+    SHOP[shop :8100] -.->|Eureka client| DISC
     CUS[customer :8090] -.->|Eureka client| DISC
     PRD[product :8050] -.->|Eureka client| DISC
     ORD[order :8070] -.->|Eureka client| DISC
@@ -103,17 +144,24 @@ flowchart TB
     NOT[notification :8040] -.->|Eureka client| DISC
 
     GW -.->|optional:configserver| CFG
+    AUTH -.->|optional:configserver| CFG
+    SHOP -.->|optional:configserver| CFG
     CUS -.->|optional:configserver| CFG
     PRD -.->|optional:configserver| CFG
     ORD -.->|optional:configserver| CFG
     PAY -.->|optional:configserver| CFG
     NOT -.->|optional:configserver| CFG
 
-    CUS --> MONGO[(MongoDB)]
+    AUTH --> MONGO[(MongoDB)]
+    CUS --> MONGO
     NOT --> MONGO
-    PRD --> PG[(PostgreSQL)]
+    SHOP --> PG[(PostgreSQL)]
+    PRD --> PG
     ORD --> PG
     PAY --> PG
+
+    AUTH -.->|REST best-effort, création Customer| CUS
+    SHOP -.->|JWT vérifié localement<br/>même secret que AUTH| AUTH
 
     ORD --> K[(Kafka)]
     PAY --> K
@@ -127,7 +175,7 @@ flowchart TB
 
 > Cette section a été mise à jour après exécution réelle des tests, puis après correction et revalidation des 6 bugs identifiés + des 3 points restés ouverts (voir [TEST_REPORT.md](TEST_REPORT.md) pour le détail complet).
 
-1. **Aucune authentification** — confirmé : aucun 401/403 n'existe nulle part dans le backend (décision actée en Phase 0 : documenté tel quel, non implémenté).
+1. ~~**Aucune authentification**~~ — ✅ **partiellement introduit (2026-09-17)** : `auth-service` (émission JWT, BCrypt, rôles `ADMIN`/`SHOP_MANAGER`) et `shop-service` (vérification JWT + `@PreAuthorize` par rôle) sont désormais protégés. **`customer`, `product`, `order`, `payment` restent sans authentification** — voir [auth.md](api/auth.md), [shop.md](api/shop.md), et [gateway.md](api/gateway.md#points-dattention) pour le détail exact du périmètre couvert/non couvert.
 2. **"Paiement refusé" n'existe pas** — confirmé : `payment-service` accepte toujours le paiement en tant que tel (la validation ajoutée rejette désormais les données structurellement invalides — montant négatif, email mal formé — mais il n'y a toujours aucune logique de refus métier), voir [payment.md](api/payment.md).
 3. ~~**Incohérence des codes d'erreur "ressource introuvable"**~~ — ✅ corrigé : `product-service` renvoie désormais `404` comme `customer`/`order`.
 4. ~~**`POST /api/v1/orders` renvoie `500` opaque pour les 3 cas métier gérés en aval**~~ — ✅ corrigé : `404` (client introuvable) et `400` (produit introuvable/stock insuffisant) avec messages métier relayés.
@@ -136,3 +184,6 @@ flowchart TB
 7. ~~**CORS non configuré côté gateway**~~ — ✅ corrigé et revalidé par une requête `OPTIONS` preflight réelle, voir [gateway.md](api/gateway.md#cors).
 8. ~~**Pas de transaction distribuée/saga** : stock jamais restauré si le paiement échouait après décrément~~ — ✅ compensation de stock (saga légère) ajoutée et revalidée (`payment-service` coupé artificiellement, stock confirmé restauré), voir [order.md](api/order.md#-compensation-de-stock-saga-légère--ajoutée-le-2026-08-20). Reste une solution best-effort, pas une saga complète.
 9. ~~**Nom Feign trompeur** `@FeignClient(name="product-service")` sur `PaymentClient`~~ — ✅ corrigé.
+10. ~~**`order-service`/`payment-service` en `ddl-auto: create`**~~ — ✅ **corrigé (2026-09-17)** : migré vers Flyway + `ddl-auto: validate` (alignés sur `product-service`), schéma initial `V1__init_database.sql` sur chaque service. Élimine le risque de perte de données au redémarrage.
+11. **Environnement de build** — la machine de développement n'avait que JDK 25 et JDK 8 installées ; Lombok (même en 1.18.48, la dernière version disponible au 2026-09-17) ne supporte pas encore l'annotation processing sous JDK 25. **JDK 17 (Eclipse Temurin) installée manuellement** (`C:\Users\<user>\java\jdk-17`, `JAVA_HOME` persisté via `setx`) — prérequis à documenter pour toute nouvelle machine de dev sur ce repo.
+12. **Collection Postman non mise à jour** (`docs/postman/ms-stock-management.postman_collection.json`) — les 18 endpoints de `auth-service` et `shop-service` n'y figurent pas encore ; seuls `customer`/`product`/`order`/`payment` sont couverts. À compléter avant de s'appuyer dessus pour des tests manuels d'intégration frontend.

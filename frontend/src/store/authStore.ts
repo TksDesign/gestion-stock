@@ -1,11 +1,15 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
+export type UserRole = 'ADMIN' | 'SHOP_MANAGER';
+
 interface User {
   id: string;
   firstname: string;
   lastname: string;
   email: string;
+  role: UserRole;
+  customerId?: string | null;
 }
 
 interface AuthState {
@@ -26,7 +30,7 @@ export const useAuthStore = create<AuthState>()(
       logout: () => set({ isAuthenticated: false, user: null, token: null }),
     }),
     {
-      name: 'auth-storage', // nom clé dans le localStorage
+      name: 'auth-storage',
     }
   )
 );
