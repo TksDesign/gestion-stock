@@ -28,6 +28,8 @@ import { ManagerSettings } from './pages/manager/ManagerSettings';
 
 import { AdminLayout } from './components/layout/AdminLayout';
 import { AdminShops } from './pages/admin/AdminShops';
+import { AdminManagers } from './pages/admin/AdminManagers';
+import { AdminClients } from './pages/admin/AdminClients';
 
 // Layout pour la page d'accueil
 const HomeLayout = () => (
@@ -95,6 +97,8 @@ function App() {
             <Route element={<ProtectedRoute allowedRoles={['ADMIN']} />}>
               <Route path="/admin" element={<AdminLayout />}>
                 <Route path="shops" element={<AdminShops />} />
+                <Route path="managers" element={<AdminManagers />} />
+                <Route path="clients" element={<AdminClients />} />
               </Route>
             </Route>
 

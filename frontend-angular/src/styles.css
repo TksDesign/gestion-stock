@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-serif: "Playfair Display", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+html, body {
+  @apply antialiased;
+}
+
+.clip-diagonal {
+  clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+@media (max-width: 768px) {
+  .clip-diagonal {
+    clip-path: none;
+  }
+}

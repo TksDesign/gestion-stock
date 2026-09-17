@@ -8,6 +8,7 @@ com\franck\ecommerce\user\Role.class
 com\franck\ecommerce\auth\AuthenticationController.class
 com\franck\ecommerce\handler\GlobalExceptionHandler.class
 com\franck\ecommerce\auth\CreateManagerRequest.class
+com\franck\ecommerce\auth\UserSummaryResponse.class
 com\franck\ecommerce\auth\AuthenticationService.class
 com\franck\ecommerce\auth\RegisterRequest.class
 com\franck\ecommerce\config\DataInitializer.class

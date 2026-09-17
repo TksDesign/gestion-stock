@@ -1,0 +1,99 @@
+<div class="w-full bg-white dark:bg-gray-900 font-sans min-h-[75vh]">
+  <div class="container mx-auto px-4 py-16 max-w-6xl">
+    <h1 class="text-4xl font-serif font-bold text-gray-900 dark:text-white mb-12 text-center md:text-left">My Account</h1>
+
+    <div class="flex flex-col md:flex-row gap-12">
+      <div class="w-full md:w-1/4">
+        <div class="flex flex-col gap-2">
+          <button
+            (click)="activeTab.set('orders')"
+            class="text-left px-6 py-4 rounded-sm font-semibold transition-colors text-sm uppercase tracking-widest border-l-4"
+            [class.bg-gray-100]="activeTab() === 'orders'" [class.dark:bg-gray-800]="activeTab() === 'orders'" [class.text-black]="activeTab() === 'orders'" [class.dark:text-white]="activeTab() === 'orders'" [class.border-black]="activeTab() === 'orders'" [class.dark:border-white]="activeTab() === 'orders'"
+            [class.text-gray-500]="activeTab() !== 'orders'" [class.hover:bg-gray-50]="activeTab() !== 'orders'" [class.dark:hover:bg-gray-800/50]="activeTab() !== 'orders'" [class.border-transparent]="activeTab() !== 'orders'"
+          >
+            My Orders
+          </button>
+          <button
+            (click)="activeTab.set('details')"
+            class="text-left px-6 py-4 rounded-sm font-semibold transition-colors text-sm uppercase tracking-widest border-l-4"
+            [class.bg-gray-100]="activeTab() === 'details'" [class.dark:bg-gray-800]="activeTab() === 'details'" [class.text-black]="activeTab() === 'details'" [class.dark:text-white]="activeTab() === 'details'" [class.border-black]="activeTab() === 'details'" [class.dark:border-white]="activeTab() === 'details'"
+            [class.text-gray-500]="activeTab() !== 'details'" [class.hover:bg-gray-50]="activeTab() !== 'details'" [class.dark:hover:bg-gray-800/50]="activeTab() !== 'details'" [class.border-transparent]="activeTab() !== 'details'"
+          >
+            Account Details
+          </button>
+          <button (click)="logout()" class="text-left px-6 py-4 rounded-sm font-semibold text-red-500 hover:bg-red-50 dark:hover:bg-red-900/10 mt-4 text-sm uppercase tracking-widest border-l-4 border-transparent">
+            Logout
+          </button>
+        </div>
+      </div>
+
+      <div class="w-full md:w-3/4">
+        @if (activeTab() === 'orders') {
+          <div>
+            <h2 class="text-2xl font-serif font-bold text-gray-900 dark:text-white mb-6">Order History</h2>
+            @if (isOrdersLoading()) {
+              <div class="flex justify-center py-12">
+                <div class="w-10 h-10 border-4 border-gray-100 dark:border-gray-800 border-t-black dark:border-t-white rounded-full animate-spin"></div>
+              </div>
+            } @else if (orders().length === 0) {
+              <p class="text-gray-500 text-sm">Vous n'avez pas encore passé de commande.</p>
+            } @else {
+              <div class="flex flex-col gap-6">
+                @for (order of orders(); track order.key) {
+                  <div class="border border-gray-100 dark:border-gray-800 rounded-sm overflow-hidden">
+                    <div class="flex justify-between items-center px-6 py-4 bg-gray-50 dark:bg-gray-800/50">
+                      <div>
+                        <p class="font-semibold text-sm text-gray-900 dark:text-white">{{ order.orderReference }}</p>
+                        <p class="text-xs text-gray-500">{{ order.createdDate | date: "d MMMM y 'à' HH:mm" : '' : 'fr-FR' }}</p>
+                      </div>
+                      <p class="font-bold text-gray-900 dark:text-white">${{ order.totalAmount.toFixed(2) }}</p>
+                    </div>
+                    <div class="divide-y divide-gray-100 dark:divide-gray-800">
+                      @for (item of order.items; track item.id) {
+                        <div class="flex justify-between items-center px-6 py-4">
+                          <div>
+                            <p class="text-sm font-medium text-gray-900 dark:text-white">{{ item.stockItemName }}</p>
+                            <p class="text-xs text-gray-500">
+                              Qté {{ item.quantity }} · ${{ item.unitPrice.toFixed(2) }}
+                              @if (item.shopName) {
+                                · {{ item.shopName }}
+                              }
+                            </p>
+                          </div>
+                          <span class="px-3 py-1 rounded-sm text-xs font-bold uppercase border" [class]="statusStyle(item.status)">
+                            {{ statusLabel(item.status) }}
+                          </span>
+                        </div>
+                      }
+                    </div>
+                  </div>
+                }
+              </div>
+            }
+          </div>
+        }
+
+        @if (activeTab() === 'details') {
+          <div class="max-w-2xl">
+            <h2 class="text-2xl font-serif font-bold text-gray-900 dark:text-white mb-8">Account Details</h2>
+
+            <div class="flex flex-col gap-6 mb-8">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <input type="text" placeholder="First Name" [value]="user()?.firstname || ''" class="p-4 border border-gray-200 dark:border-gray-700 bg-transparent rounded-sm text-sm focus:outline-none focus:border-black dark:focus:border-white" />
+                <input type="text" placeholder="Last Name" [value]="user()?.lastname || ''" class="p-4 border border-gray-200 dark:border-gray-700 bg-transparent rounded-sm text-sm focus:outline-none focus:border-black dark:focus:border-white" />
+              </div>
+              <input type="email" placeholder="Email Address" [value]="user()?.email || ''" class="p-4 border border-gray-200 dark:border-gray-700 bg-transparent rounded-sm text-sm focus:outline-none focus:border-black dark:focus:border-white w-full" />
+
+              <h3 class="font-bold text-gray-900 dark:text-white mt-6 mb-2">Password Change</h3>
+              <input type="password" placeholder="Current Password" class="p-4 border border-gray-200 dark:border-gray-700 bg-transparent rounded-sm text-sm focus:outline-none focus:border-black dark:focus:border-white w-full" />
+              <input type="password" placeholder="New Password" class="p-4 border border-gray-200 dark:border-gray-700 bg-transparent rounded-sm text-sm focus:outline-none focus:border-black dark:focus:border-white w-full" />
+              <input type="password" placeholder="Confirm New Password" class="p-4 border border-gray-200 dark:border-gray-700 bg-transparent rounded-sm text-sm focus:outline-none focus:border-black dark:focus:border-white w-full" />
+            </div>
+
+            <app-button variant="primary" extraClass="bg-black text-white px-12 py-4 rounded-md shadow-xl text-xs font-bold uppercase tracking-widest">Save Changes</app-button>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

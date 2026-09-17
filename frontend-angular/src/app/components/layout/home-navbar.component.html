@@ -1,0 +1,108 @@
+<header
+  class="fixed top-0 left-0 w-full z-50 transition-all duration-500"
+  [class.bg-white/90]="isScrolled()" [class.dark:bg-gray-900/90]="isScrolled()" [class.backdrop-blur-md]="isScrolled()" [class.shadow-sm]="isScrolled()" [class.py-4]="isScrolled()"
+  [class.bg-transparent]="!isScrolled()" [class.py-6]="!isScrolled()"
+>
+  <div class="container mx-auto px-4 lg:px-12 flex justify-between items-center">
+    <a routerLink="/" class="text-3xl font-serif font-black tracking-widest text-gray-900 dark:text-white">KSHOP</a>
+
+    <nav class="hidden md:flex gap-8 items-center">
+      <a routerLink="/" class="relative pb-1 text-sm transition-colors hover:text-black dark:hover:text-white after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-black dark:after:bg-white after:origin-center after:transition-transform after:duration-300"
+        [class.text-black]="isActive('/')" [class.dark:text-white]="isActive('/')" [class.font-bold]="isActive('/')" [class.after:scale-x-100]="isActive('/')"
+        [class.text-gray-600]="!isActive('/')" [class.dark:text-gray-300]="!isActive('/')" [class.font-medium]="!isActive('/')" [class.after:scale-x-0]="!isActive('/')" [class.hover:after:scale-x-100]="!isActive('/')"
+      >Home</a>
+      <a routerLink="/products" class="relative pb-1 text-sm transition-colors hover:text-black dark:hover:text-white after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-black dark:after:bg-white after:origin-center after:transition-transform after:duration-300"
+        [class.text-black]="isActive('/products')" [class.dark:text-white]="isActive('/products')" [class.font-bold]="isActive('/products')" [class.after:scale-x-100]="isActive('/products')"
+        [class.text-gray-600]="!isActive('/products')" [class.dark:text-gray-300]="!isActive('/products')" [class.font-medium]="!isActive('/products')" [class.after:scale-x-0]="!isActive('/products')" [class.hover:after:scale-x-100]="!isActive('/products')"
+      >Shop</a>
+      <a routerLink="/products" class="relative pb-1 text-sm font-medium text-gray-600 dark:text-gray-300 transition-colors hover:text-black dark:hover:text-white after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-black dark:after:bg-white after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300">Products</a>
+
+      <div class="relative group">
+        <button class="relative pb-1 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white flex items-center gap-1 transition-colors">
+          Pages <lucide-angular [img]="icons.ChevronDown" [size]="12" class="transition-transform duration-300 group-hover:rotate-180"></lucide-angular>
+        </button>
+        <div class="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+          <div class="bg-white dark:bg-gray-900 shadow-xl border border-gray-100 dark:border-gray-800 rounded-md py-2 w-40 flex flex-col">
+            <a routerLink="/" class="px-4 py-2 hover:bg-gray-50 dark:hover:bg-gray-800 text-sm text-gray-600 dark:text-gray-300 font-medium">About Us</a>
+            <a routerLink="/" class="px-4 py-2 hover:bg-gray-50 dark:hover:bg-gray-800 text-sm text-gray-600 dark:text-gray-300 font-medium">Contact</a>
+            <a routerLink="/" class="px-4 py-2 hover:bg-gray-50 dark:hover:bg-gray-800 text-sm text-gray-600 dark:text-gray-300 font-medium">FAQ</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="flex items-center gap-2 sm:gap-4">
+      <button (click)="navigate('/favorites')" class="relative text-gray-900 dark:text-white hover:text-red-500 transition-colors p-2 cursor-pointer">
+        <lucide-angular [img]="icons.Heart" [size]="20"></lucide-angular>
+        @if (favCount() > 0) {
+          <span class="absolute top-0 right-0 inline-flex items-center justify-center w-4 h-4 text-[10px] font-bold text-white bg-black dark:bg-white dark:text-black rounded-full">{{ favCount() }}</span>
+        }
+      </button>
+
+      <button (click)="openCart()" class="relative text-gray-900 dark:text-white hover:text-gray-500 transition-colors p-2 cursor-pointer">
+        <lucide-angular [img]="icons.ShoppingCart" [size]="20"></lucide-angular>
+        @if (cartCount() > 0) {
+          <span class="absolute top-0 right-0 inline-flex items-center justify-center w-4 h-4 text-[10px] font-bold text-white bg-red-500 rounded-full transition-transform duration-300" [class.scale-125]="bumpCart()" [class.scale-100]="!bumpCart()">{{ cartCount() }}</span>
+        }
+      </button>
+
+      @if (isAuthenticated()) {
+        <div class="flex items-center gap-2">
+          @if (user()?.role === 'ADMIN') {
+            <button (click)="navigate('/admin/shops')" class="text-sm font-bold bg-gray-900 text-white dark:bg-white dark:text-gray-900 px-3 py-1.5 rounded-md hidden sm:block">Espace Admin</button>
+          }
+          @if (user()?.role === 'SHOP_MANAGER') {
+            <button (click)="navigate('/manager/dashboard')" class="text-sm font-bold bg-blue-600 text-white px-3 py-1.5 rounded-md hidden sm:block">Espace Gérante</button>
+          }
+          <button (click)="navigate('/profile')" class="text-gray-900 dark:text-white hover:text-gray-500 transition-colors p-2 cursor-pointer hidden sm:block">
+            <lucide-angular [img]="icons.User" [size]="20"></lucide-angular>
+          </button>
+        </div>
+      } @else {
+        <button (click)="openSignup()" class="hidden sm:block">
+          <app-button variant="primary" extraClass="rounded-md shadow-lg shadow-black/10 px-6 cursor-pointer">Sign Up</app-button>
+        </button>
+      }
+
+      <button (click)="toggleTheme()" class="p-2 text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-all duration-500 hover:rotate-180">
+        <lucide-angular [img]="theme() === 'dark' ? icons.Sun : icons.Moon" [size]="20"></lucide-angular>
+      </button>
+
+      <button (click)="isMobileOpen.set(true)" class="md:hidden p-2 text-gray-900 dark:text-white hover:text-gray-500 transition-colors">
+        <lucide-angular [img]="icons.Menu" [size]="24"></lucide-angular>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="fixed inset-0 z-[100] transition-opacity duration-300 md:hidden" [class.opacity-100]="isMobileOpen()" [class.pointer-events-auto]="isMobileOpen()" [class.opacity-0]="!isMobileOpen()" [class.pointer-events-none]="!isMobileOpen()">
+  <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" (click)="isMobileOpen.set(false)"></div>
+  <div class="absolute top-0 right-0 h-full w-64 bg-white dark:bg-gray-900 shadow-2xl transform transition-transform duration-300 ease-in-out flex flex-col p-6" [class.translate-x-0]="isMobileOpen()" [class.translate-x-full]="!isMobileOpen()">
+    <div class="flex justify-between items-center mb-10">
+      <span class="text-2xl font-serif font-black tracking-widest text-gray-900 dark:text-white">KSHOP</span>
+      <button (click)="isMobileOpen.set(false)" class="p-2 text-gray-400 hover:text-black dark:hover:text-white transition-colors">
+        <lucide-angular [img]="icons.X" [size]="24"></lucide-angular>
+      </button>
+    </div>
+
+    <nav class="flex flex-col gap-6">
+      <a routerLink="/" (click)="isMobileOpen.set(false)" class="text-lg font-medium" [class.font-bold]="isActive('/')" [class.text-black]="isActive('/')" [class.dark:text-white]="isActive('/')" [class.text-gray-600]="!isActive('/')" [class.dark:text-gray-300]="!isActive('/')">Home</a>
+      <a routerLink="/products" (click)="isMobileOpen.set(false)" class="text-lg font-medium" [class.font-bold]="isActive('/products')" [class.text-black]="isActive('/products')" [class.dark:text-white]="isActive('/products')" [class.text-gray-600]="!isActive('/products')" [class.dark:text-gray-300]="!isActive('/products')">Shop</a>
+      <a routerLink="/products" (click)="isMobileOpen.set(false)" class="text-lg font-medium text-gray-600 dark:text-gray-300">Products</a>
+      <a routerLink="/" (click)="isMobileOpen.set(false)" class="text-lg font-medium text-gray-600 dark:text-gray-300">Pages</a>
+    </nav>
+
+    <div class="mt-auto pt-6 border-t border-gray-100 dark:border-gray-800">
+      @if (isAuthenticated()) {
+        <button (click)="navigate('/profile')" class="flex items-center gap-3 w-full p-3 text-left font-medium hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md">
+          <lucide-angular [img]="icons.User" [size]="20"></lucide-angular> My Profile
+        </button>
+      } @else {
+        <div class="flex flex-col gap-3">
+          <app-button variant="outline" extraClass="w-full justify-center" (click)="isMobileOpen.set(false); openSignin()">Sign In</app-button>
+          <app-button variant="primary" extraClass="w-full justify-center bg-black text-white" (click)="isMobileOpen.set(false); openSignup()">Sign Up</app-button>
+        </div>
+      }
+    </div>
+  </div>
+</div>

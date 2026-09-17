@@ -1,0 +1,61 @@
+<a
+  [routerLink]="['/product', product.id]"
+  class="group block relative"
+  (mouseenter)="isHovered.set(true)"
+  (mouseleave)="isHovered.set(false)"
+>
+  <div class="relative aspect-[3/4] overflow-hidden bg-gray-100 dark:bg-gray-800 rounded-sm mb-4">
+    <img
+      [src]="product.imageUrl"
+      [alt]="product.title"
+      class="object-cover w-full h-full transition-transform duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
+      [class.scale-[1.08]]="isHovered()"
+    />
+
+    <div class="absolute inset-0 bg-black pointer-events-none transition-opacity duration-300" [class.opacity-20]="isHovered()" [class.opacity-0]="!isHovered()"></div>
+
+    <button
+      (click)="toggleFavorite($event)"
+      class="absolute top-4 right-4 w-9 h-9 bg-white dark:bg-gray-900 text-black dark:text-white rounded-full flex items-center justify-center hover:scale-110 shadow-lg transition-all duration-300"
+      [class.opacity-100]="isHovered() || isFav()" [class.translate-x-0]="isHovered() || isFav()"
+      [class.opacity-0]="!(isHovered() || isFav())" [class.translate-x-5]="!(isHovered() || isFav())"
+    >
+      <lucide-angular [img]="icons.Heart" [size]="16" [class]="isFav() ? 'fill-red-500 text-red-500' : ''"></lucide-angular>
+    </button>
+
+    <div
+      class="absolute bottom-4 left-4 right-4 flex gap-2 transition-all duration-300"
+      [class.opacity-100]="isHovered()" [class.translate-y-0]="isHovered()"
+      [class.opacity-0]="!isHovered()" [class.translate-y-[30px]]="!isHovered()"
+    >
+      <button
+        (click)="handleQuickAdd($event)"
+        class="flex-1 bg-white dark:bg-gray-900 text-black dark:text-white py-3 text-xs font-bold uppercase tracking-widest hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors shadow-2xl"
+      >
+        Quick Add
+      </button>
+      <button
+        (click)="handleQuickView($event)"
+        class="w-12 bg-white dark:bg-gray-900 text-black dark:text-white flex items-center justify-center hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors shadow-2xl"
+      >
+        <lucide-angular [img]="icons.Eye" [size]="16"></lucide-angular>
+      </button>
+    </div>
+  </div>
+
+  <div class="flex justify-between items-start">
+    <div>
+      <h3 class="font-semibold text-gray-900 dark:text-white text-sm uppercase mb-1 transition-colors group-hover:text-gray-500">{{ product.title }}</h3>
+      <p class="text-gray-500 dark:text-gray-400 text-xs">{{ product.brand }}</p>
+    </div>
+    <p class="font-bold text-gray-900 dark:text-white">${{ (product.price || 0).toFixed(2) }}</p>
+  </div>
+
+  @if (product.colors && product.colors.length > 0) {
+    <div class="flex gap-2 mt-3">
+      @for (color of product.colors; track color) {
+        <div class="w-4 h-4 rounded-full border border-gray-200 dark:border-gray-700 shadow-sm" [style.backgroundColor]="color"></div>
+      }
+    </div>
+  }
+</a>

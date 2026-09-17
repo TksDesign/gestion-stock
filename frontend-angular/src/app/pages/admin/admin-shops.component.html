@@ -1,0 +1,178 @@
+@if (isLoading()) {
+  <div class="p-8 text-center">Chargement...</div>
+} @else {
+  <div class="space-y-6 animate-in fade-in duration-500">
+    <div class="flex justify-between items-center">
+      <h1 class="text-3xl font-serif font-bold text-gray-900 dark:text-white">Gestion des Boutiques</h1>
+      <button (click)="openCreateModal()" class="bg-blue-600 text-white px-6 py-2.5 rounded-lg font-medium hover:bg-blue-700 transition-colors shadow-lg">
+        + Nouvelle Boutique
+      </button>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      @if (shops().length === 0) {
+        <div class="col-span-full p-8 text-center text-gray-500 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700">
+          Aucune boutique enregistrée.
+        </div>
+      } @else {
+        @for (shop of shops(); track shop.id) {
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm relative flex flex-col">
+            <div class="flex justify-between items-start mb-4">
+              <div>
+                <h3 class="font-bold text-lg text-gray-900 dark:text-white">{{ shop.name }}</h3>
+                <p class="text-xs text-gray-500 mt-1">{{ shop.city ? shop.city + ' (' + shop.zipCode + ')' : 'Aucune adresse' }}</p>
+              </div>
+              <button
+                (click)="handleToggleStatus(shop)"
+                class="px-3 py-1 text-xs font-bold rounded-full transition-colors"
+                [class.bg-green-100]="shop.status === 'ACTIVE'" [class.text-green-700]="shop.status === 'ACTIVE'"
+                [class.dark:bg-green-900/30]="shop.status === 'ACTIVE'" [class.dark:text-green-400]="shop.status === 'ACTIVE'"
+                [class.bg-red-100]="shop.status !== 'ACTIVE'" [class.text-red-700]="shop.status !== 'ACTIVE'"
+                [class.dark:bg-red-900/30]="shop.status !== 'ACTIVE'" [class.dark:text-red-400]="shop.status !== 'ACTIVE'"
+              >
+                {{ shop.status === 'ACTIVE' ? 'ACTIVE' : 'INACTIVE' }}
+              </button>
+            </div>
+
+            <div class="flex-1 text-sm text-gray-600 dark:text-gray-400 mb-4">
+              <p class="line-clamp-2">{{ shop.description || 'Aucune description' }}</p>
+            </div>
+
+            <div class="pt-4 border-t border-gray-50 dark:border-gray-700 mt-auto">
+              <p class="text-xs text-gray-500 mb-1">Gérée par :</p>
+              <div class="flex items-center justify-between gap-2">
+                <div class="flex items-center space-x-2 min-w-0">
+                  <div class="w-8 h-8 flex-shrink-0 rounded-full bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center text-blue-600 dark:text-blue-400 font-bold">
+                    {{ shop.managerEmail ? shop.managerEmail.charAt(0).toUpperCase() : '?' }}
+                  </div>
+                  <span class="text-sm font-medium text-gray-900 dark:text-white truncate">{{ shop.managerEmail || 'Aucune gérante' }}</span>
+                </div>
+                <button (click)="openEditModal(shop)" class="flex-shrink-0 text-xs font-bold text-blue-600 hover:text-blue-700 dark:text-blue-400">
+                  Modifier
+                </button>
+              </div>
+            </div>
+          </div>
+        }
+      }
+    </div>
+
+    @if (isModalOpen()) {
+      <div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+        <div class="bg-white dark:bg-gray-900 rounded-3xl p-8 w-full max-w-2xl shadow-2xl animate-in zoom-in-95 duration-200 overflow-y-auto max-h-[90vh]">
+          <h2 class="text-2xl font-serif font-bold mb-6 text-gray-900 dark:text-white">Créer une Boutique et une Gérante</h2>
+
+          <form [formGroup]="createForm" (ngSubmit)="submitCreate()" class="space-y-8">
+            <div class="space-y-4">
+              <div class="flex items-center space-x-2 border-b border-gray-100 dark:border-gray-800 pb-2">
+                <span class="bg-blue-100 text-blue-600 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold">1</span>
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white">Le compte de la Gérante</h3>
+              </div>
+
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-medium text-gray-500 mb-1">Prénom *</label>
+                  <input formControlName="m_firstname" class="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none" />
+                </div>
+                <div>
+                  <label class="block text-xs font-medium text-gray-500 mb-1">Nom *</label>
+                  <input formControlName="m_lastname" class="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none" />
+                </div>
+              </div>
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-medium text-gray-500 mb-1">Email (login) *</label>
+                  <input type="email" formControlName="m_email" class="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none" />
+                </div>
+                <div>
+                  <label class="block text-xs font-medium text-gray-500 mb-1">Mot de passe *</label>
+                  <input type="password" formControlName="m_password" class="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none" />
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-4">
+              <div class="flex items-center space-x-2 border-b border-gray-100 dark:border-gray-800 pb-2">
+                <span class="bg-blue-100 text-blue-600 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold">2</span>
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white">Les infos de la Boutique</h3>
+              </div>
+
+              <div>
+                <label class="block text-xs font-medium text-gray-500 mb-1">Nom de la boutique *</label>
+                <input formControlName="s_name" class="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none" />
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-gray-500 mb-1">Description</label>
+                <input formControlName="s_desc" class="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none" />
+              </div>
+              <div class="grid grid-cols-3 gap-4">
+                <div class="col-span-2">
+                  <label class="block text-xs font-medium text-gray-500 mb-1">Adresse</label>
+                  <input formControlName="s_street" class="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none" />
+                </div>
+                <div>
+                  <label class="block text-xs font-medium text-gray-500 mb-1">Code Postal</label>
+                  <input formControlName="s_zip" class="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none" />
+                </div>
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-gray-500 mb-1">Ville</label>
+                <input formControlName="s_city" class="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none" />
+              </div>
+            </div>
+
+            <div class="pt-4 flex space-x-3">
+              <button type="button" (click)="closeCreateModal()" class="flex-1 px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-xl font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                Annuler
+              </button>
+              <button type="submit" [disabled]="isCreating()" class="flex-1 px-4 py-3 bg-blue-600 text-white rounded-xl font-medium hover:bg-blue-700 transition-colors disabled:opacity-50">
+                {{ isCreating() ? 'Création...' : "Créer l'ensemble" }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    }
+
+    @if (editingShop(); as shop) {
+      <div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+        <div class="bg-white dark:bg-gray-900 rounded-3xl p-8 w-full max-w-lg shadow-2xl">
+          <h2 class="text-2xl font-serif font-bold mb-6 text-gray-900 dark:text-white">Modifier "{{ shop.name }}"</h2>
+          <form [formGroup]="editForm" (ngSubmit)="submitEdit()" class="space-y-4">
+            <div>
+              <label class="block text-xs font-medium text-gray-500 mb-1">Nom de la boutique *</label>
+              <input formControlName="name" class="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none" />
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-gray-500 mb-1">Description</label>
+              <input formControlName="description" class="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none" />
+            </div>
+            <div class="grid grid-cols-3 gap-4">
+              <div class="col-span-2">
+                <label class="block text-xs font-medium text-gray-500 mb-1">Adresse</label>
+                <input formControlName="street" class="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none" />
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-gray-500 mb-1">Code Postal</label>
+                <input formControlName="zipCode" class="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none" />
+              </div>
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-gray-500 mb-1">Ville</label>
+              <input formControlName="city" class="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none" />
+            </div>
+
+            <div class="pt-4 flex space-x-3">
+              <button type="button" (click)="closeEditModal()" class="flex-1 px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-xl font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                Annuler
+              </button>
+              <button type="submit" [disabled]="isUpdating()" class="flex-1 px-4 py-3 bg-blue-600 text-white rounded-xl font-medium hover:bg-blue-700 transition-colors disabled:opacity-50">
+                {{ isUpdating() ? 'Enregistrement...' : 'Enregistrer' }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    }
+  </div>
+}

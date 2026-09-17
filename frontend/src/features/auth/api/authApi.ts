@@ -29,6 +29,15 @@ export interface CreateManagerRequest {
   password: string;
 }
 
+export interface UserSummary {
+  id: string;
+  firstname: string;
+  lastname: string;
+  email: string;
+  role: 'ADMIN' | 'SHOP_MANAGER' | 'CLIENT';
+  customerId: string | null;
+}
+
 const BASE_URL = '/api/v1/auth';
 
 export const authApi = {
@@ -49,6 +58,11 @@ export const authApi = {
 
   me: async (): Promise<AuthResponse> => {
     const { data } = await api.get<AuthResponse>(`${BASE_URL}/me`);
+    return data;
+  },
+
+  findUsers: async (role?: 'ADMIN' | 'SHOP_MANAGER' | 'CLIENT'): Promise<UserSummary[]> => {
+    const { data } = await api.get<UserSummary[]>(`${BASE_URL}/admin/users`, { params: role ? { role } : {} });
     return data;
   },
 };

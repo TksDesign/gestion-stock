@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { useAllShops, useCreateShop, useUpdateShopStatus } from '../../features/shop/hooks/useShop';
+import { useAllShops, useCreateShop, useUpdateShopStatus, useUpdateShop } from '../../features/shop/hooks/useShop';
+import type { ShopResponse } from '../../features/shop/types';
 import { authApi, CreateManagerRequest } from '../../features/auth/api/authApi';
 import toast from 'react-hot-toast';
 
@@ -7,9 +8,11 @@ export const AdminShops = () => {
   const { data: shops, isLoading } = useAllShops();
   const { mutate: createShop, isPending: isCreatingShop } = useCreateShop();
   const { mutate: updateStatus } = useUpdateShopStatus();
-  
+  const { mutate: updateShop, isPending: isUpdatingShop } = useUpdateShop();
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isCreatingManager, setIsCreatingManager] = useState(false);
+  const [editingShop, setEditingShop] = useState<ShopResponse | null>(null);
 
   const handleToggleStatus = (id: number, currentStatus: 'ACTIVE' | 'INACTIVE') => {
     updateStatus({ id, status: currentStatus === 'ACTIVE' ? 'INACTIVE' : 'ACTIVE' });
@@ -100,13 +103,21 @@ export const AdminShops = () => {
               
               <div className="pt-4 border-t border-gray-50 dark:border-gray-700 mt-auto">
                 <p className="text-xs text-gray-500 mb-1">Gérée par :</p>
-                <div className="flex items-center space-x-2">
-                  <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center text-blue-600 dark:text-blue-400 font-bold">
-                    {shop.managerEmail ? shop.managerEmail.charAt(0).toUpperCase() : '?'}
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center space-x-2 min-w-0">
+                    <div className="w-8 h-8 flex-shrink-0 rounded-full bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center text-blue-600 dark:text-blue-400 font-bold">
+                      {shop.managerEmail ? shop.managerEmail.charAt(0).toUpperCase() : '?'}
+                    </div>
+                    <span className="text-sm font-medium text-gray-900 dark:text-white truncate">
+                      {shop.managerEmail || 'Aucune gérante'}
+                    </span>
                   </div>
-                  <span className="text-sm font-medium text-gray-900 dark:text-white truncate">
-                    {shop.managerEmail}
-                  </span>
+                  <button
+                    onClick={() => setEditingShop(shop)}
+                    className="flex-shrink-0 text-xs font-bold text-blue-600 hover:text-blue-700 dark:text-blue-400"
+                  >
+                    Modifier
+                  </button>
                 </div>
               </div>
             </div>
@@ -186,6 +197,72 @@ export const AdminShops = () => {
                 </button>
                 <button type="submit" disabled={isCreatingManager || isCreatingShop} className="flex-1 px-4 py-3 bg-blue-600 text-white rounded-xl font-medium hover:bg-blue-700 transition-colors disabled:opacity-50">
                   {isCreatingManager ? 'Création gérante...' : isCreatingShop ? 'Création boutique...' : 'Créer l\'ensemble'}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {editingShop && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+          <div className="bg-white dark:bg-gray-900 rounded-3xl p-8 w-full max-w-lg shadow-2xl">
+            <h2 className="text-2xl font-serif font-bold mb-6 text-gray-900 dark:text-white">Modifier "{editingShop.name}"</h2>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                const formData = new FormData(e.currentTarget);
+                updateShop(
+                  {
+                    id: editingShop.id,
+                    data: {
+                      name: formData.get('name') as string,
+                      description: formData.get('description') as string,
+                      street: formData.get('street') as string,
+                      city: formData.get('city') as string,
+                      zipCode: formData.get('zipCode') as string,
+                    },
+                  },
+                  {
+                    onSuccess: () => {
+                      toast.success('Boutique mise à jour !');
+                      setEditingShop(null);
+                    },
+                    onError: () => toast.error('Erreur lors de la mise à jour'),
+                  }
+                );
+              }}
+              className="space-y-4"
+            >
+              <div>
+                <label className="block text-xs font-medium text-gray-500 mb-1">Nom de la boutique *</label>
+                <input required name="name" defaultValue={editingShop.name} className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none" />
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-gray-500 mb-1">Description</label>
+                <input name="description" defaultValue={editingShop.description ?? ''} className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none" />
+              </div>
+              <div className="grid grid-cols-3 gap-4">
+                <div className="col-span-2">
+                  <label className="block text-xs font-medium text-gray-500 mb-1">Adresse</label>
+                  <input name="street" defaultValue={editingShop.street ?? ''} className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none" />
+                </div>
+                <div>
+                  <label className="block text-xs font-medium text-gray-500 mb-1">Code Postal</label>
+                  <input name="zipCode" defaultValue={editingShop.zipCode ?? ''} className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none" />
+                </div>
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-gray-500 mb-1">Ville</label>
+                <input name="city" defaultValue={editingShop.city ?? ''} className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none" />
+              </div>
+
+              <div className="pt-4 flex space-x-3">
+                <button type="button" onClick={() => setEditingShop(null)} className="flex-1 px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-xl font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                  Annuler
+                </button>
+                <button type="submit" disabled={isUpdatingShop} className="flex-1 px-4 py-3 bg-blue-600 text-white rounded-xl font-medium hover:bg-blue-700 transition-colors disabled:opacity-50">
+                  {isUpdatingShop ? 'Enregistrement...' : 'Enregistrer'}
                 </button>
               </div>
             </form>

@@ -121,6 +121,23 @@ export const useUpdateShopStatus = () => {
   });
 };
 
+export const useUpdateShop = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id, data }: { id: number; data: ShopRequest }) => shopAdminApi.updateShop(id, data),
+    onSuccess: () => qc.invalidateQueries({ queryKey: shopKeys.allShops }),
+  });
+};
+
+export const useReassignManager = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id, managerId, managerEmail }: { id: number; managerId: string; managerEmail: string }) =>
+      shopAdminApi.reassignManager(id, managerId, managerEmail),
+    onSuccess: () => qc.invalidateQueries({ queryKey: shopKeys.allShops }),
+  });
+};
+
 // ─── Catégories ───────────────────────────────────────────────
 export const useCategories = () =>
   useQuery({

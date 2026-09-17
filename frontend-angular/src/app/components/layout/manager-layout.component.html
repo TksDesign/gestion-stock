@@ -1,0 +1,85 @@
+<ng-template #sidebarContent>
+  <div class="p-8 flex items-center gap-3">
+    <div class="w-10 h-10 bg-black dark:bg-white rounded-xl flex items-center justify-center text-white dark:text-black shadow-lg">
+      <lucide-angular [img]="icons.Hexagon" [size]="24" class="fill-current"></lucide-angular>
+    </div>
+    <h2 class="text-xl font-serif font-black tracking-widest text-gray-900 dark:text-white uppercase">KSHOP</h2>
+    <button (click)="closeNav()" class="ml-auto md:hidden p-2 text-gray-400 hover:text-black dark:hover:text-white" aria-label="Close menu">
+      <lucide-angular [img]="icons.X" [size]="20"></lucide-angular>
+    </button>
+  </div>
+
+  <nav class="flex-1 overflow-y-auto py-4 px-4 custom-scrollbar">
+    <div class="mb-4 text-[10px] font-bold tracking-[0.2em] text-gray-400 uppercase px-4">Menu</div>
+    <ul class="space-y-2">
+      @for (link of links; track link.to) {
+        <li>
+          <a
+            [routerLink]="link.to"
+            routerLinkActive="bg-black text-white dark:bg-white dark:text-black shadow-md scale-100"
+            [routerLinkActiveOptions]="{ exact: false }"
+            (click)="closeNav()"
+            class="flex items-center px-4 py-3.5 rounded-2xl transition-all duration-300 group text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white hover:bg-gray-100/50 dark:hover:bg-white/5 hover:scale-[1.02]"
+          >
+            <lucide-angular [img]="link.icon" [size]="18" [strokeWidth]="2.5" class="mr-3 transition-transform group-hover:scale-110"></lucide-angular>
+            <span class="font-semibold text-sm tracking-wide">{{ link.label }}</span>
+          </a>
+        </li>
+      }
+    </ul>
+  </nav>
+
+  <div class="p-6">
+    <div class="p-4 rounded-2xl bg-gray-100/50 dark:bg-white/5 border border-gray-200/50 dark:border-white/5 backdrop-blur-md">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-gray-900 to-gray-600 dark:from-white dark:to-gray-400 flex items-center justify-center text-white dark:text-black font-bold text-sm shadow-inner">
+          {{ initials() }}
+        </div>
+        <div class="flex-1 overflow-hidden">
+          <p class="text-sm font-bold text-gray-900 dark:text-white truncate">{{ user()?.firstname }} {{ user()?.lastname }}</p>
+          <p class="text-[10px] uppercase tracking-wider text-gray-500 truncate font-semibold">Manager</p>
+        </div>
+      </div>
+
+      <div class="flex gap-2">
+        <button (click)="toggleTheme()" class="flex-1 flex justify-center items-center py-2.5 rounded-xl bg-white dark:bg-black border border-gray-200/50 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white hover:shadow-sm transition-all" title="Toggle Theme">
+          <lucide-angular [img]="theme() === 'dark' ? icons.Sun : icons.Moon" [size]="16" [strokeWidth]="2.5"></lucide-angular>
+        </button>
+        <button (click)="logout()" class="flex-1 flex justify-center items-center py-2.5 rounded-xl bg-red-50 dark:bg-red-500/10 text-red-600 border border-red-100 dark:border-red-500/20 hover:bg-red-500 hover:text-white transition-all group" title="Log out">
+          <lucide-angular [img]="icons.LogOut" [size]="16" [strokeWidth]="2.5" class="group-hover:-translate-x-0.5 transition-transform"></lucide-angular>
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<div class="flex h-screen bg-[#F8F9FA] dark:bg-[#0A0A0A] overflow-hidden font-sans selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black">
+  <aside class="hidden md:flex w-[280px] bg-white/80 dark:bg-black/50 backdrop-blur-2xl border-r border-gray-200/50 dark:border-white/5 flex-col transition-colors duration-300 relative z-10 shadow-[4px_0_24px_rgba(0,0,0,0.02)]">
+    <ng-container [ngTemplateOutlet]="sidebarContent"></ng-container>
+  </aside>
+
+  @if (isMobileNavOpen()) {
+    <div class="md:hidden fixed inset-0 z-50 flex">
+      <div class="absolute inset-0 bg-black/50 backdrop-blur-sm animate-in fade-in duration-200" (click)="closeNav()"></div>
+      <aside class="relative w-[280px] max-w-[85vw] h-full bg-white dark:bg-[#0A0A0A] flex flex-col shadow-2xl animate-in slide-in-from-left duration-250">
+        <ng-container [ngTemplateOutlet]="sidebarContent"></ng-container>
+      </aside>
+    </div>
+  }
+
+  <main class="flex-1 overflow-y-auto relative z-0">
+    <div class="absolute inset-0 bg-gradient-to-br from-transparent to-gray-100/50 dark:to-white/5 pointer-events-none"></div>
+    <div class="md:hidden sticky top-0 z-20 flex items-center gap-3 px-4 py-4 bg-white/90 dark:bg-black/70 backdrop-blur-xl border-b border-gray-200/50 dark:border-white/5">
+      <button (click)="openNav()" class="p-2 -ml-2 text-gray-600 dark:text-gray-300" aria-label="Open menu">
+        <lucide-angular [img]="icons.Menu" [size]="22"></lucide-angular>
+      </button>
+      <div class="w-8 h-8 bg-black dark:bg-white rounded-lg flex items-center justify-center text-white dark:text-black">
+        <lucide-angular [img]="icons.Hexagon" [size]="16" class="fill-current"></lucide-angular>
+      </div>
+      <h2 class="text-sm font-serif font-black tracking-widest text-gray-900 dark:text-white uppercase">KSHOP</h2>
+    </div>
+    <div class="p-4 sm:p-6 md:p-8 lg:p-12 max-w-7xl mx-auto relative z-10">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>

@@ -1,0 +1,61 @@
+@if (isLoading()) {
+  <div class="p-8 text-center">Chargement...</div>
+} @else {
+  <div class="space-y-6 animate-in fade-in duration-500">
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <div>
+        <h1 class="text-3xl font-serif font-bold text-gray-900 dark:text-white">Gestion des Clients</h1>
+        <p class="text-sm text-gray-500 mt-1">{{ clients().length }} client{{ clients().length > 1 ? 's' : '' }} inscrit{{ clients().length > 1 ? 's' : '' }}</p>
+      </div>
+      <input
+        type="text"
+        placeholder="Rechercher un client..."
+        [ngModel]="searchQuery()"
+        (ngModelChange)="searchQuery.set($event)"
+        class="w-full sm:w-72 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+      />
+    </div>
+
+    <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="border-b border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/40">
+              <th class="px-6 py-4 text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Client</th>
+              <th class="px-6 py-4 text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Email</th>
+              <th class="px-6 py-4 text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Profil client</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-50 dark:divide-gray-700">
+            @if (filteredClients().length === 0) {
+              <tr>
+                <td colspan="3" class="px-6 py-16 text-center text-gray-500">Aucun client trouvé.</td>
+              </tr>
+            } @else {
+              @for (client of filteredClients(); track client.id) {
+                <tr class="hover:bg-gray-50/50 dark:hover:bg-gray-900/20 transition-colors">
+                  <td class="px-6 py-4">
+                    <div class="flex items-center gap-3">
+                      <div class="w-9 h-9 rounded-full bg-purple-100 dark:bg-purple-900/50 flex items-center justify-center text-purple-600 dark:text-purple-400 font-bold text-sm">
+                        {{ client.firstname[0] }}{{ client.lastname[0] }}
+                      </div>
+                      <span class="font-semibold text-gray-900 dark:text-white">{{ client.firstname }} {{ client.lastname }}</span>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 text-sm text-gray-600 dark:text-gray-400">{{ client.email }}</td>
+                  <td class="px-6 py-4">
+                    @if (client.customerId) {
+                      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">Lié</span>
+                    } @else {
+                      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400">Non lié</span>
+                    }
+                  </td>
+                </tr>
+              }
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+}

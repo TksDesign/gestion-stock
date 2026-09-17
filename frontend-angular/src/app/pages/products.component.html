@@ -1,0 +1,158 @@
+<div class="w-full dark:bg-gray-900 min-h-screen">
+  <section class="relative h-[40vh] md:h-[50vh] overflow-hidden flex items-center justify-center bg-black">
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover opacity-60" alt="Tech Catalog" />
+    </div>
+    <div class="relative z-10 text-center text-white px-4 animate-in fade-in duration-700">
+      <p class="text-xs md:text-sm tracking-[0.4em] uppercase mb-4 font-bold text-gray-300">Premium Tech</p>
+      <h1 class="text-5xl md:text-7xl lg:text-8xl font-serif font-black tracking-tighter uppercase mb-4">Catalog</h1>
+      <p class="text-sm text-gray-300 tracking-widest uppercase font-semibold">Home • Products</p>
+    </div>
+  </section>
+
+  <div class="container mx-auto px-4 py-20 flex flex-col md:flex-row gap-12">
+    <aside class="w-full md:w-64 flex-shrink-0 md:sticky md:top-32 h-fit space-y-10 z-10">
+      <div>
+        <h4 class="font-bold mb-6 uppercase text-sm border-b pb-4 dark:border-gray-800 dark:text-white tracking-[0.2em]">Filters</h4>
+
+        @if (categories().length > 0) {
+          <div class="mb-8">
+            <h5 class="text-xs font-bold text-gray-900 dark:text-white uppercase tracking-widest mb-4">Category</h5>
+            <ul class="space-y-3 text-sm text-gray-600 dark:text-gray-400 font-medium">
+              <li (click)="setCategory(null)" class="cursor-pointer transition-colors flex items-center gap-2" [class.font-bold]="!activeCategory()" [class.text-black]="!activeCategory()" [class.dark:text-white]="!activeCategory()" [class.hover:text-black]="!!activeCategory()" [class.dark:hover:text-white]="!!activeCategory()">
+                @if (!activeCategory()) {
+                  <div class="w-2 h-2 bg-black dark:bg-white rounded-full"></div>
+                }
+                <span>All Categories</span>
+              </li>
+              @for (c of categories(); track c.id) {
+                <li (click)="setCategory(c.name)" class="cursor-pointer transition-colors flex items-center gap-2" [class.font-bold]="activeCategory() === c.name" [class.text-black]="activeCategory() === c.name" [class.dark:text-white]="activeCategory() === c.name" [class.hover:text-black]="activeCategory() !== c.name" [class.dark:hover:text-white]="activeCategory() !== c.name">
+                  @if (activeCategory() === c.name) {
+                    <div class="w-2 h-2 bg-black dark:bg-white rounded-full"></div>
+                  }
+                  <span>{{ c.name }}</span>
+                </li>
+              }
+            </ul>
+          </div>
+        }
+
+        <div class="mb-8">
+          <h5 class="text-xs font-bold text-gray-900 dark:text-white uppercase tracking-widest mb-4">Size / Type</h5>
+          <div class="flex gap-2">
+            @for (size of sizes; track size) {
+              <button
+                (click)="setSize(size)"
+                class="w-10 h-10 flex items-center justify-center border rounded-sm text-xs font-bold transition-all"
+                [class.border-black]="activeSize() === size" [class.bg-black]="activeSize() === size" [class.text-white]="activeSize() === size" [class.dark:bg-white]="activeSize() === size" [class.dark:text-black]="activeSize() === size" [class.dark:border-white]="activeSize() === size" [class.shadow-md]="activeSize() === size"
+                [class.border-gray-200]="activeSize() !== size" [class.dark:border-gray-700]="activeSize() !== size" [class.text-gray-600]="activeSize() !== size" [class.dark:text-gray-400]="activeSize() !== size" [class.hover:border-black]="activeSize() !== size" [class.dark:hover:border-white]="activeSize() !== size"
+              >
+                {{ size }}
+              </button>
+            }
+          </div>
+        </div>
+
+        <div class="mb-8">
+          <h5 class="text-xs font-bold text-gray-900 dark:text-white uppercase tracking-widest mb-4">Colors</h5>
+          <div class="flex flex-wrap gap-3">
+            @for (color of colors; track color) {
+              <button
+                (click)="setColor(color)"
+                class="w-8 h-8 rounded-full shadow-sm transition-transform"
+                [class.scale-125]="activeColor() === color" [class.ring-2]="activeColor() === color" [class.ring-black]="activeColor() === color" [class.dark:ring-white]="activeColor() === color" [class.ring-offset-2]="activeColor() === color" [class.dark:ring-offset-gray-900]="activeColor() === color"
+                [class.hover:scale-110]="activeColor() !== color"
+                [style.backgroundColor]="color"
+                [style.border]="'1px solid rgba(0,0,0,0.1)'"
+                [attr.aria-label]="'Color ' + color"
+              ></button>
+            }
+          </div>
+
+          @if (hasActiveFilters()) {
+            <button (click)="clearFilters()" class="mt-6 text-xs font-bold text-red-500 uppercase tracking-widest hover:underline flex items-center gap-1 animate-in fade-in slide-in-from-top-1 duration-200">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
+              Clear Filters
+            </button>
+          }
+        </div>
+
+        <div class="mb-8">
+          <h5 class="text-xs font-bold text-gray-900 dark:text-white uppercase tracking-widest mb-4">Price</h5>
+          <ul class="space-y-3 text-sm text-gray-600 dark:text-gray-400 font-medium">
+            @for (range of priceRanges; track range.id) {
+              <li (click)="activePriceRange.set(range.id)" class="cursor-pointer transition-colors flex items-center gap-2" [class.font-bold]="(activePriceRange() || 'all') === range.id" [class.text-black]="(activePriceRange() || 'all') === range.id" [class.dark:text-white]="(activePriceRange() || 'all') === range.id" [class.hover:text-black]="(activePriceRange() || 'all') !== range.id" [class.dark:hover:text-white]="(activePriceRange() || 'all') !== range.id">
+                @if ((activePriceRange() || 'all') === range.id) {
+                  <div class="w-2 h-2 bg-black dark:bg-white rounded-full"></div>
+                }
+                <span>{{ range.label }}</span>
+              </li>
+            }
+          </ul>
+        </div>
+      </div>
+    </aside>
+
+    <div class="flex-1">
+      <div class="flex justify-between items-center mb-8 border-b dark:border-gray-800 pb-4">
+        <p class="text-sm font-semibold text-gray-500 dark:text-gray-400 tracking-wider">
+          @if (isLoading()) {
+            <span class="animate-pulse">Loading products...</span>
+          } @else if (isError()) {
+            <span class="text-red-500">Failed to load products</span>
+          } @else {
+            Showing <span class="text-black dark:text-white font-bold">{{ filteredProducts().length }}</span> results
+          }
+        </p>
+        <div class="flex items-center gap-4">
+          <div class="flex items-center gap-2">
+            <span class="text-xs uppercase tracking-widest font-bold text-gray-500">Sort by:</span>
+            <select class="border-none bg-transparent font-bold text-sm focus:ring-0 dark:text-white cursor-pointer" [ngModel]="sortBy()" (ngModelChange)="sortBy.set($event)">
+              <option>Newest</option>
+              <option>Price: Low to High</option>
+              <option>Price: High to Low</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      @if (isLoading()) {
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+          @for (i of [1, 2, 3, 4, 5, 6]; track i) {
+            <div class="animate-pulse">
+              <div class="bg-gray-200 dark:bg-gray-800 aspect-[3/4] mb-4"></div>
+              <div class="h-4 bg-gray-200 dark:bg-gray-800 w-3/4 mb-2"></div>
+              <div class="h-4 bg-gray-200 dark:bg-gray-800 w-1/2"></div>
+            </div>
+          }
+        </div>
+      }
+
+      @if (!isLoading() && !isError()) {
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+          @for (product of filteredProducts(); track product.id) {
+            <div class="animate-in fade-in zoom-in-95 duration-500">
+              <app-product-card [product]="product" (quickView)="quickViewProduct.set(product)"></app-product-card>
+            </div>
+          }
+        </div>
+      }
+
+      @if (!isLoading() && filteredProducts().length === 0 && !isError()) {
+        <div class="w-full py-32 flex flex-col items-center justify-center text-center animate-in fade-in slide-in-from-bottom-4 duration-300">
+          <h3 class="text-2xl font-serif font-bold text-gray-900 dark:text-white mb-2">No matches found</h3>
+          <p class="text-gray-500 dark:text-gray-400 text-sm">Try adjusting your size or color filters.</p>
+        </div>
+      }
+    </div>
+  </div>
+
+  <app-promo-section></app-promo-section>
+  <app-features-section></app-features-section>
+  <app-instagram-section></app-instagram-section>
+  <app-newsletter-section></app-newsletter-section>
+
+  @if (quickViewProduct(); as product) {
+    <app-quick-view-modal [product]="product" (close)="quickViewProduct.set(null)"></app-quick-view-modal>
+  }
+</div>

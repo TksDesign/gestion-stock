@@ -73,6 +73,13 @@ public class AuthenticationService {
         return buildResponse(user);
     }
 
+    // Listing admin : tous les utilisateurs d'un rôle donné, ou tous si role=null.
+    // Vue allégée (UserSummaryResponse), jamais de mot de passe ni de token.
+    public java.util.List<UserSummaryResponse> findUsers(Role role) {
+        var users = role != null ? userRepository.findByRole(role) : userRepository.findAll();
+        return users.stream().map(UserSummaryResponse::from).toList();
+    }
+
     public AuthenticationResponse getCurrentUser(String email) {
         var user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new IllegalStateException("User not found"));
