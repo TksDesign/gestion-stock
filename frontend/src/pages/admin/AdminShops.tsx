@@ -52,7 +52,7 @@ export const AdminShops = () => {
       });
       
     } catch (err: any) {
-      toast.error(err.response?.data?.error || "Erreur lors de la création de la gérante");
+      toast.error(err.response?.data?.errors?.error || "Erreur lors de la création de la gérante");
     } finally {
       setIsCreatingManager(false);
     }

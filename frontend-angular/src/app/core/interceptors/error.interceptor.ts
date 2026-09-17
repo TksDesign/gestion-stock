@@ -12,25 +12,28 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
       if (error.status) {
+        // Lecture du vrai message backend standardisé (GlobalExceptionHandler)
+        const backendError = error.error?.errors?.error;
+        
         switch (error.status) {
           case 400:
-            toast.error('Données invalides. Veuillez vérifier votre saisie.');
+            toast.error(backendError || 'Données invalides. Veuillez vérifier votre saisie.');
             break;
           case 401:
-            toast.error('Votre session a expiré. Veuillez vous reconnecter.');
+            toast.error(backendError || 'Votre session a expiré. Veuillez vous reconnecter.');
             store.dispatch(AuthActions.logout());
             break;
           case 403:
-            toast.error("Vous n'avez pas l'autorisation d'effectuer cette action.");
+            toast.error(backendError || "Vous n'avez pas l'autorisation d'effectuer cette action.");
             break;
           case 404:
-            toast.error('La ressource demandée est introuvable.');
+            toast.error(backendError || 'La ressource demandée est introuvable.');
             break;
           case 500:
-            toast.error('Erreur serveur. Veuillez réessayer plus tard.');
+            toast.error(backendError || 'Erreur serveur. Veuillez réessayer plus tard.');
             break;
           default:
-            toast.error('Une erreur inattendue est survenue.');
+            toast.error(backendError || 'Une erreur inattendue est survenue.');
         }
       } else {
         toast.error('Impossible de contacter le serveur. Vérifiez votre connexion.');
