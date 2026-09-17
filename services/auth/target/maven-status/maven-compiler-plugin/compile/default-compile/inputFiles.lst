@@ -1,19 +1,21 @@
-/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/auth/src/main/java/com/franck/ecommerce/handler/ErrorResponse.java
-/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/auth/src/main/java/com/franck/ecommerce/config/JwtService.java
-/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/auth/src/main/java/com/franck/ecommerce/config/DataInitializer.java
-/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/auth/src/main/java/com/franck/ecommerce/auth/CustomerClient.java
-/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/auth/src/main/java/com/franck/ecommerce/user/User.java
-/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/auth/src/main/java/com/franck/ecommerce/config/JwtAuthenticationFilter.java
-/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/auth/src/main/java/com/franck/ecommerce/auth/RegisterRequest.java
-/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/auth/src/main/java/com/franck/ecommerce/user/UserRepository.java
-/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/auth/src/main/java/com/franck/ecommerce/auth/UserSummaryResponse.java
-/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/auth/src/main/java/com/franck/ecommerce/auth/AuthenticationRequest.java
-/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/auth/src/main/java/com/franck/ecommerce/auth/AuthenticationResponse.java
-/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/auth/src/main/java/com/franck/ecommerce/config/ApplicationConfig.java
-/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/auth/src/main/java/com/franck/ecommerce/auth/CreateManagerRequest.java
-/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/auth/src/main/java/com/franck/ecommerce/AuthApplication.java
-/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/auth/src/main/java/com/franck/ecommerce/user/Role.java
-/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/auth/src/main/java/com/franck/ecommerce/auth/AuthenticationController.java
-/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/auth/src/main/java/com/franck/ecommerce/auth/AuthenticationService.java
-/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/auth/src/main/java/com/franck/ecommerce/handler/GlobalExceptionHandler.java
-/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/auth/src/main/java/com/franck/ecommerce/config/SecurityConfig.java
+C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\user\UserRepository.java
+C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\auth\AuthenticationController.java
+C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\config\JwtService.java
+C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\config\DataInitializer.java
+C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\auth\AuthenticationService.java
+C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\handler\ErrorResponse.java
+C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\user\Role.java
+C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\config\RestAccessDeniedHandler.java
+C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\config\SecurityConfig.java
+C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\auth\CreateManagerRequest.java
+C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\auth\UserSummaryResponse.java
+C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\auth\AuthenticationRequest.java
+C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\auth\CustomerClient.java
+C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\config\JwtAuthenticationFilter.java
+C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\auth\AuthenticationResponse.java
+C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\config\ApplicationConfig.java
+C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\user\User.java
+C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\config\RestAuthenticationEntryPoint.java
+C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\auth\RegisterRequest.java
+C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\AuthApplication.java
+C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\handler\GlobalExceptionHandler.java

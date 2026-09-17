@@ -7,43 +7,45 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.2.5)
 
-2026-09-17T20:26:47.565+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] com.franck.ecommerce.OrderApplication    : Starting OrderApplication v0.0.1-SNAPSHOT using Java 17.0.12 with PID 50077 (/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/order/target/order-0.0.1-SNAPSHOT.jar started by daphane in /Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/order)
-2026-09-17T20:26:47.571+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] com.franck.ecommerce.OrderApplication    : No active profile set, falling back to 1 default profile: "default"
-2026-09-17T20:26:48.128+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : http://localhost:8888
-2026-09-17T20:26:48.128+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=order-service, profiles=[default], label=null, version=null, state=null
-2026-09-17T20:26:56.693+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-09-17T20:26:58.326+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1488 ms. Found 2 JPA repository interfaces.
-2026-09-17T20:27:01.038+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] o.s.cloud.context.scope.GenericScope     : BeanFactory id=82d27fcc-8fb5-32f2-96e7-b3d5f45bc929
-2026-09-17T20:27:03.620+01:00  WARN 50077 --- [order-service] [           main] [                                                 ] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig' of type [org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [lbRestClientPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
-2026-09-17T20:27:03.628+01:00  WARN 50077 --- [order-service] [           main] [                                                 ] trationDelegate$BeanPostProcessorChecker : Bean 'deferringLoadBalancerInterceptor' of type [org.springframework.cloud.client.loadbalancer.DeferringLoadBalancerInterceptor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
-2026-09-17T20:27:06.611+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8070 (http)
-2026-09-17T20:27:06.636+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2026-09-17T20:27:06.637+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
-2026-09-17T20:27:07.105+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2026-09-17T20:27:07.107+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 18972 ms
-2026-09-17T20:27:17.080+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] o.f.c.internal.license.VersionPrinter    : Flyway Community Edition 9.22.3 by Redgate
-2026-09-17T20:27:17.081+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] o.f.c.internal.license.VersionPrinter    : See release notes here: https://rd.gt/416ObMi
-2026-09-17T20:27:17.081+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] o.f.c.internal.license.VersionPrinter    : 
-2026-09-17T20:27:17.455+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5433/order (PostgreSQL 18.6)
-2026-09-17T20:27:17.470+01:00  WARN 50077 --- [order-service] [           main] [                                                 ] o.f.c.internal.database.base.Database    : Flyway upgrade recommended: PostgreSQL 18.6 is newer than this version of Flyway and support has not been tested. The latest supported version of PostgreSQL is 15.
-2026-09-17T20:27:17.535+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.043s)
-2026-09-17T20:27:18.007+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 1
-2026-09-17T20:27:18.010+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
-2026-09-17T20:27:18.857+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-09-17T20:27:19.247+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
-2026-09-17T20:27:19.587+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2026-09-17T20:27:21.355+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-09-17T20:27:21.419+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-09-17T20:27:21.686+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@53654b2d
-2026-09-17T20:27:21.740+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-09-17T20:27:21.990+01:00  WARN 50077 --- [order-service] [           main] [                                                 ] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-09-17T20:27:29.648+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-09-17T20:27:29.796+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-09-17T20:27:32.563+01:00  WARN 50077 --- [order-service] [           main] [                                                 ] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-09-17T20:27:43.097+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
-2026-09-17T20:27:43.434+01:00  WARN 50077 --- [order-service] [           main] [                                                 ] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
-2026-09-17T20:27:43.650+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
-2026-09-17T20:27:44.113+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] o.a.k.clients.admin.AdminClientConfig    : AdminClientConfig values: 
+2026-09-17T21:27:48.723+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] com.franck.ecommerce.OrderApplication    : Starting OrderApplication v0.0.1-SNAPSHOT using Java 17.0.20.1 with PID 4100 (C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\order\target\order-0.0.1-SNAPSHOT.jar started by SAMA_PC in C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\order)
+2026-09-17T21:27:48.743+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] com.franck.ecommerce.OrderApplication    : No active profile set, falling back to 1 default profile: "default"
+2026-09-17T21:27:49.067+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : http://localhost:8888
+2026-09-17T21:27:49.068+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=order-service, profiles=[default], label=null, version=null, state=null
+2026-09-17T21:27:51.935+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-17T21:27:52.173+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 225 ms. Found 2 JPA repository interfaces.
+2026-09-17T21:27:53.102+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] o.s.cloud.context.scope.GenericScope     : BeanFactory id=82d27fcc-8fb5-32f2-96e7-b3d5f45bc929
+2026-09-17T21:27:54.371+01:00  WARN 4100 --- [order-service] [           main] [                                                 ] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig' of type [org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [lbRestClientPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
+2026-09-17T21:27:54.385+01:00  WARN 4100 --- [order-service] [           main] [                                                 ] trationDelegate$BeanPostProcessorChecker : Bean 'deferringLoadBalancerInterceptor' of type [org.springframework.cloud.client.loadbalancer.DeferringLoadBalancerInterceptor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+2026-09-17T21:27:56.075+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8070 (http)
+2026-09-17T21:27:56.179+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-09-17T21:27:56.179+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-09-17T21:27:56.448+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-09-17T21:27:56.448+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 7370 ms
+2026-09-17T21:28:00.335+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] o.f.c.internal.license.VersionPrinter    : Flyway Community Edition 9.22.3 by Redgate
+2026-09-17T21:28:00.335+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] o.f.c.internal.license.VersionPrinter    : See release notes here: https://rd.gt/416ObMi
+2026-09-17T21:28:00.335+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] o.f.c.internal.license.VersionPrinter    : 
+2026-09-17T21:28:00.452+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5433/order (PostgreSQL 18.6)
+2026-09-17T21:28:00.504+01:00  WARN 4100 --- [order-service] [           main] [                                                 ] o.f.c.internal.database.base.Database    : Flyway upgrade recommended: PostgreSQL 18.6 is newer than this version of Flyway and support has not been tested. The latest supported version of PostgreSQL is 15.
+2026-09-17T21:28:00.642+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.090s)
+2026-09-17T21:28:00.726+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 1
+2026-09-17T21:28:00.733+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2026-09-17T21:28:00.984+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-09-17T21:28:01.170+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2026-09-17T21:28:01.265+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-09-17T21:28:01.911+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-17T21:28:01.982+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-09-17T21:28:02.079+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1372696b
+2026-09-17T21:28:02.082+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-09-17T21:28:02.153+01:00  WARN 4100 --- [order-service] [           main] [                                                 ] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-09-17T21:28:04.804+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-17T21:28:04.912+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-17T21:28:06.520+01:00  WARN 4100 --- [order-service] [           main] [                                                 ] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-09-17T21:28:08.251+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-09-17T21:28:13.089+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-09-17T21:28:13.135+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
+2026-09-17T21:28:13.296+01:00  WARN 4100 --- [order-service] [           main] [                                                 ] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-09-17T21:28:13.375+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2026-09-17T21:28:13.717+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] o.a.k.clients.admin.AdminClientConfig    : AdminClientConfig values: 
 	auto.include.jmx.reporter = true
 	bootstrap.servers = [localhost:9092]
 	client.dns.lookup = use_all_dns_ips
@@ -114,134 +116,38 @@
 	ssl.truststore.password = null
 	ssl.truststore.type = JKS
 
-2026-09-17T20:27:44.972+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 3.6.2
-2026-09-17T20:27:44.973+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: c4deed513057c94e
-2026-09-17T20:27:44.973+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1789673264969
-2026-09-17T20:27:47.053+01:00  INFO 50077 --- [order-service] [| adminclient-1] [                                                 ] o.a.kafka.common.utils.AppInfoParser     : App info kafka.admin.client for adminclient-1 unregistered
-2026-09-17T20:27:47.061+01:00  INFO 50077 --- [order-service] [| adminclient-1] [                                                 ] o.apache.kafka.common.metrics.Metrics    : Metrics scheduler closed
-2026-09-17T20:27:47.061+01:00  INFO 50077 --- [order-service] [| adminclient-1] [                                                 ] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.metrics.JmxReporter
-2026-09-17T20:27:47.061+01:00  INFO 50077 --- [order-service] [| adminclient-1] [                                                 ] o.apache.kafka.common.metrics.Metrics    : Metrics reporters closed
-2026-09-17T20:27:47.092+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
-2026-09-17T20:27:47.391+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
-2026-09-17T20:27:47.401+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2026-09-17T20:27:47.461+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
-2026-09-17T20:27:47.461+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
-2026-09-17T20:27:47.461+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
-2026-09-17T20:27:47.461+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Application is null : false
-2026-09-17T20:27:47.461+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
-2026-09-17T20:27:47.461+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
-2026-09-17T20:27:47.461+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
-2026-09-17T20:27:48.320+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : The response status is 200
-2026-09-17T20:27:48.326+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
-2026-09-17T20:27:48.330+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
-2026-09-17T20:27:48.335+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1789673268334 with initial instances count: 3
-2026-09-17T20:27:48.344+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application ORDER-SERVICE with eureka with status UP
-2026-09-17T20:27:48.345+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1789673268345, current=UP, previous=STARTING]
-2026-09-17T20:27:48.348+01:00  INFO 50077 --- [order-service] [nfoReplicator-0] [                                                 ] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_ORDER-SERVICE/192.168.0.109:order-service:8070: registering service...
-2026-09-17T20:27:48.421+01:00  INFO 50077 --- [order-service] [nfoReplicator-0] [                                                 ] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_ORDER-SERVICE/192.168.0.109:order-service:8070 - registration status: 204
-2026-09-17T20:27:48.535+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8070 (http) with context path ''
-2026-09-17T20:27:48.538+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8070
-2026-09-17T20:27:48.712+01:00  INFO 50077 --- [order-service] [           main] [                                                 ] com.franck.ecommerce.OrderApplication    : Started OrderApplication in 69.24 seconds (process running for 72.21)
-2026-09-17T20:32:47.640+01:00  INFO 50077 --- [order-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2026-09-17T20:37:47.703+01:00  INFO 50077 --- [order-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2026-09-17T20:42:47.731+01:00  INFO 50077 --- [order-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2026-09-17T20:43:46.334+01:00  INFO 50077 --- [order-service] [nio-8070-exec-1] [                                                 ] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-09-17T20:43:46.335+01:00  INFO 50077 --- [order-service] [nio-8070-exec-1] [                                                 ] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2026-09-17T20:43:46.468+01:00  INFO 50077 --- [order-service] [nio-8070-exec-1] [                                                 ] o.s.web.servlet.DispatcherServlet        : Completed initialization in 132 ms
-2026-09-17T20:45:26.771+01:00  INFO 50077 --- [order-service] [nio-8070-exec-3] [6aac4351c144aee2ad01396aa966a58e-b0e998ab876afe3d] c.franck.ecommerce.kafka.OrderProducer   : Sending order confirmation
-2026-09-17T20:45:26.841+01:00  INFO 50077 --- [order-service] [nio-8070-exec-3] [6aac4351c144aee2ad01396aa966a58e-b0e998ab876afe3d] o.a.k.clients.producer.ProducerConfig    : ProducerConfig values: 
-	acks = -1
-	auto.include.jmx.reporter = true
-	batch.size = 16384
-	bootstrap.servers = [localhost:9092]
-	buffer.memory = 33554432
-	client.dns.lookup = use_all_dns_ips
-	client.id = producer-1
-	compression.type = none
-	connections.max.idle.ms = 540000
-	delivery.timeout.ms = 120000
-	enable.idempotence = true
-	interceptor.classes = []
-	key.serializer = class org.apache.kafka.common.serialization.StringSerializer
-	linger.ms = 0
-	max.block.ms = 60000
-	max.in.flight.requests.per.connection = 5
-	max.request.size = 1048576
-	metadata.max.age.ms = 300000
-	metadata.max.idle.ms = 300000
-	metric.reporters = []
-	metrics.num.samples = 2
-	metrics.recording.level = INFO
-	metrics.sample.window.ms = 30000
-	partitioner.adaptive.partitioning.enable = true
-	partitioner.availability.timeout.ms = 0
-	partitioner.class = null
-	partitioner.ignore.keys = false
-	receive.buffer.bytes = 32768
-	reconnect.backoff.max.ms = 1000
-	reconnect.backoff.ms = 50
-	request.timeout.ms = 30000
-	retries = 2147483647
-	retry.backoff.ms = 100
-	sasl.client.callback.handler.class = null
-	sasl.jaas.config = null
-	sasl.kerberos.kinit.cmd = /usr/bin/kinit
-	sasl.kerberos.min.time.before.relogin = 60000
-	sasl.kerberos.service.name = null
-	sasl.kerberos.ticket.renew.jitter = 0.05
-	sasl.kerberos.ticket.renew.window.factor = 0.8
-	sasl.login.callback.handler.class = null
-	sasl.login.class = null
-	sasl.login.connect.timeout.ms = null
-	sasl.login.read.timeout.ms = null
-	sasl.login.refresh.buffer.seconds = 300
-	sasl.login.refresh.min.period.seconds = 60
-	sasl.login.refresh.window.factor = 0.8
-	sasl.login.refresh.window.jitter = 0.05
-	sasl.login.retry.backoff.max.ms = 10000
-	sasl.login.retry.backoff.ms = 100
-	sasl.mechanism = GSSAPI
-	sasl.oauthbearer.clock.skew.seconds = 30
-	sasl.oauthbearer.expected.audience = null
-	sasl.oauthbearer.expected.issuer = null
-	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
-	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
-	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
-	sasl.oauthbearer.jwks.endpoint.url = null
-	sasl.oauthbearer.scope.claim.name = scope
-	sasl.oauthbearer.sub.claim.name = sub
-	sasl.oauthbearer.token.endpoint.url = null
-	security.protocol = PLAINTEXT
-	security.providers = null
-	send.buffer.bytes = 131072
-	socket.connection.setup.timeout.max.ms = 30000
-	socket.connection.setup.timeout.ms = 10000
-	ssl.cipher.suites = null
-	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
-	ssl.endpoint.identification.algorithm = https
-	ssl.engine.factory.class = null
-	ssl.key.password = null
-	ssl.keymanager.algorithm = SunX509
-	ssl.keystore.certificate.chain = null
-	ssl.keystore.key = null
-	ssl.keystore.location = null
-	ssl.keystore.password = null
-	ssl.keystore.type = JKS
-	ssl.protocol = TLSv1.3
-	ssl.provider = null
-	ssl.secure.random.implementation = null
-	ssl.trustmanager.algorithm = PKIX
-	ssl.truststore.certificates = null
-	ssl.truststore.location = null
-	ssl.truststore.password = null
-	ssl.truststore.type = JKS
-	transaction.timeout.ms = 60000
-	transactional.id = null
-	value.serializer = class org.springframework.kafka.support.serializer.JsonSerializer
-
-2026-09-17T20:45:26.878+01:00  INFO 50077 --- [order-service] [nio-8070-exec-3] [6aac4351c144aee2ad01396aa966a58e-b0e998ab876afe3d] o.a.k.clients.producer.KafkaProducer     : [Producer clientId=producer-1] Instantiated an idempotent producer.
-2026-09-17T20:45:26.930+01:00  INFO 50077 --- [order-service] [nio-8070-exec-3] [6aac4351c144aee2ad01396aa966a58e-b0e998ab876afe3d] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 3.6.2
-2026-09-17T20:45:26.932+01:00  INFO 50077 --- [order-service] [nio-8070-exec-3] [6aac4351c144aee2ad01396aa966a58e-b0e998ab876afe3d] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: c4deed513057c94e
-2026-09-17T20:45:26.933+01:00  INFO 50077 --- [order-service] [nio-8070-exec-3] [6aac4351c144aee2ad01396aa966a58e-b0e998ab876afe3d] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1789674326929
-2026-09-17T20:45:27.038+01:00  INFO 50077 --- [order-service] [ad | producer-1] [                                                 ] org.apache.kafka.clients.Metadata        : [Producer clientId=producer-1] Cluster ID: WJ8p2WlMQF2LmJX09-cQaw
-2026-09-17T20:45:27.040+01:00  INFO 50077 --- [order-service] [ad | producer-1] [                                                 ] o.a.k.c.p.internals.TransactionManager   : [Producer clientId=producer-1] ProducerId set to 1001 with epoch 0
+2026-09-17T21:28:14.007+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 3.6.2
+2026-09-17T21:28:14.008+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: c4deed513057c94e
+2026-09-17T21:28:14.008+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1789676894004
+2026-09-17T21:28:14.859+01:00  INFO 4100 --- [order-service] [| adminclient-1] [                                                 ] o.a.kafka.common.utils.AppInfoParser     : App info kafka.admin.client for adminclient-1 unregistered
+2026-09-17T21:28:14.868+01:00  INFO 4100 --- [order-service] [| adminclient-1] [                                                 ] o.apache.kafka.common.metrics.Metrics    : Metrics scheduler closed
+2026-09-17T21:28:14.869+01:00  INFO 4100 --- [order-service] [| adminclient-1] [                                                 ] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.metrics.JmxReporter
+2026-09-17T21:28:14.869+01:00  INFO 4100 --- [order-service] [| adminclient-1] [                                                 ] o.apache.kafka.common.metrics.Metrics    : Metrics reporters closed
+2026-09-17T21:28:14.913+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2026-09-17T21:28:15.059+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2026-09-17T21:28:15.073+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-09-17T21:28:15.146+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2026-09-17T21:28:15.146+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2026-09-17T21:28:15.146+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2026-09-17T21:28:15.146+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2026-09-17T21:28:15.147+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2026-09-17T21:28:15.147+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+2026-09-17T21:28:15.147+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2026-09-17T21:28:15.708+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2026-09-17T21:28:15.717+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
+2026-09-17T21:28:15.726+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2026-09-17T21:28:15.739+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1789676895738 with initial instances count: 3
+2026-09-17T21:28:15.753+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application ORDER-SERVICE with eureka with status UP
+2026-09-17T21:28:15.756+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1789676895756, current=UP, previous=STARTING]
+2026-09-17T21:28:15.763+01:00  INFO 4100 --- [order-service] [nfoReplicator-0] [                                                 ] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_ORDER-SERVICE/localhost:order-service:8070: registering service...
+2026-09-17T21:28:15.818+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8070 (http) with context path ''
+2026-09-17T21:28:15.820+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8070
+2026-09-17T21:28:15.908+01:00  INFO 4100 --- [order-service] [nfoReplicator-0] [                                                 ] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_ORDER-SERVICE/localhost:order-service:8070 - registration status: 204
+2026-09-17T21:28:17.306+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-09-17T21:28:17.358+01:00  INFO 4100 --- [order-service] [           main] [                                                 ] com.franck.ecommerce.OrderApplication    : Started OrderApplication in 33.53 seconds (process running for 35.624)
+2026-09-17T21:33:15.174+01:00  INFO 4100 --- [order-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-09-17T21:38:15.196+01:00  INFO 4100 --- [order-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-09-17T21:43:15.205+01:00  INFO 4100 --- [order-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-09-17T21:48:15.215+01:00  INFO 4100 --- [order-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-09-17T21:53:15.230+01:00  INFO 4100 --- [order-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-09-17T21:58:15.239+01:00  INFO 4100 --- [order-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
