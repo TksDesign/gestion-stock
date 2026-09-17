@@ -1,0 +1,316 @@
+{
+  "info": {
+    "name": "ms-stock-management",
+    "description": "Collection reflétant les flows exécutés et vérifiés en Phase 3, mise à jour après correction des 6 bugs + des 3 points restés ouverts (voir docs/TEST_REPORT.md). Tous les appels passent par la gateway ({{gatewayUrl}}), jamais directement vers un service. Les scripts de test vérifient le comportement CORRIGÉ et revalidé en conditions réelles. La compensation de stock (saga légère order/product) n'est pas automatisable ici (nécessite d'arrêter payment-service en cours de test) : voir la procédure manuelle documentée dans docs/TEST_REPORT.md.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "gatewayUrl", "value": "http://localhost:8222" },
+    { "key": "customerId", "value": "" },
+    { "key": "orderId", "value": "" },
+    { "key": "productId", "value": "1" }
+  ],
+  "item": [
+    {
+      "name": "1. Catalogue produits",
+      "item": [
+        {
+          "name": "GET liste produits (nominal)",
+          "request": {
+            "method": "GET",
+            "url": "{{gatewayUrl}}/api/v1/products"
+          },
+          "event": [{
+            "listen": "test",
+            "script": { "exec": [
+              "pm.test('200 OK', () => pm.response.to.have.status(200));",
+              "pm.test('liste non vide', () => pm.expect(pm.response.json().length).to.be.above(0));"
+            ]}
+          }]
+        },
+        {
+          "name": "GET produit par id (nominal)",
+          "request": {
+            "method": "GET",
+            "url": "{{gatewayUrl}}/api/v1/products/{{productId}}"
+          },
+          "event": [{
+            "listen": "test",
+            "script": { "exec": [
+              "pm.test('200 OK', () => pm.response.to.have.status(200));",
+              "pm.test('id correspond', () => pm.expect(pm.response.json().id).to.eql(Number(pm.variables.get('productId'))));"
+            ]}
+          }]
+        },
+        {
+          "name": "GET produit introuvable",
+          "request": {
+            "method": "GET",
+            "url": "{{gatewayUrl}}/api/v1/products/999999"
+          },
+          "event": [{
+            "listen": "test",
+            "script": { "exec": [
+              "pm.test('404 Not Found (corrigé le 2026-08-20, était 400)', () => pm.response.to.have.status(404));"
+            ]}
+          }]
+        }
+      ]
+    },
+    {
+      "name": "2. Gestion client",
+      "item": [
+        {
+          "name": "POST créer client (nominal)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{gatewayUrl}}/api/v1/customers",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstname\": \"Franck\",\n  \"lastname\": \"Tchana\",\n  \"email\": \"franck.tchana@example.com\",\n  \"address\": { \"street\": \"Rue de la Paix\", \"houseNumber\": \"12\", \"zipCode\": \"75002\" }\n}"
+            }
+          },
+          "event": [{
+            "listen": "test",
+            "script": { "exec": [
+              "pm.test('200 OK', () => pm.response.to.have.status(200));",
+              "pm.collectionVariables.set('customerId', pm.response.text().replace(/\"/g, ''));"
+            ]}
+          }]
+        },
+        {
+          "name": "POST créer client (validation: email invalide)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{gatewayUrl}}/api/v1/customers",
+            "body": { "mode": "raw", "raw": "{\n  \"firstname\": \"Test\",\n  \"lastname\": \"Invalide\",\n  \"email\": \"pas-un-email\"\n}" }
+          },
+          "event": [{
+            "listen": "test",
+            "script": { "exec": [
+              "pm.test('400 Bad Request', () => pm.response.to.have.status(400));",
+              "pm.test('erreur sur le champ email', () => pm.expect(pm.response.json().errors).to.have.property('email'));"
+            ]}
+          }]
+        },
+        {
+          "name": "GET client par id (nominal)",
+          "request": { "method": "GET", "url": "{{gatewayUrl}}/api/v1/customers/{{customerId}}" },
+          "event": [{ "listen": "test", "script": { "exec": [
+            "pm.test('200 OK', () => pm.response.to.have.status(200));"
+          ]}}]
+        },
+        {
+          "name": "GET client introuvable",
+          "request": { "method": "GET", "url": "{{gatewayUrl}}/api/v1/customers/id-inexistant" },
+          "event": [{ "listen": "test", "script": { "exec": [
+            "pm.test('404 Not Found', () => pm.response.to.have.status(404));"
+          ]}}]
+        },
+        {
+          "name": "GET exists (nominal)",
+          "request": { "method": "GET", "url": "{{gatewayUrl}}/api/v1/customers/exists/{{customerId}}" },
+          "event": [{ "listen": "test", "script": { "exec": [
+            "pm.test('200 OK, true', () => { pm.response.to.have.status(200); pm.expect(pm.response.text()).to.eql('true'); });"
+          ]}}]
+        },
+        {
+          "name": "PUT mise à jour (nominal, firstname + lastname)",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{gatewayUrl}}/api/v1/customers",
+            "body": { "mode": "raw", "raw": "{\n  \"id\": \"{{customerId}}\",\n  \"firstname\": \"FranckModifie\",\n  \"lastname\": \"TchanaModifie\",\n  \"email\": \"franck.tchana@example.com\"\n}" }
+          },
+          "event": [{ "listen": "test", "script": { "exec": [
+            "pm.test('202 Accepted', () => pm.response.to.have.status(202));"
+          ]}}]
+        },
+        {
+          "name": "GET après update (lastname doit être mis à jour, corrigé le 2026-08-20)",
+          "request": { "method": "GET", "url": "{{gatewayUrl}}/api/v1/customers/{{customerId}}" },
+          "event": [{ "listen": "test", "script": { "exec": [
+            "pm.test('200 OK', () => pm.response.to.have.status(200));",
+            "pm.test('lastname mis à jour (était ignoré avant correction)', () => pm.expect(pm.response.json().lastname).to.eql('TchanaModifie'));"
+          ]}}]
+        },
+        {
+          "name": "PUT id inexistant (payload complet)",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{gatewayUrl}}/api/v1/customers",
+            "body": { "mode": "raw", "raw": "{\n  \"id\": \"id-inexistant\",\n  \"firstname\": \"X\",\n  \"lastname\": \"Y\",\n  \"email\": \"x@x.com\"\n}" }
+          },
+          "event": [{ "listen": "test", "script": { "exec": [
+            "pm.test('404 Not Found', () => pm.response.to.have.status(404));"
+          ]}}]
+        },
+        {
+          "name": "DELETE id inexistant [comportement volontaire: jamais 404]",
+          "request": { "method": "DELETE", "url": "{{gatewayUrl}}/api/v1/customers/id-totalement-bidon" },
+          "event": [{ "listen": "test", "script": { "exec": [
+            "pm.test('202 (pas de vérification d\\'existence, non considéré comme un bug)', () => pm.response.to.have.status(202));"
+          ]}}]
+        }
+      ]
+    },
+    {
+      "name": "3. Passage de commande",
+      "item": [
+        {
+          "name": "POST créer commande (nominal)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{gatewayUrl}}/api/v1/orders",
+            "body": { "mode": "raw", "raw": "{\n  \"reference\": \"CMD-POSTMAN-0001\",\n  \"amount\": 199.98,\n  \"paymentMethod\": \"CREDIT_CARD\",\n  \"customerId\": \"{{customerId}}\",\n  \"products\": [ { \"productId\": {{productId}}, \"quantity\": 1 } ]\n}" }
+          },
+          "event": [{ "listen": "test", "script": { "exec": [
+            "pm.test('200 OK', () => pm.response.to.have.status(200));",
+            "pm.collectionVariables.set('orderId', pm.response.text());"
+          ]}}]
+        },
+        {
+          "name": "GET commande par id (amount doit être présent, corrigé le 2026-08-20)",
+          "request": { "method": "GET", "url": "{{gatewayUrl}}/api/v1/orders/{{orderId}}" },
+          "event": [{ "listen": "test", "script": { "exec": [
+            "pm.test('200 OK', () => pm.response.to.have.status(200));",
+            "pm.test('amount présent et correct (était absent avant correction)', () => pm.expect(pm.response.json().amount).to.eql(199.98));"
+          ]}}]
+        },
+        {
+          "name": "GET lignes de la commande",
+          "request": { "method": "GET", "url": "{{gatewayUrl}}/api/v1/order-lines/order/{{orderId}}" },
+          "event": [{ "listen": "test", "script": { "exec": [
+            "pm.test('200 OK', () => pm.response.to.have.status(200));",
+            "pm.test('au moins une ligne', () => pm.expect(pm.response.json().length).to.be.above(0));"
+          ]}}]
+        },
+        {
+          "name": "GET liste des commandes (historique)",
+          "request": { "method": "GET", "url": "{{gatewayUrl}}/api/v1/orders" },
+          "event": [{ "listen": "test", "script": { "exec": [
+            "pm.test('200 OK', () => pm.response.to.have.status(200));"
+          ]}}]
+        },
+        {
+          "name": "GET commande introuvable",
+          "request": { "method": "GET", "url": "{{gatewayUrl}}/api/v1/orders/999999" },
+          "event": [{ "listen": "test", "script": { "exec": [
+            "pm.test('404 Not Found', () => pm.response.to.have.status(404));"
+          ]}}]
+        }
+      ]
+    },
+    {
+      "name": "4. Commande en erreur (codes réels relayés, corrigé le 2026-08-20)",
+      "item": [
+        {
+          "name": "POST commande, client introuvable -> 404",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{gatewayUrl}}/api/v1/orders",
+            "body": { "mode": "raw", "raw": "{\n  \"reference\": \"CMD-ERR-CLIENT\",\n  \"amount\": 50,\n  \"paymentMethod\": \"VISA\",\n  \"customerId\": \"id-client-bidon\",\n  \"products\": [ { \"productId\": {{productId}}, \"quantity\": 1 } ]\n}" }
+          },
+          "event": [{ "listen": "test", "script": { "exec": [
+            "pm.test('404 (corrigé, était 500 générique)', () => pm.response.to.have.status(404));",
+            "pm.test('message métier exploitable', () => pm.expect(pm.response.text()).to.include('No customer found'));"
+          ]}}]
+        },
+        {
+          "name": "POST commande, produit introuvable -> 400",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{gatewayUrl}}/api/v1/orders",
+            "body": { "mode": "raw", "raw": "{\n  \"reference\": \"CMD-ERR-PRODUIT\",\n  \"amount\": 50,\n  \"paymentMethod\": \"VISA\",\n  \"customerId\": \"{{customerId}}\",\n  \"products\": [ { \"productId\": 999999, \"quantity\": 1 } ]\n}" }
+          },
+          "event": [{ "listen": "test", "script": { "exec": [
+            "pm.test('400 (corrigé, était 500 générique)', () => pm.response.to.have.status(400));",
+            "pm.test('message métier exploitable', () => pm.expect(pm.response.text()).to.include('does not exist'));"
+          ]}}]
+        },
+        {
+          "name": "POST commande, stock insuffisant -> 400",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{gatewayUrl}}/api/v1/orders",
+            "body": { "mode": "raw", "raw": "{\n  \"reference\": \"CMD-ERR-STOCK\",\n  \"amount\": 50,\n  \"paymentMethod\": \"VISA\",\n  \"customerId\": \"{{customerId}}\",\n  \"products\": [ { \"productId\": {{productId}}, \"quantity\": 5000 } ]\n}" }
+          },
+          "event": [{ "listen": "test", "script": { "exec": [
+            "pm.test('400 (corrigé, était 500 générique)', () => pm.response.to.have.status(400));",
+            "pm.test('message métier exploitable', () => pm.expect(pm.response.text()).to.include('Insufficient stock'));"
+          ]}}]
+        }
+      ]
+    },
+    {
+      "name": "5. Paiement direct",
+      "item": [
+        {
+          "name": "POST paiement (nominal) [pas de logique de refus, non concerné par les corrections]",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{gatewayUrl}}/api/v1/payments",
+            "body": { "mode": "raw", "raw": "{\n  \"amount\": 42.50,\n  \"paymentMethod\": \"PAYPAL\",\n  \"orderId\": 999,\n  \"orderReference\": \"CMD-DIRECT-POSTMAN\",\n  \"customer\": { \"id\": \"{{customerId}}\", \"firstname\": \"Franck\", \"lastname\": \"Tchana\", \"email\": \"franck.tchana@example.com\" }\n}" }
+          },
+          "event": [{ "listen": "test", "script": { "exec": [
+            "pm.test('200 OK (toujours accepté, aucun cas de refus)', () => pm.response.to.have.status(200));"
+          ]}}]
+        },
+        {
+          "name": "POST paiement, montant négatif -> 400",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{gatewayUrl}}/api/v1/payments",
+            "body": { "mode": "raw", "raw": "{\n  \"amount\": -100,\n  \"paymentMethod\": \"PAYPAL\",\n  \"orderId\": 999,\n  \"orderReference\": \"CMD-NEGATIF-POSTMAN\",\n  \"customer\": { \"id\": \"{{customerId}}\", \"firstname\": \"Franck\", \"lastname\": \"Tchana\", \"email\": \"franck.tchana@example.com\" }\n}" }
+          },
+          "event": [{ "listen": "test", "script": { "exec": [
+            "pm.test('400 (corrigé, était 200 accepté sans validation)', () => pm.response.to.have.status(400));",
+            "pm.test('erreur sur le champ amount', () => pm.expect(pm.response.json().errors).to.have.property('amount'));"
+          ]}}]
+        },
+        {
+          "name": "POST paiement, email client invalide -> 400",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{gatewayUrl}}/api/v1/payments",
+            "body": { "mode": "raw", "raw": "{\n  \"amount\": 10,\n  \"paymentMethod\": \"PAYPAL\",\n  \"orderId\": 999,\n  \"orderReference\": \"CMD-EMAIL-INVALIDE-POSTMAN\",\n  \"customer\": { \"id\": \"{{customerId}}\", \"firstname\": \"Franck\", \"lastname\": \"Tchana\", \"email\": \"pas-un-email\" }\n}" }
+          },
+          "event": [{ "listen": "test", "script": { "exec": [
+            "pm.test('400 (corrigé, était 200 accepté sans validation, déclenchait ensuite la tempête de retries Kafka)', () => pm.response.to.have.status(400));",
+            "pm.test('erreur sur customer.email', () => pm.expect(pm.response.json().errors).to.have.property('customer.email'));"
+          ]}}]
+        }
+      ]
+    },
+    {
+      "name": "6. CORS gateway (corrigé le 2026-08-20)",
+      "item": [
+        {
+          "name": "OPTIONS preflight depuis une origine externe",
+          "request": {
+            "method": "OPTIONS",
+            "header": [
+              { "key": "Origin", "value": "http://localhost:3000" },
+              { "key": "Access-Control-Request-Method", "value": "GET" }
+            ],
+            "url": "{{gatewayUrl}}/api/v1/products"
+          },
+          "event": [{ "listen": "test", "script": { "exec": [
+            "pm.test('200 OK', () => pm.response.to.have.status(200));",
+            "pm.test('Access-Control-Allow-Origin présent (CORS configuré, était absent avant correction)', () => pm.expect(pm.response.headers.get('Access-Control-Allow-Origin')).to.eql('http://localhost:3000'));"
+          ]}}]
+        }
+      ]
+    }
+  ]
+}

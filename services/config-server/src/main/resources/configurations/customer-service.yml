@@ -1,0 +1,11 @@
+server:
+  port: 8090
+spring:
+  data:
+    mongodb:
+      username: ${MONGO_INITDB_ROOT_USERNAME:franck}
+      password: ${MONGO_INITDB_ROOT_PASSWORD:franck}
+      host: localhost
+      port: 27017
+      database: customer
+      authentication-database: admin
