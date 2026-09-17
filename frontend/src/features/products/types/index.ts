@@ -4,18 +4,9 @@ export interface Product {
   description: string;
   availableQuantity: number;
   price: number;
-  categoryId: number;
-  categoryName?: string;
-  categoryDescription?: string;
-}
-
-export interface ProductRequest {
-  id?: number;
-  name: string;
-  description: string;
-  availableQuantity: number;
-  price: number;
-  categoryId: number;
+  shopId?: number | null;
+  shopName?: string | null;
+  categoryName?: string | null;
 }
 
 export interface ProductPurchaseRequest {

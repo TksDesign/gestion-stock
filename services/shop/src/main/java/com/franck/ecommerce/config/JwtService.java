@@ -30,6 +30,10 @@ public class JwtService {
         return extractClaim(token, claims -> claims.get("userId", String.class));
     }
 
+    public String extractCustomerId(String token) {
+        return extractClaim(token, claims -> claims.get("customerId", String.class));
+    }
+
     public boolean isTokenValid(String token) {
         return !isTokenExpired(token);
     }

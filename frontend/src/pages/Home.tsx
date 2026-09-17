@@ -1,26 +1,58 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { Button } from '../components/ui/Button';
 import { ProductCard, ProductCardProps } from '../features/products/components/ProductCard';
 import { QuickViewModal } from '../features/products/components/QuickViewModal';
 import { DealsSection, PromoSection, FeaturesSection, InstagramSection, TestimonialsSection, NewsletterSection } from '../components/sections/SharedSections';
+import { productApi } from '../features/products/api/productApi';
+import { useCategories } from '../features/shop/hooks/useShop';
 
-// -- Données Mockées --
-const MOCK_ARRIVALS = [
-  { id: 101, title: 'MacBook Pro 16" M3 Max', brand: 'Premium Tech', price: 95.0, imageUrl: 'https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?auto=format&fit=crop&q=80&w=400', category: "Laptops" },
-  { id: 102, title: 'Sony WH-1000XM5', brand: 'Premium Tech', price: 95.0, imageUrl: 'https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&q=80&w=400', category: "Laptops" },
-  { id: 103, title: 'Custom RGB Mechanical Keyboard', brand: 'Premium Tech', price: 95.0, imageUrl: 'https://images.unsplash.com/photo-1504610926078-a1611febcad3?auto=format&fit=crop&q=80&w=400', category: "Audio" },
-  { id: 104, title: 'Apple Watch Ultra 2', brand: 'Premium Tech', price: 95.0, imageUrl: 'https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&q=80&w=400', category: "Laptops" },
-  { id: 105, title: 'iPad Pro 12.9" M2', brand: 'Premium Tech', price: 95.0, imageUrl: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=400', category: "Accessories" },
-  { id: 106, title: 'Sony Alpha A7 IV', brand: 'Premium Tech', price: 95.0, imageUrl: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=400', category: "Audio" },
+// Images de secours : le backend ne fournit pas d'URL d'image par produit — on fait
+// tourner un petit pool de visuels génériques, comme sur la page Products.
+const FALLBACK_IMAGES = [
+  'https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?auto=format&fit=crop&q=80&w=400',
+  'https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&q=80&w=400',
+  'https://images.unsplash.com/photo-1504610926078-a1611febcad3?auto=format&fit=crop&q=80&w=400',
+  'https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&q=80&w=400',
+  'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=400',
+  'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=400',
 ];
+
+const ALL_TAB = 'All';
 
 export const Home = () => {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState("Laptops");
+  const [activeTab, setActiveTab] = useState<string>(ALL_TAB);
   const [quickViewProduct, setQuickViewProduct] = useState<ProductCardProps | null>(null);
-  const filteredArrivals = activeTab === "Discount Deals" ? MOCK_ARRIVALS : MOCK_ARRIVALS.filter(p => p.category === activeTab);
+
+  const { data: apiProducts } = useQuery({ queryKey: ['products'], queryFn: productApi.findAll });
+  const { data: categories } = useCategories();
+
+  const arrivals = useMemo(
+    () => (apiProducts || []).map((p, index) => ({
+      id: p.id,
+      title: p.name,
+      brand: p.categoryName,
+      category: p.categoryName,
+      price: p.price,
+      imageUrl: FALLBACK_IMAGES[index % FALLBACK_IMAGES.length],
+    })),
+    [apiProducts]
+  );
+
+  // Onglets dynamiques : seulement les catégories réellement présentes dans le
+  // catalogue actuel, pour ne jamais afficher un onglet vide sur la home.
+  const availableTabs = useMemo(() => {
+    const categoryNamesWithProducts = new Set(arrivals.map(p => p.category).filter(Boolean));
+    const ordered = (categories || [])
+      .map(c => c.name)
+      .filter(name => categoryNamesWithProducts.has(name));
+    return [ALL_TAB, ...ordered];
+  }, [categories, arrivals]);
+
+  const filteredArrivals = (activeTab === ALL_TAB ? arrivals : arrivals.filter(p => p.category === activeTab)).slice(0, 6);
 
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -172,7 +204,7 @@ export const Home = () => {
           style={{ opacity: useTransform(arrScroll, [0.1, 0.3], [0, 1]), y: useTransform(arrScroll, [0.1, 0.4], [50, 0]) }}
           className="flex flex-wrap justify-center gap-4 mb-16 relative z-20"
         >
-          {['Women\'s Fashion', 'Men\'s Fashion', 'Women\'s Accessories', 'Men\'s Accessories', 'Discount Deals'].map(tab => (
+          {availableTabs.map(tab => (
             <button 
               key={tab}
               onClick={() => setActiveTab(tab)}

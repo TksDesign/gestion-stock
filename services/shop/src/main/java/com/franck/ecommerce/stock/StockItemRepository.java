@@ -11,6 +11,10 @@ public interface StockItemRepository extends JpaRepository<StockItem, Integer> {
 
     List<StockItem> findByShopId(Integer shopId);
 
+    List<StockItem> findByShopIdIn(List<Integer> shopIds);
+
+    List<StockItem> findAllByIdInOrderById(List<Integer> ids);
+
     Optional<StockItem> findByIdAndShopId(Integer id, Integer shopId);
 
     @Query("select s from StockItem s where s.shopId = :shopId and s.quantity <= s.lowStockThreshold")

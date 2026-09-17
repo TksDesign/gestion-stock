@@ -8,6 +8,8 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
@@ -41,6 +43,23 @@ public class Sale {
     private String reference;
 
     private BigDecimal totalAmount;
+
+    // Non nul uniquement pour les ventes ONLINE : trace la commande order-service
+    // d'origine (référence "ORD-xxxx"). Volontairement non unique : un même order
+    // peut produire plusieurs Sale (une par boutique concernée par le panier).
+    private String orderReference;
+
+    @Builder.Default
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private SaleSource source = SaleSource.MANUAL;
+
+    // Renseignés uniquement pour les ventes ONLINE (issues d'une commande client) —
+    // permet à la gérante de voir qui a commandé sans appel réseau à customer-service.
+    private String customerId;
+    private String customerFirstname;
+    private String customerLastname;
+    private String customerEmail;
 
     @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<SaleItem> items;

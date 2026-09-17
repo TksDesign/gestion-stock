@@ -2,8 +2,8 @@ import { api } from '../../../lib/axios';
 import type {
   ShopResponse, CreateShopRequest, ShopRequest,
   StockItemResponse, StockItemRequest, StockAdjustmentRequest,
-  SaleResponse, SaleRequest,
-  DashboardResponse,
+  SaleResponse, SaleRequest, SaleItemResponse, SaleItemStatusUpdateRequest,
+  DashboardResponse, CategoryResponse,
 } from '../types';
 
 const BASE = '/api/v1/shops';
@@ -63,7 +63,22 @@ export const shopManagerApi = {
   createSale: (data: SaleRequest) =>
     api.post<SaleResponse>(`${BASE}/mine/sales`, data).then(r => r.data),
 
+  updateSaleItemStatus: (saleId: number, itemId: number, data: SaleItemStatusUpdateRequest) =>
+    api.patch<SaleItemResponse>(`${BASE}/mine/sales/${saleId}/items/${itemId}/status`, data).then(r => r.data),
+
   // Dashboard
   getDashboard: () =>
     api.get<DashboardResponse>(`${BASE}/mine/dashboard`).then(r => r.data),
+};
+
+// ─── Client : suivi de ses commandes ───────────────────────────
+export const shopCustomerApi = {
+  getMyOrders: () =>
+    api.get<SaleResponse[]>(`${BASE}/catalog/orders/mine`).then(r => r.data),
+};
+
+// ─── Catégories (public) ────────────────────────────────────────
+export const categoryApi = {
+  findAll: () =>
+    api.get<CategoryResponse[]>(`${BASE}/categories`).then(r => r.data),
 };

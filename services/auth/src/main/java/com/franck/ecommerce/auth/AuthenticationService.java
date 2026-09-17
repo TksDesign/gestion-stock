@@ -1,7 +1,5 @@
 package com.franck.ecommerce.auth;
 
-import java.util.Map;
-
 import com.franck.ecommerce.config.JwtService;
 import com.franck.ecommerce.user.Role;
 import com.franck.ecommerce.user.User;
@@ -90,10 +88,12 @@ public class AuthenticationService {
     }
 
     private AuthenticationResponse buildResponse(User user) {
-        var extraClaims = Map.<String, Object>of(
-                "role", user.getRole().name(),
-                "userId", user.getId()
-        );
+        var extraClaims = new java.util.HashMap<String, Object>();
+        extraClaims.put("role", user.getRole().name());
+        extraClaims.put("userId", user.getId());
+        if (user.getCustomerId() != null) {
+            extraClaims.put("customerId", user.getCustomerId());
+        }
         var token = jwtService.generateToken(user, extraClaims);
         return new AuthenticationResponse(
                 token,

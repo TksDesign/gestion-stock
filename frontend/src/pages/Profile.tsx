@@ -1,10 +1,35 @@
 import { useState } from 'react';
 import { useAuthStore } from '../store/authStore';
 import { Button } from '../components/ui/Button';
+import { useMyOrders } from '../features/shop/hooks/useShop';
+import type { SaleItemStatus } from '../features/shop/types';
+import { groupSalesByOrder } from '../features/shop/utils/groupOrders';
+
+const STATUS_LABELS: Record<SaleItemStatus, string> = {
+  PENDING: 'En attente',
+  CONFIRMED: 'Confirmée',
+  PREPARING: 'En préparation',
+  SHIPPED: 'Expédiée',
+  DELIVERED: 'Livrée',
+  CANCELLED: 'Annulée',
+  EXPIRED: 'Expirée',
+};
+
+const STATUS_STYLES: Record<SaleItemStatus, string> = {
+  PENDING: 'bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-white/10',
+  CONFIRMED: 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 border-blue-100 dark:border-blue-800',
+  PREPARING: 'bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400 border-purple-100 dark:border-purple-800',
+  SHIPPED: 'bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400 border-amber-100 dark:border-amber-800',
+  DELIVERED: 'bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 border-green-100 dark:border-green-800',
+  CANCELLED: 'bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 border-red-100 dark:border-red-800',
+  EXPIRED: 'bg-orange-50 dark:bg-orange-900/20 text-orange-600 dark:text-orange-400 border-orange-100 dark:border-orange-800',
+};
 
 export const Profile = () => {
   const [activeTab, setActiveTab] = useState<'orders' | 'details'>('orders');
   const { logout, user } = useAuthStore();
+  const { data: sales, isLoading: isOrdersLoading } = useMyOrders();
+  const orders = sales ? groupSalesByOrder(sales) : [];
 
   return (
     <div className="w-full bg-white dark:bg-gray-900 font-sans min-h-[75vh]">
@@ -42,33 +67,47 @@ export const Profile = () => {
              {activeTab === 'orders' && (
                <div>
                   <h2 className="text-2xl font-serif font-bold text-gray-900 dark:text-white mb-6">Order History</h2>
-                  {/* Assuming no orders right now, or mock some */}
-                  <div className="overflow-x-auto">
-                    <table className="w-full text-left border-collapse min-w-[600px]">
-                      <thead>
-                        <tr className="border-b-2 border-gray-100 dark:border-gray-800">
-                          <th className="pb-4 font-bold text-gray-900 dark:text-white text-sm uppercase tracking-wider">Order ID</th>
-                          <th className="pb-4 font-bold text-gray-900 dark:text-white text-sm uppercase tracking-wider">Date</th>
-                          <th className="pb-4 font-bold text-gray-900 dark:text-white text-sm uppercase tracking-wider">Status</th>
-                          <th className="pb-4 font-bold text-gray-900 dark:text-white text-right text-sm uppercase tracking-wider">Total</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {[1, 2].map(i => (
-                          <tr key={i} className="border-b border-gray-100 dark:border-gray-800">
-                            <td className="py-6 font-semibold text-gray-900 dark:text-gray-300 text-sm">#KSHOP-892{i}</td>
-                            <td className="py-6 text-gray-500 text-sm">Oct {24 + i}, 2026</td>
-                            <td className="py-6">
-                              <span className="bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 border border-green-100 dark:border-green-800 px-3 py-1 rounded-sm text-xs font-bold uppercase">
-                                Delivered
-                              </span>
-                            </td>
-                            <td className="py-6 font-bold text-right text-gray-900 dark:text-white">${(120.00 * i).toFixed(2)}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
+                  {isOrdersLoading ? (
+                    <div className="flex justify-center py-12">
+                      <div className="w-10 h-10 border-4 border-gray-100 dark:border-gray-800 border-t-black dark:border-t-white rounded-full animate-spin" />
+                    </div>
+                  ) : orders.length === 0 ? (
+                    <p className="text-gray-500 text-sm">Vous n'avez pas encore passé de commande.</p>
+                  ) : (
+                    <div className="flex flex-col gap-6">
+                      {orders.map(order => (
+                        <div key={order.key} className="border border-gray-100 dark:border-gray-800 rounded-sm overflow-hidden">
+                          <div className="flex justify-between items-center px-6 py-4 bg-gray-50 dark:bg-gray-800/50">
+                            <div>
+                              <p className="font-semibold text-sm text-gray-900 dark:text-white">{order.orderReference}</p>
+                              <p className="text-xs text-gray-500">
+                                {new Date(order.createdDate).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}
+                                {' à '}
+                                {new Date(order.createdDate).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}
+                              </p>
+                            </div>
+                            <p className="font-bold text-gray-900 dark:text-white">${order.totalAmount.toFixed(2)}</p>
+                          </div>
+                          <div className="divide-y divide-gray-100 dark:divide-gray-800">
+                            {order.items.map(item => (
+                              <div key={item.id} className="flex justify-between items-center px-6 py-4">
+                                <div>
+                                  <p className="text-sm font-medium text-gray-900 dark:text-white">{item.stockItemName}</p>
+                                  <p className="text-xs text-gray-500">
+                                    Qté {item.quantity} · ${item.unitPrice.toFixed(2)}
+                                    {item.shopName && <> · {item.shopName}</>}
+                                  </p>
+                                </div>
+                                <span className={`px-3 py-1 rounded-sm text-xs font-bold uppercase border ${STATUS_STYLES[item.status]}`}>
+                                  {STATUS_LABELS[item.status]}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                </div>
              )}
 

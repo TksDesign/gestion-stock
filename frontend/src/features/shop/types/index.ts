@@ -63,20 +63,36 @@ export interface StockAdjustmentRequest {
 }
 
 // ─── Sales ────────────────────────────────────────────────────
+export type SaleItemStatus = 'PENDING' | 'CONFIRMED' | 'PREPARING' | 'SHIPPED' | 'DELIVERED' | 'CANCELLED' | 'EXPIRED';
+export type SaleSource = 'MANUAL' | 'ONLINE';
+
 export interface SaleItemResponse {
+  id: number;
   stockItemId: number;
   stockItemName: string;
   unitPrice: number;
   quantity: number;
+  status: SaleItemStatus;
 }
 
 export interface SaleResponse {
   id: number;
   shopId: number;
+  shopName?: string | null;
   reference: string;
+  orderReference?: string | null;
+  source: SaleSource;
+  customerId?: string | null;
+  customerFirstname?: string | null;
+  customerLastname?: string | null;
+  customerEmail?: string | null;
   totalAmount: number;
   items: SaleItemResponse[];
   createdDate: string;
+}
+
+export interface SaleItemStatusUpdateRequest {
+  status: SaleItemStatus;
 }
 
 export interface SaleLineRequest {
@@ -103,4 +119,11 @@ export interface DashboardResponse {
   totalRevenue: number;
   topSellingItems: TopSellingItem[];
   lowStockItems: StockItemResponse[];
+}
+
+// ─── Catégories ───────────────────────────────────────────────
+export interface CategoryResponse {
+  id: number;
+  name: string;
+  description?: string | null;
 }

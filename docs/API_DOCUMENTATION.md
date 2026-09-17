@@ -10,7 +10,7 @@ Toutes les données ci-dessous ont été vérifiées contre le code du package `
 |---|---|---|---|
 | [gateway](api/gateway.md) | Point d'entrée unique, routage | — (routeur) | `http://localhost:8222` |
 | [auth](api/auth.md) | Authentification, émission JWT, rôles `CLIENT`/`SHOP_MANAGER`/`ADMIN` | 4 | `/api/v1/auth` |
-| [shop](api/shop.md) | Gestion boutique + stock + ventes (gérante), création boutique (admin) | 15 | `/api/v1/shops` |
+| [shop](api/shop.md) | Gestion boutique + stock + ventes (gérante), catalogue public, suivi de commande, création boutique (admin) | 18 | `/api/v1/shops` |
 | [customer](api/customer.md) | Référentiel clients (CRUD) | 6 | `/api/v1/customers` |
 | [product](api/product.md) | Catalogue produits + décrément de stock | 4 | `/api/v1/products` |
 | [order](api/order.md) | Orchestration des commandes | 4 (2 contrôleurs) | `/api/v1/orders`, `/api/v1/order-lines` |

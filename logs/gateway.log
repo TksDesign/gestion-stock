@@ -7,59 +7,298 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.2.5)
 
-2026-09-17T12:59:47.779+01:00  INFO 63402 --- [gateway-service] [           main] [                                                 ] com.franck.gateway.GatewayApplication    : Starting GatewayApplication v0.0.1-SNAPSHOT using Java 17.0.12 with PID 63402 (/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/gateway/target/gateway-0.0.1-SNAPSHOT.jar started by daphane in /Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/gateway)
-2026-09-17T12:59:48.056+01:00  INFO 63402 --- [gateway-service] [           main] [                                                 ] com.franck.gateway.GatewayApplication    : No active profile set, falling back to 1 default profile: "default"
-2026-09-17T12:59:48.906+01:00  INFO 63402 --- [gateway-service] [           main] [                                                 ] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : http://localhost:8888
-2026-09-17T12:59:48.906+01:00  INFO 63402 --- [gateway-service] [           main] [                                                 ] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=gateway-service, profiles=[default], label=null, version=null, state=null
-2026-09-17T12:59:57.234+01:00  INFO 63402 --- [gateway-service] [           main] [                                                 ] o.s.cloud.context.scope.GenericScope     : BeanFactory id=67cbf054-e010-3cb6-bc1c-ce916f139041
-2026-09-17T12:59:57.703+01:00  WARN 63402 --- [gateway-service] [           main] [                                                 ] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig' of type [org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [lbRestClientPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
-2026-09-17T12:59:57.710+01:00  WARN 63402 --- [gateway-service] [           main] [                                                 ] trationDelegate$BeanPostProcessorChecker : Bean 'deferringLoadBalancerInterceptor' of type [org.springframework.cloud.client.loadbalancer.DeferringLoadBalancerInterceptor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
-2026-09-17T12:59:57.712+01:00  WARN 63402 --- [gateway-service] [           main] [                                                 ] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [loadBalancerWebClientBuilderBeanPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
-2026-09-17T12:59:57.714+01:00  WARN 63402 --- [gateway-service] [           main] [                                                 ] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [loadBalancerWebClientBuilderBeanPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
-2026-09-17T12:59:57.717+01:00  WARN 63402 --- [gateway-service] [           main] [                                                 ] trationDelegate$BeanPostProcessorChecker : Bean 'reactorDeferringLoadBalancerExchangeFilterFunction' of type [org.springframework.cloud.client.loadbalancer.reactive.DeferringLoadBalancerExchangeFilterFunction] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [loadBalancerWebClientBuilderBeanPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
-2026-09-17T13:00:03.258+01:00  INFO 63402 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [After]
-2026-09-17T13:00:03.259+01:00  INFO 63402 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Before]
-2026-09-17T13:00:03.260+01:00  INFO 63402 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Between]
-2026-09-17T13:00:03.260+01:00  INFO 63402 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Cookie]
-2026-09-17T13:00:03.260+01:00  INFO 63402 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Header]
-2026-09-17T13:00:03.260+01:00  INFO 63402 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Host]
-2026-09-17T13:00:03.260+01:00  INFO 63402 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Method]
-2026-09-17T13:00:03.261+01:00  INFO 63402 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Path]
-2026-09-17T13:00:03.261+01:00  INFO 63402 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Query]
-2026-09-17T13:00:03.261+01:00  INFO 63402 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [ReadBody]
-2026-09-17T13:00:03.262+01:00  INFO 63402 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [RemoteAddr]
-2026-09-17T13:00:03.262+01:00  INFO 63402 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [XForwardedRemoteAddr]
-2026-09-17T13:00:03.262+01:00  INFO 63402 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Weight]
-2026-09-17T13:00:03.262+01:00  INFO 63402 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [CloudFoundryRouteService]
-2026-09-17T13:00:05.674+01:00  INFO 63402 --- [gateway-service] [           main] [                                                 ] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
-2026-09-17T13:00:07.903+01:00  INFO 63402 --- [gateway-service] [           main] [                                                 ] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
-2026-09-17T13:00:08.064+01:00  WARN 63402 --- [gateway-service] [           main] [                                                 ] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
-2026-09-17T13:00:08.373+01:00  INFO 63402 --- [gateway-service] [           main] [                                                 ] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
-2026-09-17T13:00:08.893+01:00  INFO 63402 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
-2026-09-17T13:00:08.918+01:00  INFO 63402 --- [gateway-service] [           main] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2026-09-17T13:00:08.988+01:00  INFO 63402 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
-2026-09-17T13:00:08.988+01:00  INFO 63402 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
-2026-09-17T13:00:08.988+01:00  INFO 63402 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
-2026-09-17T13:00:08.988+01:00  INFO 63402 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Application is null : false
-2026-09-17T13:00:08.988+01:00  INFO 63402 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
-2026-09-17T13:00:08.988+01:00  INFO 63402 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
-2026-09-17T13:00:08.989+01:00  INFO 63402 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
-2026-09-17T13:00:10.736+01:00  INFO 63402 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : The response status is 200
-2026-09-17T13:00:10.752+01:00  INFO 63402 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
-2026-09-17T13:00:10.756+01:00  INFO 63402 --- [gateway-service] [           main] [                                                 ] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
-2026-09-17T13:00:10.763+01:00  INFO 63402 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1789646410762 with initial instances count: 3
-2026-09-17T13:00:10.765+01:00  INFO 63402 --- [gateway-service] [           main] [                                                 ] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application GATEWAY-SERVICE with eureka with status UP
-2026-09-17T13:00:10.766+01:00  INFO 63402 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1789646410766, current=UP, previous=STARTING]
-2026-09-17T13:00:10.768+01:00  INFO 63402 --- [gateway-service] [nfoReplicator-0] [                                                 ] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_GATEWAY-SERVICE/192.168.2.25:gateway-service:8222: registering service...
-2026-09-17T13:00:10.837+01:00  INFO 63402 --- [gateway-service] [nfoReplicator-0] [                                                 ] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_GATEWAY-SERVICE/192.168.2.25:gateway-service:8222 - registration status: 204
-2026-09-17T13:00:12.015+01:00  INFO 63402 --- [gateway-service] [           main] [                                                 ] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8222
-2026-09-17T13:00:12.018+01:00  INFO 63402 --- [gateway-service] [           main] [                                                 ] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8222
-2026-09-17T13:00:12.267+01:00  INFO 63402 --- [gateway-service] [           main] [                                                 ] com.franck.gateway.GatewayApplication    : Started GatewayApplication in 35.192 seconds (process running for 40.863)
-2026-09-17T13:05:09.028+01:00  INFO 63402 --- [gateway-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2026-09-17T13:10:08.884+01:00  INFO 63402 --- [gateway-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2026-09-17T13:15:08.899+01:00  INFO 63402 --- [gateway-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2026-09-17T13:20:08.913+01:00  INFO 63402 --- [gateway-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2026-09-17T13:25:08.932+01:00  INFO 63402 --- [gateway-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2026-09-17T13:30:08.953+01:00  INFO 63402 --- [gateway-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2026-09-17T13:35:08.982+01:00  INFO 63402 --- [gateway-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2026-09-17T13:40:09.017+01:00  INFO 63402 --- [gateway-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-09-17T15:29:10.382+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] com.franck.gateway.GatewayApplication    : Starting GatewayApplication v0.0.1-SNAPSHOT using Java 17.0.20.1 with PID 40020 (C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\gateway\target\gateway-0.0.1-SNAPSHOT.jar started by SAMA_PC in C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\config-server)
+2026-09-17T15:29:10.387+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] com.franck.gateway.GatewayApplication    : No active profile set, falling back to 1 default profile: "default"
+2026-09-17T15:29:10.483+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : http://localhost:8888
+2026-09-17T15:29:10.484+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=gateway-service, profiles=[default], label=null, version=null, state=null
+2026-09-17T15:29:11.750+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] o.s.cloud.context.scope.GenericScope     : BeanFactory id=67cbf054-e010-3cb6-bc1c-ce916f139041
+2026-09-17T15:29:11.860+01:00  WARN 40020 --- [gateway-service] [           main] [                                                 ] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig' of type [org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [lbRestClientPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
+2026-09-17T15:29:11.862+01:00  WARN 40020 --- [gateway-service] [           main] [                                                 ] trationDelegate$BeanPostProcessorChecker : Bean 'deferringLoadBalancerInterceptor' of type [org.springframework.cloud.client.loadbalancer.DeferringLoadBalancerInterceptor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+2026-09-17T15:29:11.865+01:00  WARN 40020 --- [gateway-service] [           main] [                                                 ] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [loadBalancerWebClientBuilderBeanPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
+2026-09-17T15:29:11.867+01:00  WARN 40020 --- [gateway-service] [           main] [                                                 ] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [loadBalancerWebClientBuilderBeanPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+2026-09-17T15:29:11.869+01:00  WARN 40020 --- [gateway-service] [           main] [                                                 ] trationDelegate$BeanPostProcessorChecker : Bean 'reactorDeferringLoadBalancerExchangeFilterFunction' of type [org.springframework.cloud.client.loadbalancer.reactive.DeferringLoadBalancerExchangeFilterFunction] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [loadBalancerWebClientBuilderBeanPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+2026-09-17T15:29:13.727+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-09-17T15:29:14.883+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-09-17T15:29:15.227+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [After]
+2026-09-17T15:29:15.228+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Before]
+2026-09-17T15:29:15.228+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Between]
+2026-09-17T15:29:15.228+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Cookie]
+2026-09-17T15:29:15.228+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Header]
+2026-09-17T15:29:15.228+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Host]
+2026-09-17T15:29:15.228+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Method]
+2026-09-17T15:29:15.228+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Path]
+2026-09-17T15:29:15.228+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Query]
+2026-09-17T15:29:15.228+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [ReadBody]
+2026-09-17T15:29:15.228+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [RemoteAddr]
+2026-09-17T15:29:15.228+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [XForwardedRemoteAddr]
+2026-09-17T15:29:15.229+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Weight]
+2026-09-17T15:29:15.229+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [CloudFoundryRouteService]
+2026-09-17T15:29:16.695+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-09-17T15:29:16.774+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2026-09-17T15:29:17.296+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
+2026-09-17T15:29:17.330+01:00  WARN 40020 --- [gateway-service] [           main] [                                                 ] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-09-17T15:29:17.392+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2026-09-17T15:29:17.508+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2026-09-17T15:29:17.516+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-09-17T15:29:17.552+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2026-09-17T15:29:17.553+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2026-09-17T15:29:17.553+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2026-09-17T15:29:17.553+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2026-09-17T15:29:17.553+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2026-09-17T15:29:17.553+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+2026-09-17T15:29:17.553+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2026-09-17T15:29:17.914+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2026-09-17T15:29:17.918+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
+2026-09-17T15:29:17.923+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2026-09-17T15:29:17.928+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1789655357928 with initial instances count: 8
+2026-09-17T15:29:17.930+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application GATEWAY-SERVICE with eureka with status UP
+2026-09-17T15:29:17.930+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1789655357930, current=UP, previous=STARTING]
+2026-09-17T15:29:17.932+01:00  INFO 40020 --- [gateway-service] [nfoReplicator-0] [                                                 ] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_GATEWAY-SERVICE/localhost:gateway-service:8222: registering service...
+2026-09-17T15:29:18.031+01:00  INFO 40020 --- [gateway-service] [nfoReplicator-0] [                                                 ] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_GATEWAY-SERVICE/localhost:gateway-service:8222 - registration status: 204
+2026-09-17T15:29:18.346+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8222
+2026-09-17T15:29:18.348+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8222
+2026-09-17T15:29:19.485+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-09-17T15:29:20.622+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-09-17T15:29:20.654+01:00  INFO 40020 --- [gateway-service] [           main] [                                                 ] com.franck.gateway.GatewayApplication    : Started GatewayApplication in 12.844 seconds (process running for 13.83)
+2026-09-17T15:30:25.978+01:00 ERROR 40020 --- [gateway-service] [ctor-http-nio-7] [                                                 ] a.w.r.e.AbstractErrorWebExceptionHandler : [94c1c268-6]  500 Server Error for HTTP GET "/api/v1/shops/mine/sales"
+
+io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:8100
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ? org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]
+	*__checkpoint ? HTTP GET "/api/v1/shops/mine/sales" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:684) ~[na:na]
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:946) ~[na:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:339) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[netty-common-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.109.Final.jar!/:4.1.109.Final]
+	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
+
+2026-09-17T15:30:25.978+01:00 ERROR 40020 --- [gateway-service] [ctor-http-nio-6] [                                                 ] a.w.r.e.AbstractErrorWebExceptionHandler : [1f4c6960-7]  500 Server Error for HTTP GET "/api/v1/shops/mine/stock?lowStockOnly=false"
+
+io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:8100
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ? org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]
+	*__checkpoint ? HTTP GET "/api/v1/shops/mine/stock?lowStockOnly=false" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:684) ~[na:na]
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:946) ~[na:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:339) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[netty-common-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.109.Final.jar!/:4.1.109.Final]
+	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
+
+2026-09-17T15:30:33.196+01:00 ERROR 40020 --- [gateway-service] [ctor-http-nio-9] [                                                 ] a.w.r.e.AbstractErrorWebExceptionHandler : [b02259f3-9]  500 Server Error for HTTP GET "/api/v1/shops/catalog/orders/mine"
+
+io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:8100
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ? org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]
+	*__checkpoint ? HTTP GET "/api/v1/shops/catalog/orders/mine" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:684) ~[na:na]
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:946) ~[na:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:339) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[netty-common-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.109.Final.jar!/:4.1.109.Final]
+	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
+
+2026-09-17T15:30:51.150+01:00 ERROR 40020 --- [gateway-service] [ctor-http-nio-9] [                                                 ] a.w.r.e.AbstractErrorWebExceptionHandler : [b02259f3-11]  500 Server Error for HTTP GET "/api/v1/shops/catalog/orders/mine"
+
+io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:8100
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ? org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]
+	*__checkpoint ? HTTP GET "/api/v1/shops/catalog/orders/mine" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:684) ~[na:na]
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:946) ~[na:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:339) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[netty-common-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.109.Final.jar!/:4.1.109.Final]
+	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
+
+2026-09-17T15:34:17.557+01:00  INFO 40020 --- [gateway-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-09-17T15:39:10.740+01:00 ERROR 40020 --- [gateway-service] [ctor-http-nio-4] [                                                 ] a.w.r.e.AbstractErrorWebExceptionHandler : [44cc8979-67]  500 Server Error for HTTP GET "/api/v1/shops/mine/stock?lowStockOnly=false"
+
+io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:8100
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ? org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]
+	*__checkpoint ? HTTP GET "/api/v1/shops/mine/stock?lowStockOnly=false" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:684) ~[na:na]
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:946) ~[na:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:339) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[netty-common-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.109.Final.jar!/:4.1.109.Final]
+	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
+
+2026-09-17T15:39:10.740+01:00 ERROR 40020 --- [gateway-service] [ctor-http-nio-5] [                                                 ] a.w.r.e.AbstractErrorWebExceptionHandler : [bec9014a-68]  500 Server Error for HTTP GET "/api/v1/shops/mine/sales"
+
+io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:8100
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ? org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]
+	*__checkpoint ? HTTP GET "/api/v1/shops/mine/sales" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:684) ~[na:na]
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:946) ~[na:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:339) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[netty-common-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.109.Final.jar!/:4.1.109.Final]
+	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
+
+2026-09-17T15:39:15.444+01:00 ERROR 40020 --- [gateway-service] [ctor-http-nio-9] [                                                 ] a.w.r.e.AbstractErrorWebExceptionHandler : [b02259f3-70]  500 Server Error for HTTP GET "/api/v1/shops/catalog/orders/mine"
+
+io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:8100
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ? org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]
+	*__checkpoint ? HTTP GET "/api/v1/shops/catalog/orders/mine" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:684) ~[na:na]
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:946) ~[na:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:339) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[netty-common-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.109.Final.jar!/:4.1.109.Final]
+	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
+
+2026-09-17T15:39:17.561+01:00  INFO 40020 --- [gateway-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-09-17T15:39:29.150+01:00 ERROR 40020 --- [gateway-service] [ctor-http-nio-9] [                                                 ] a.w.r.e.AbstractErrorWebExceptionHandler : [b02259f3-72]  500 Server Error for HTTP GET "/api/v1/shops/catalog/orders/mine"
+
+io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:8100
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ? org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]
+	*__checkpoint ? HTTP GET "/api/v1/shops/catalog/orders/mine" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:684) ~[na:na]
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:946) ~[na:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:339) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[netty-common-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.109.Final.jar!/:4.1.109.Final]
+	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
+
+2026-09-17T15:39:32.157+01:00 ERROR 40020 --- [gateway-service] [ctor-http-nio-9] [                                                 ] a.w.r.e.AbstractErrorWebExceptionHandler : [b02259f3-74]  500 Server Error for HTTP GET "/api/v1/shops/catalog/orders/mine"
+
+io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:8100
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ? org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]
+	*__checkpoint ? HTTP GET "/api/v1/shops/catalog/orders/mine" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:684) ~[na:na]
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:946) ~[na:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:339) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[netty-common-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.109.Final.jar!/:4.1.109.Final]
+	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
+
+2026-09-17T15:39:44.144+01:00 ERROR 40020 --- [gateway-service] [ctor-http-nio-9] [                                                 ] a.w.r.e.AbstractErrorWebExceptionHandler : [b02259f3-76]  500 Server Error for HTTP GET "/api/v1/shops/catalog/orders/mine"
+
+io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:8100
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ? org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]
+	*__checkpoint ? HTTP GET "/api/v1/shops/catalog/orders/mine" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:684) ~[na:na]
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:946) ~[na:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:339) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562) ~[netty-transport-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[netty-common-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.109.Final.jar!/:4.1.109.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.109.Final.jar!/:4.1.109.Final]
+	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
+
+2026-09-17T15:44:17.568+01:00  INFO 40020 --- [gateway-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-09-17T15:49:17.581+01:00  INFO 40020 --- [gateway-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-09-17T15:54:17.583+01:00  INFO 40020 --- [gateway-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-09-17T15:59:17.596+01:00  INFO 40020 --- [gateway-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-09-17T16:04:17.605+01:00  INFO 40020 --- [gateway-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-09-17T16:09:17.620+01:00  INFO 40020 --- [gateway-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-09-17T16:14:17.628+01:00  INFO 40020 --- [gateway-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-09-17T16:19:17.643+01:00  INFO 40020 --- [gateway-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-09-17T16:24:17.647+01:00  INFO 40020 --- [gateway-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-09-17T16:29:17.657+01:00  INFO 40020 --- [gateway-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration

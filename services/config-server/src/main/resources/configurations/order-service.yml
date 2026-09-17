@@ -30,4 +30,6 @@ application:
   config:
     customer-url: http://localhost:8222/api/v1/customers
     payment-url: http://localhost:8222/api/v1/payments
-    product-url: http://localhost:8222/api/v1/products
+    # Repointé le 2026-09-17 : shop-service (StockItem) est désormais le catalogue
+    # de référence, remplaçant product-service. Voir shop-service/CatalogController.
+    product-url: http://localhost:8222/api/v1/shops/catalog/products

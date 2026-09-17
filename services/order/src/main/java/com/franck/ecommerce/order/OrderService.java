@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -43,7 +44,14 @@ public class OrderService {
         // compenser explicitement ce décrément pour ne pas "perdre" de stock disponible.
         Order order;
         try {
-            order = this.repository.save(mapper.toOrder(request));
+            var orderToSave = mapper.toOrder(request);
+            if (orderToSave.getReference() == null || orderToSave.getReference().isBlank()) {
+                // Le frontend n'envoie pas de référence (checkout "Pay Now" simplifié) ;
+                // elle est requise en base (unique, not-null) et sert d'identifiant public
+                // de la commande côté paiement/Kafka/notification.
+                orderToSave.setReference("ORD-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase());
+            }
+            order = this.repository.save(orderToSave);
 
             for (PurchaseRequest purchaseRequest : request.products()) {
                 orderLineService.saveOrderLine(
@@ -72,7 +80,7 @@ public class OrderService {
         // même si la publication Kafka (fire-and-forget) échouait exceptionnellement.
         orderProducer.sendOrderConfirmation(
                 new OrderConfirmation(
-                        request.reference(),
+                        order.getReference(),
                         request.amount(),
                         request.paymentMethod(),
                         customer,

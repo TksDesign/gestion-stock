@@ -7,6 +7,8 @@ import java.util.UUID;
 
 import com.franck.ecommerce.handler.BusinessException;
 import com.franck.ecommerce.handler.ResourceNotFoundException;
+import com.franck.ecommerce.shop.Shop;
+import com.franck.ecommerce.shop.ShopRepository;
 import com.franck.ecommerce.shop.ShopService;
 import com.franck.ecommerce.stock.StockItemRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,8 +20,10 @@ import org.springframework.transaction.annotation.Transactional;
 public class SaleService {
 
     private final SaleRepository saleRepository;
+    private final SaleItemRepository saleItemRepository;
     private final StockItemRepository stockItemRepository;
     private final ShopService shopService;
+    private final ShopRepository shopRepository;
 
     @Transactional
     public SaleResponse recordSale(String managerId, SaleRequest request) {
@@ -77,5 +81,34 @@ public class SaleService {
         return saleRepository.findByIdAndShopId(saleId, shop.getId())
                 .map(SaleResponse::from)
                 .orElseThrow(() -> new ResourceNotFoundException("Sale not found with id: " + saleId));
+    }
+
+    // Fait avancer le statut d'UNE ligne (produit) d'une vente de sa propre boutique —
+    // jamais la vente entière, un panier client pouvant mélanger plusieurs boutiques.
+    @Transactional
+    public SaleItemResponse updateItemStatus(String managerId, Integer saleId, Integer itemId, SaleItemStatusUpdateRequest request) {
+        var shop = shopService.getShopEntityByManagerId(managerId);
+        var item = saleItemRepository.findByIdAndSale_ShopId(itemId, shop.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Sale item not found with id: " + itemId));
+        if (!item.getSale().getId().equals(saleId)) {
+            throw new ResourceNotFoundException("Sale item not found with id: " + itemId);
+        }
+        item.setStatus(request.status());
+        return SaleItemResponse.from(saleItemRepository.save(item));
+    }
+
+    // Suivi côté client : toutes ses commandes en ligne (une Sale par boutique
+    // concernée), tous shopId confondus — utilisé par GET /shops/catalog/orders/mine.
+    // Résout aussi shopName (regroupé en un seul appel) : nécessaire côté frontend pour
+    // regrouper plusieurs Sale d'une même commande (orderReference) sans appel réseau
+    // supplémentaire par boutique.
+    public List<SaleResponse> findMyOrders(String customerId) {
+        var sales = saleRepository.findByCustomerIdAndSourceOrderByCreatedDateDesc(customerId, SaleSource.ONLINE);
+        var shopIds = sales.stream().map(Sale::getShopId).distinct().toList();
+        var shopNamesById = shopRepository.findAllById(shopIds).stream()
+                .collect(java.util.stream.Collectors.toMap(Shop::getId, Shop::getName));
+        return sales.stream()
+                .map(sale -> SaleResponse.from(sale, shopNamesById.get(sale.getShopId())))
+                .toList();
     }
 }

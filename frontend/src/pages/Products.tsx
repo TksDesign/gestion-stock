@@ -5,6 +5,7 @@ import { ProductCard, ProductCardProps } from '../features/products/components/P
 import { QuickViewModal } from "../features/products/components/QuickViewModal";
 import { PromoSection, FeaturesSection, InstagramSection, NewsletterSection } from '../components/sections/SharedSections';
 import { productApi } from '../features/products/api/productApi';
+import { useCategories } from '../features/shop/hooks/useShop';
 
 const TECH_IMAGES = [
     'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=1200&q=80',
@@ -22,8 +23,11 @@ export const Products = () => {
   const [activeSize, setActiveSize] = useState<string | null>(null);
   const [activeColor, setActiveColor] = useState<string | null>(null);
   const [activePriceRange, setActivePriceRange] = useState<string | null>(null);
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [sortBy, setSortBy] = useState<string>('Newest');
   const [quickViewProduct, setQuickViewProduct] = useState<ProductCardProps | null>(null);
+
+  const { data: categories } = useCategories();
 
   // Handle sticky sidebar on scroll
   useEffect(() => {
@@ -51,6 +55,7 @@ export const Products = () => {
     id: p.id,
     title: p.name,
     brand: p.categoryName,
+    category: p.categoryName,
     price: p.price,
     description: p.description,
     imageUrl: TECH_IMAGES[index % TECH_IMAGES.length],
@@ -70,14 +75,15 @@ export const Products = () => {
   const baseFilteredProducts = mappedProducts.filter(p => {
     const matchSize = activeSize ? p.sizes?.includes(activeSize) : true;
     const matchColor = activeColor ? p.colors?.includes(activeColor) : true;
-    
+    const matchCategory = activeCategory ? p.category === activeCategory : true;
+
     let matchPrice = true;
     if (activePriceRange && activePriceRange !== 'all') {
       const range = PRICE_RANGES.find(r => r.id === activePriceRange);
       if (range) matchPrice = p.price >= range.min && p.price <= range.max;
     }
-    
-    return matchSize && matchColor && matchPrice;
+
+    return matchSize && matchColor && matchCategory && matchPrice;
   });
 
   const filteredProducts = [...baseFilteredProducts].sort((a, b) => {
@@ -105,10 +111,36 @@ export const Products = () => {
       <div className="container mx-auto px-4 py-20 flex flex-col md:flex-row gap-12">
         
         {/* Left Sidebar (Sticky Filters) */}
-        <aside className="w-full md:w-64 flex-shrink-0 sticky top-32 h-fit space-y-10 z-10">
+        <aside className="w-full md:w-64 flex-shrink-0 md:sticky md:top-32 h-fit space-y-10 z-10">
           <div>
             <h4 className="font-bold mb-6 uppercase text-sm border-b pb-4 dark:border-gray-800 dark:text-white tracking-[0.2em]">Filters</h4>
-            
+
+            {/* Category Filter */}
+            {categories && categories.length > 0 && (
+              <div className="mb-8">
+                <h5 className="text-xs font-bold text-gray-900 dark:text-white uppercase tracking-widest mb-4">Category</h5>
+                <ul className="space-y-3 text-sm text-gray-600 dark:text-gray-400 font-medium">
+                  <li
+                    onClick={() => setActiveCategory(null)}
+                    className={`cursor-pointer transition-colors flex items-center gap-2 ${!activeCategory ? 'font-bold text-black dark:text-white' : 'hover:text-black dark:hover:text-white'}`}
+                  >
+                    {!activeCategory && <div className="w-2 h-2 bg-black dark:bg-white rounded-full"></div>}
+                    <span>All Categories</span>
+                  </li>
+                  {categories.map(c => (
+                    <li
+                      key={c.id}
+                      onClick={() => setActiveCategory(activeCategory === c.name ? null : c.name)}
+                      className={`cursor-pointer transition-colors flex items-center gap-2 ${activeCategory === c.name ? 'font-bold text-black dark:text-white' : 'hover:text-black dark:hover:text-white'}`}
+                    >
+                      {activeCategory === c.name && <div className="w-2 h-2 bg-black dark:bg-white rounded-full"></div>}
+                      <span>{c.name}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
             {/* Size Filter */}
             <div className="mb-8">
               <h5 className="text-xs font-bold text-gray-900 dark:text-white uppercase tracking-widest mb-4">Size / Type</h5>
@@ -145,10 +177,10 @@ export const Products = () => {
               </div>
               
               <AnimatePresence>
-                {(activeSize || activeColor) && (
-                  <motion.button 
+                {(activeSize || activeColor || activeCategory) && (
+                  <motion.button
                     initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
-                    onClick={() => { setActiveSize(null); setActiveColor(null); }}
+                    onClick={() => { setActiveSize(null); setActiveColor(null); setActiveCategory(null); }}
                     className="mt-6 text-xs font-bold text-red-500 uppercase tracking-widest hover:underline flex items-center gap-1"
                   >
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>

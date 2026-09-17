@@ -25,6 +25,11 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/actuator/**").permitAll()
+                        // Plus spécifique que le permitAll ci-dessous : suivi de commande
+                        // côté client, nécessite d'être authentifié (customerId du JWT).
+                        .requestMatchers("/api/v1/shops/catalog/orders/**").authenticated()
+                        .requestMatchers("/api/v1/shops/catalog/**").permitAll()
+                        .requestMatchers("/api/v1/shops/categories/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
