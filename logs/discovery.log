@@ -63,3 +63,4 @@ Standard Commons Logging discovery in action with spring-jcl: please remove comm
 2026-09-17T11:49:54.030+01:00  INFO 9040 --- [discovery-service] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 1ms
 2026-09-17T11:50:54.037+01:00  INFO 9040 --- [discovery-service] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 7ms
 2026-09-17T11:51:54.044+01:00  INFO 9040 --- [discovery-service] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 6ms
+2026-09-17T11:52:54.045+01:00  INFO 9040 --- [discovery-service] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 1ms
