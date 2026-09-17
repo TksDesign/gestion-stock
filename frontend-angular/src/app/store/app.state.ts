@@ -8,6 +8,7 @@ import { ThemeState, themeFeatureKey, themeReducer } from './theme/theme.reducer
 import { ManagerDashboardState, managerDashboardReducer } from './manager-dashboard/manager-dashboard.reducer';
 import { ManagerStockState, managerStockReducer } from './manager-stock/manager-stock.reducer';
 import { ManagerSalesState, managerSalesReducer } from './manager-sales/manager-sales.reducer';
+import { ShopSettingsState, shopSettingsReducer } from './shop-settings/shop-settings.reducer';
 
 export interface AppState {
   [authFeatureKey]: AuthState;
@@ -17,6 +18,7 @@ export interface AppState {
   managerDashboard: ManagerDashboardState;
   managerStock: ManagerStockState;
   managerSales: ManagerSalesState;
+  shopSettings: ShopSettingsState;
 }
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -27,4 +29,5 @@ export const reducers: ActionReducerMap<AppState> = {
   managerDashboard: managerDashboardReducer,
   managerStock: managerStockReducer,
   managerSales: managerSalesReducer,
+  shopSettings: shopSettingsReducer,
 };

@@ -1,66 +1,44 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
-import { DatePipe } from '@angular/common';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { LucideAngularModule, Store, MapPin, Activity, CalendarDays, Save, ShieldCheck } from 'lucide-angular';
-import { ShopManagerService } from '../../features/shop/api/shop.service';
-import { ShopResponse } from '../../features/shop/types/shop.types';
-import { ToastService } from '../../core/services/toast.service';
+import { Component, OnInit, inject } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { LucideAngularModule, Store as StoreIcon, MapPin, Activity, CalendarDays, Save, ShieldCheck } from 'lucide-angular';
+import { FormsModule } from '@angular/forms';
+import { ShopSettingsActions } from '../../store/shop-settings/shop-settings.actions';
+import { selectShopData, selectShopLoading, selectShopUpdating } from '../../store/shop-settings/shop-settings.selectors';
 
 @Component({
   selector: 'app-manager-settings',
   standalone: true,
-  imports: [ReactiveFormsModule, LucideAngularModule, DatePipe],
+  imports: [LucideAngularModule, FormsModule],
   templateUrl: './manager-settings.component.html',
 })
 export class ManagerSettingsComponent implements OnInit {
-  private readonly shopManagerService = inject(ShopManagerService);
-  private readonly toast = inject(ToastService);
-  private readonly fb = inject(FormBuilder);
+  private readonly store = inject(Store);
 
-  readonly icons = { Store, MapPin, Activity, CalendarDays, Save, ShieldCheck };
+  readonly icons = { Store: StoreIcon, MapPin, Activity, CalendarDays, Save, ShieldCheck };
 
-  readonly shop = signal<ShopResponse | null>(null);
-  readonly isLoading = signal(true);
-  readonly isSaving = signal(false);
-
-  readonly form = this.fb.nonNullable.group({
-    name: ['', Validators.required],
-    description: [''],
-    street: [''],
-    city: [''],
-    zipCode: [''],
-  });
+  readonly shop = this.store.selectSignal(selectShopData);
+  readonly isLoading = this.store.selectSignal(selectShopLoading);
+  readonly isPending = this.store.selectSignal(selectShopUpdating);
 
   ngOnInit() {
-    this.shopManagerService.getMyShop().subscribe({
-      next: (data) => {
-        this.shop.set(data);
-        this.form.setValue({
-          name: data.name,
-          description: data.description ?? '',
-          street: data.street ?? '',
-          city: data.city ?? '',
-          zipCode: data.zipCode ?? '',
-        });
-        this.isLoading.set(false);
-      },
-      error: () => this.isLoading.set(false),
-    });
+    this.store.dispatch(ShopSettingsActions.loadShop());
   }
 
-  submit() {
-    if (this.form.invalid) {
-      this.form.markAllAsTouched();
-      return;
-    }
-    this.isSaving.set(true);
-    this.shopManagerService.updateMyShop(this.form.getRawValue()).subscribe({
-      next: (updated) => {
-        this.shop.set(updated);
-        this.toast.success('Store settings updated successfully!');
-        this.isSaving.set(false);
-      },
-      error: () => this.isSaving.set(false),
-    });
+  handleSave(e: Event) {
+    e.preventDefault();
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+    
+    this.store.dispatch(
+      ShopSettingsActions.updateShop({
+        data: {
+          name: formData.get('name') as string,
+          description: formData.get('description') as string,
+          street: formData.get('street') as string,
+          city: formData.get('city') as string,
+          zipCode: formData.get('zipCode') as string,
+        }
+      })
+    );
   }
 }
