@@ -1,7 +1,8 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { LucideAngularModule, Package, AlertTriangle, Diamond, TrendingUp, ArrowUpRight } from 'lucide-angular';
-import { ShopManagerService } from '../../features/shop/api/shop.service';
-import { DashboardResponse } from '../../features/shop/types/shop.types';
+import { ManagerDashboardActions } from '../../store/manager-dashboard/manager-dashboard.actions';
+import { selectDashboardData, selectDashboardError, selectDashboardLoading } from '../../store/manager-dashboard/manager-dashboard.selectors';
 
 @Component({
   selector: 'app-manager-dashboard',
@@ -10,25 +11,16 @@ import { DashboardResponse } from '../../features/shop/types/shop.types';
   templateUrl: './manager-dashboard.component.html',
 })
 export class ManagerDashboardComponent implements OnInit {
-  private readonly shopManagerService = inject(ShopManagerService);
+  private readonly store = inject(Store);
 
   readonly icons = { Package, AlertTriangle, Diamond, TrendingUp, ArrowUpRight };
 
-  readonly dashboard = signal<DashboardResponse | null>(null);
-  readonly isLoading = signal(true);
-  readonly error = signal(false);
+  readonly dashboard = this.store.selectSignal(selectDashboardData);
+  readonly isLoading = this.store.selectSignal(selectDashboardLoading);
+  readonly error = this.store.selectSignal(selectDashboardError);
 
   ngOnInit() {
-    this.shopManagerService.getDashboard().subscribe({
-      next: (data) => {
-        this.dashboard.set(data);
-        this.isLoading.set(false);
-      },
-      error: () => {
-        this.error.set(true);
-        this.isLoading.set(false);
-      },
-    });
+    this.store.dispatch(ManagerDashboardActions.loadDashboard());
   }
 
   maxRevenue(): number {

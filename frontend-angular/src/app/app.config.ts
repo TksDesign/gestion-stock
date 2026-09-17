@@ -10,6 +10,7 @@ import { errorInterceptor } from './core/interceptors/error.interceptor';
 import { reducers } from './store/app.state';
 import { metaReducers } from './store/persist.meta-reducer';
 import { environment } from '../environments/environment';
+import { ManagerDashboardEffects } from './store/manager-dashboard/manager-dashboard.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -17,7 +18,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes, withComponentInputBinding()),
     provideHttpClient(withInterceptors([authInterceptor, errorInterceptor])),
     provideStore(reducers, { metaReducers }),
-    provideEffects([]),
+    provideEffects([ManagerDashboardEffects]),
     provideStoreDevtools({ maxAge: 25, logOnly: environment.production }),
   ],
 };
