@@ -12,7 +12,7 @@ export const ShopNavbar = () => {
   const { theme, toggleTheme } = useThemeStore();
   const { items, openCart } = useCartStore();
   const openModal = useAuthModalStore(state => state.openModal);
-  const { isAuthenticated } = useAuthStore();
+  const { isAuthenticated, user } = useAuthStore();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -89,14 +89,27 @@ export const ShopNavbar = () => {
           {/* Actions Right */}
           <div className="flex items-center gap-2 sm:gap-4">
             
-            <button className="text-gray-600 hover:text-black dark:text-gray-300 dark:hover:text-white p-2 transition-colors hidden sm:block">
-              <Search className="w-5 h-5" />
-            </button>
-            
-            <button onClick={() => isAuthenticated ? navigate('/profile') : openModal('signin')} className="text-gray-600 hover:text-black dark:text-gray-300 dark:hover:text-white p-2 transition-colors hidden sm:block">
-              <User className="w-5 h-5" />
-            </button>
-
+            {isAuthenticated ? (
+              <div className="flex items-center gap-2">
+                {user?.role === 'ADMIN' && (
+                  <button onClick={() => navigate('/admin/shops')} className="text-sm font-bold bg-gray-900 text-white dark:bg-white dark:text-gray-900 px-3 py-1.5 rounded-md hidden sm:block">
+                    Espace Admin
+                  </button>
+                )}
+                {user?.role === 'SHOP_MANAGER' && (
+                  <button onClick={() => navigate('/manager/dashboard')} className="text-sm font-bold bg-blue-600 text-white px-3 py-1.5 rounded-md hidden sm:block">
+                    Espace Gérante
+                  </button>
+                )}
+                <button onClick={() => navigate('/profile')} className="text-gray-600 hover:text-black dark:text-gray-300 dark:hover:text-white p-2 transition-colors hidden sm:block">
+                  <User className="w-5 h-5" />
+                </button>
+              </div>
+            ) : (
+              <button onClick={() => openModal('signin')} className="text-gray-600 hover:text-black dark:text-gray-300 dark:hover:text-white p-2 transition-colors hidden sm:block">
+                <User className="w-5 h-5" />
+              </button>
+            )}
             
             <button 
               onClick={() => navigate("/favorites")}

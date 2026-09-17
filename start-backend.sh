@@ -1,8 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
 # Configuration
 LOG_DIR="logs"
-SERVICES=("config-server" "discovery" "customer" "notification" "order" "payment" "product" "gateway")
+SERVICES=("config-server" "discovery" "auth" "customer" "notification" "order" "payment" "product" "shop" "gateway")
 
 # Colors for output
 RED='\033[0;31m'
@@ -51,18 +52,17 @@ start_service() {
     local SERVICE=$1
     local WAIT_TIME=$2
     echo -e "Démarrage de ${YELLOW}$SERVICE${NC}..."
-    
+
     cd "services/$SERVICE"
-    # Find the built jar
     JAR_FILE=$(ls target/*.jar | grep -v plain | head -n 1)
-    
+
     nohup java -jar "$JAR_FILE" > "../../$LOG_DIR/${SERVICE}.log" 2>&1 &
     local PID=$!
-    echo $PID > "../../$LOG_DIR/${SERVICE}.pid"
+    echo "$PID" > "../../$LOG_DIR/${SERVICE}.pid"
     cd ../..
-    
+
     echo -e "Service ${YELLOW}$SERVICE${NC} démarré (PID $PID). Attente de ${WAIT_TIME}s..."
-    sleep $WAIT_TIME
+    sleep "$WAIT_TIME"
 }
 
 # L'ordre est important : config-server en premier
@@ -72,7 +72,7 @@ start_service "config-server" 25
 start_service "discovery" 20
 
 # Ensuite les autres services
-for SERVICE in "customer" "notification" "order" "payment" "product" "gateway"; do
+for SERVICE in "auth" "customer" "notification" "order" "payment" "product" "shop" "gateway"; do
     start_service "$SERVICE" 5
 done
 

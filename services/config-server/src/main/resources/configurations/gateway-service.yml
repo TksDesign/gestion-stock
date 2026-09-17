@@ -21,7 +21,7 @@ spring:
               - DELETE
               - OPTIONS
             allowedHeaders: "*"
-            allowCredentials: false
+            allowCredentials: true
       routes:
         - id: customer-service
           uri: lb:http://CUSTOMER-SERVICE
@@ -43,3 +43,11 @@ spring:
           uri: lb:http://PAYMENT-SERVICE
           predicates:
             - Path=/api/v1/payments/**
+        - id: auth-service
+          uri: lb:http://AUTH-SERVICE
+          predicates:
+            - Path=/api/v1/auth/**
+        - id: shop-service
+          uri: lb:http://SHOP-SERVICE
+          predicates:
+            - Path=/api/v1/shops/**

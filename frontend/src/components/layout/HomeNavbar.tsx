@@ -12,7 +12,7 @@ export const HomeNavbar = () => {
   const { theme, toggleTheme } = useThemeStore();
   const { items, openCart } = useCartStore();
   const openModal = useAuthModalStore(state => state.openModal);
-  const { isAuthenticated } = useAuthStore();
+  const { isAuthenticated, user } = useAuthStore();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -115,9 +115,21 @@ export const HomeNavbar = () => {
             </button>
 
             {isAuthenticated ? (
-              <button onClick={() => navigate('/profile')} className="text-gray-900 dark:text-white hover:text-gray-500 transition-colors p-2 cursor-pointer hidden sm:block">
-                <User className="w-5 h-5" />
-              </button>
+              <div className="flex items-center gap-2">
+                {user?.role === 'ADMIN' && (
+                  <button onClick={() => navigate('/admin/shops')} className="text-sm font-bold bg-gray-900 text-white dark:bg-white dark:text-gray-900 px-3 py-1.5 rounded-md hidden sm:block">
+                    Espace Admin
+                  </button>
+                )}
+                {user?.role === 'SHOP_MANAGER' && (
+                  <button onClick={() => navigate('/manager/dashboard')} className="text-sm font-bold bg-blue-600 text-white px-3 py-1.5 rounded-md hidden sm:block">
+                    Espace Gérante
+                  </button>
+                )}
+                <button onClick={() => navigate('/profile')} className="text-gray-900 dark:text-white hover:text-gray-500 transition-colors p-2 cursor-pointer hidden sm:block">
+                  <User className="w-5 h-5" />
+                </button>
+              </div>
             ) : (
               <button onClick={() => openModal('signup')} className="hidden sm:block">
                 <Button variant="primary" className="rounded-md shadow-lg shadow-black/10 px-6 cursor-pointer">Sign Up</Button>

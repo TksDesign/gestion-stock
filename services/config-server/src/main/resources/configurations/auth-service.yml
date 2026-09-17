@@ -1,0 +1,19 @@
+server:
+  port: 8095
+spring:
+  data:
+    mongodb:
+      username: ${MONGO_INITDB_ROOT_USERNAME:franck}
+      password: ${MONGO_INITDB_ROOT_PASSWORD:franck}
+      host: localhost
+      port: 27017
+      database: auth
+      authentication-database: admin
+
+application:
+  security:
+    jwt:
+      secret-key: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+      expiration: 86400000
+  config:
+    customer-url: http://localhost:8222/api/v1/customers
