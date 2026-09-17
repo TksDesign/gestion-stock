@@ -57,3 +57,4 @@
 2026-09-17T10:27:06.537+01:00  INFO 53120 --- [auth-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
 2026-09-17T10:32:06.548+01:00  INFO 53120 --- [auth-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
 2026-09-17T10:37:06.553+01:00  INFO 53120 --- [auth-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-09-17T10:42:06.562+01:00  INFO 53120 --- [auth-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration

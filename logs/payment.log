@@ -152,3 +152,4 @@
 2026-09-17T10:30:23.134+01:00  INFO 29796 --- [payment-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
 2026-09-17T10:35:23.152+01:00  INFO 29796 --- [payment-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
 2026-09-17T10:40:23.161+01:00  INFO 29796 --- [payment-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-09-17T10:45:23.167+01:00  INFO 29796 --- [payment-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration

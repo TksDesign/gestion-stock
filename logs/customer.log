@@ -65,3 +65,4 @@
 2026-09-17T10:34:22.462+01:00  INFO 46716 --- [customer-service] [nio-8090-exec-1] [                                                 ] o.s.web.servlet.DispatcherServlet        : Completed initialization in 25 ms
 2026-09-17T10:34:56.857+01:00  INFO 46716 --- [customer-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
 2026-09-17T10:39:56.873+01:00  INFO 46716 --- [customer-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-09-17T10:44:56.877+01:00  INFO 46716 --- [customer-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration

@@ -61,3 +61,4 @@
 2026-09-17T10:34:10.375+01:00  INFO 43032 --- [gateway-service] [           main] [                                                 ] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
 2026-09-17T10:34:10.408+01:00  INFO 43032 --- [gateway-service] [           main] [                                                 ] com.franck.gateway.GatewayApplication    : Started GatewayApplication in 12.354 seconds (process running for 13.05)
 2026-09-17T10:39:07.250+01:00  INFO 43032 --- [gateway-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-09-17T10:44:07.277+01:00  INFO 43032 --- [gateway-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration

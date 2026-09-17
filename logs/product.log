@@ -78,3 +78,4 @@
 2026-09-17T10:30:26.243+01:00  INFO 29040 --- [product-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
 2026-09-17T10:35:26.249+01:00  INFO 29040 --- [product-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
 2026-09-17T10:40:26.264+01:00  INFO 29040 --- [product-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-09-17T10:45:26.273+01:00  INFO 29040 --- [product-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration

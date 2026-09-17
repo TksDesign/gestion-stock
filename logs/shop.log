@@ -82,3 +82,4 @@ This generated password is for development use only. Your security configuration
 2026-09-17T10:34:24.203+01:00  INFO 30920 --- [shop-service] [nio-8100-exec-1] [                                                 ] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2026-09-17T10:34:24.205+01:00  INFO 30920 --- [shop-service] [nio-8100-exec-1] [                                                 ] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
 2026-09-17T10:38:32.170+01:00  INFO 30920 --- [shop-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-09-17T10:43:32.180+01:00  INFO 30920 --- [shop-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
