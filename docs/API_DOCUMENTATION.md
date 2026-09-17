@@ -9,7 +9,7 @@ Toutes les données ci-dessous ont été vérifiées contre le code du package `
 | Service | Rôle | Endpoints REST | Base path (via gateway) |
 |---|---|---|---|
 | [gateway](api/gateway.md) | Point d'entrée unique, routage | — (routeur) | `http://localhost:8222` |
-| [auth](api/auth.md) | Authentification, émission JWT, rôles `ADMIN`/`SHOP_MANAGER` | 3 | `/api/v1/auth` |
+| [auth](api/auth.md) | Authentification, émission JWT, rôles `CLIENT`/`SHOP_MANAGER`/`ADMIN` | 4 | `/api/v1/auth` |
 | [shop](api/shop.md) | Gestion boutique + stock + ventes (gérante), création boutique (admin) | 15 | `/api/v1/shops` |
 | [customer](api/customer.md) | Référentiel clients (CRUD) | 6 | `/api/v1/customers` |
 | [product](api/product.md) | Catalogue produits + décrément de stock | 4 | `/api/v1/products` |
@@ -76,30 +76,39 @@ sequenceDiagram
 
 ```mermaid
 sequenceDiagram
-    actor Gerante as Gérante (frontend)
+    actor Client as Client (storefront)
     actor Admin as Admin (frontend)
+    actor Gerante as Gérante (frontend)
     participant GW as Gateway (:8222)
     participant AUTH as auth-service (:8095)
     participant SHOP as shop-service (:8100)
     participant CUS as customer-service (:8090)
 
-    Gerante->>GW: POST /api/v1/auth/register
+    Note over Client,AUTH: 1. Inscription publique (storefront) → toujours CLIENT
+    Client->>GW: POST /api/v1/auth/register
     GW->>AUTH: route lb://AUTH-SERVICE
-    AUTH->>AUTH: hash password (BCrypt), role=SHOP_MANAGER
+    AUTH->>AUTH: hash password (BCrypt), role=CLIENT (forcé)
     AUTH->>GW: POST /api/v1/customers (best-effort)
     GW->>CUS: route lb://CUSTOMER-SERVICE
     CUS-->>AUTH: customerId (ou échec silencieux)
-    AUTH-->>Gerante: 201 { token JWT, userId, role }
+    AUTH-->>Client: 201 { token JWT, userId, role: CLIENT }
 
+    Note over Admin,AUTH: 2. Création d'une gérante — réservée à l'admin
     Admin->>GW: POST /api/v1/auth/login (admin@kshop.com)
     GW->>AUTH: route lb://AUTH-SERVICE
     AUTH-->>Admin: 200 { token JWT, role: ADMIN }
 
-    Admin->>GW: POST /api/v1/shops (Bearer admin token, managerId=Gérante.userId)
+    Admin->>GW: POST /api/v1/auth/admin/managers (Bearer admin token)
+    GW->>AUTH: route lb://AUTH-SERVICE
+    Note over AUTH: @PreAuthorize("hasRole('ADMIN')")<br/>role=SHOP_MANAGER, pas de Customer créé
+    AUTH-->>Admin: 201 { userId de la nouvelle gérante }
+
+    Admin->>GW: POST /api/v1/shops (Bearer admin token, managerId=nouvelle gérante)
     GW->>SHOP: route lb://SHOP-SERVICE
     Note over SHOP: JwtAuthenticationFilter vérifie<br/>la signature localement (même secret que AUTH)<br/>@PreAuthorize("hasRole('ADMIN')")
     SHOP-->>Admin: 201 Shop créée, gérante assignée
 
+    Note over Gerante,SHOP: 3. La gérante utilise son compte (login séparé, identifiants transmis par l'admin)
     Gerante->>GW: GET /api/v1/shops/mine/dashboard (Bearer gérante token)
     GW->>SHOP: route lb://SHOP-SERVICE
     Note over SHOP: userId (JWT) → Shop.managerId → shopId<br/>résolu serveur, jamais transmis par le client

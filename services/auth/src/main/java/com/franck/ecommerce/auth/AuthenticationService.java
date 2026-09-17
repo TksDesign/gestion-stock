@@ -41,8 +41,25 @@ public class AuthenticationService {
                 .lastname(request.lastname())
                 .email(request.email())
                 .password(passwordEncoder.encode(request.password()))
-                .role(Role.SHOP_MANAGER)
+                .role(Role.CLIENT)
                 .customerId(customerId)
+                .build();
+        userRepository.save(user);
+
+        return buildResponse(user);
+    }
+
+    public AuthenticationResponse createShopManager(CreateManagerRequest request) {
+        if (userRepository.existsByEmail(request.email())) {
+            throw new IllegalStateException("Email already in use");
+        }
+
+        var user = User.builder()
+                .firstname(request.firstname())
+                .lastname(request.lastname())
+                .email(request.email())
+                .password(passwordEncoder.encode(request.password()))
+                .role(Role.SHOP_MANAGER)
                 .build();
         userRepository.save(user);
 

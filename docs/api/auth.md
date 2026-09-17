@@ -8,19 +8,22 @@
 | **Nom Eureka** | `AUTH-SERVICE` |
 | **Base path (via gateway)** | `/api/v1/auth` (préfixe de route : `Path=/api/v1/auth/**`) |
 | **Base de données** | MongoDB (`auth`, collection `users`) |
-| **Authentification** | JWT (HS384, `io.jsonwebtoken` / jjwt 0.12.5). `/api/v1/auth/**` est public ; tout le reste nécessite `Authorization: Bearer <token>` |
+| **Authentification** | JWT (HS384, `io.jsonwebtoken` / jjwt 0.12.5). Seuls `/api/v1/auth/register` et `/api/v1/auth/login` sont publics ; `/me` et `/admin/**` nécessitent `Authorization: Bearer <token>` |
 | **Package** | `com.franck.ecommerce.auth`, `com.franck.ecommerce.user`, `com.franck.ecommerce.config` |
 
 Service d'authentification central. Émet les JWT consommés par `shop-service` (et à terme tout service protégé). Chaque inscription crée en cascade un `Customer` dans `customer-service` (appel REST via `CustomerClient`, best-effort — un échec n'empêche pas la création du compte).
 
 ## Rôles
 
-| Rôle | Description |
-|---|---|
-| `ADMIN` | Gère toute l'application : création de boutiques, assignation de gérantes. Aucun endpoint d'inscription publique ne crée ce rôle — voir [Points d'attention](#points-dattention). |
-| `SHOP_MANAGER` | Gérante de boutique. Rôle **par défaut** attribué à tout compte créé via `POST /register`. |
+| Rôle | Description | Comment le compte est créé |
+|---|---|---|
+| `CLIENT` | Acheteuse/acheteur du storefront e-commerce (panier, commandes, profil). **Rôle par défaut** de toute inscription publique. | `POST /register` (public) |
+| `SHOP_MANAGER` | Gérante d'une boutique — accès à `shop-service` (`/shops/mine/**`). | `POST /admin/managers` (**admin uniquement**) — jamais via l'inscription publique |
+| `ADMIN` | Gère toute l'application : création de boutiques, assignation/création de gérantes. | Aucun endpoint — seul le compte par défaut (voir ci-dessous) existe à ce jour |
 
 Le rôle est encodé dans le claim JWT `role`, ainsi que `userId` (id Mongo de l'utilisateur) ; le `subject` (`sub`) du token est l'email.
+
+✅ **Corrigé le 2026-09-17** : `POST /register` attribuait initialement `SHOP_MANAGER` à tout le monde (y compris un simple acheteur du storefront), ce qui n'avait aucun sens sémantique — un client qui s'inscrit pour acheter n'est pas une gérante de boutique. Désormais : inscription publique → `CLIENT` systématiquement ; la création d'un compte `SHOP_MANAGER` passe exclusivement par un admin via `POST /admin/managers` (voir plus bas), en amont de l'assignation à une boutique via `POST /shops` ([shop.md](shop.md)).
 
 ## Compte admin par défaut
 
@@ -44,7 +47,7 @@ Idempotent — vérifié via `existsByEmail` à chaque démarrage, ne recrée ja
 | `lastname` | `String` | |
 | `email` | `String` | unique (index) |
 | `password` | `String` | hashé BCrypt |
-| `role` | `Role` (enum) | `ADMIN` \| `SHOP_MANAGER` |
+| `role` | `Role` (enum) | `ADMIN` \| `SHOP_MANAGER` \| `CLIENT` |
 | `customerId` | `String` | id du `Customer` créé en cascade à l'inscription (nullable si l'appel à `customer-service` a échoué) |
 
 ### `RegisterRequest` (body — `POST /register`)
@@ -80,14 +83,27 @@ Sur `GET /me`, le champ `token` est `null` (non régénéré).
 
 ---
 
-## `POST /api/v1/auth/register` — Créer un compte
+## `POST /api/v1/auth/register` — Créer un compte (storefront public)
 
 - **Auth** : aucune (public)
 - **Body** : `RegisterRequest`
-- **Comportement** : crée le `User` (rôle forcé à `SHOP_MANAGER`), tente de créer un `Customer` correspondant via `customer-service` (échec silencieux si le service est down — `customerId` reste `null`), retourne un JWT valide 24h (`expiration: 86400000` ms)
+- **Comportement** : crée le `User` (rôle forcé à `CLIENT`), tente de créer un `Customer` correspondant via `customer-service` (échec silencieux si le service est down — `customerId` reste `null`), retourne un JWT valide 24h (`expiration: 86400000` ms)
 - **Réponse `201 Created`** : `AuthenticationResponse`
 - **Réponse `400 Bad Request`** : `ErrorResponse` si validation échoue
 - **Réponse `409 Conflict`** : `ErrorResponse` si l'email existe déjà (`{"error": "Email already in use"}`)
+
+---
+
+## `POST /api/v1/auth/admin/managers` — Créer un compte gérante (admin uniquement)
+
+- **Auth** : requise, `@PreAuthorize("hasRole('ADMIN')")`
+- **Body** (`CreateManagerRequest`) : `firstname*`, `lastname*`, `email*`, `password*` (mêmes contraintes que `RegisterRequest`)
+- **Comportement** : crée le `User` avec `role: SHOP_MANAGER`, **sans** créer de `Customer` associé (une gérante n'est pas une acheteuse) — `customerId` reste `null` dans la réponse
+- **Réponse `201 Created`** : `AuthenticationResponse` (contient un JWT valide, utilisable immédiatement — pratique pour transmettre les identifiants à la gérante)
+- **Réponse `403 Forbidden`** : si l'appelant n'est pas `ADMIN` (y compris token absent)
+- **Réponse `409 Conflict`** : si l'email existe déjà
+
+**Flux recommandé côté admin** : `POST /admin/managers` (obtenir le `userId`) → `POST /api/v1/shops` avec ce `userId` comme `managerId` ([shop.md](shop.md#post-apiv1shops--créer-une-boutique-et-assigner-une-gérante)) pour créer la boutique et finaliser l'assignation.
 
 ---
 
@@ -117,7 +133,8 @@ Sur `GET /me`, le champ `token` est `null` (non régénéré).
 
 ## Points d'attention
 
-- **Aucun endpoint pour créer un compte `ADMIN`** : le seul admin existant est celui créé par `DataInitializer` au premier démarrage. Pour créer d'autres admins, il faut soit exposer un endpoint dédié protégé par rôle `ADMIN`, soit insérer manuellement en base Mongo.
+- **Aucun endpoint pour créer un compte `ADMIN`** : le seul admin existant est celui créé par `DataInitializer` au premier démarrage. Pour créer d'autres admins, il faut soit exposer un endpoint dédié protégé par rôle `ADMIN` (sur le même modèle que `POST /admin/managers`), soit insérer manuellement en base Mongo.
+- **Pas de suppression/désactivation de compte** ni de changement de rôle a posteriori (pas de `PUT /admin/users/{id}/role`) — une gérante créée par erreur avec le mauvais rôle ne peut pas être corrigée via l'API.
 - **`customerId` peut être `null`** si `customer-service` était indisponible à l'inscription — pas de mécanisme de rattrapage/retry a posteriori.
 - **Pas de refresh token** : le JWT expire après 24h sans mécanisme de renouvellement ; l'utilisateur doit se reconnecter.
 - **Pas de logout côté serveur** (JWT stateless, pas de blacklist) : la "déconnexion" est uniquement côté client (suppression du token stocké).

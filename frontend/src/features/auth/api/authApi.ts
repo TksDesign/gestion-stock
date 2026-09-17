@@ -19,7 +19,7 @@ export interface AuthResponse {
   firstname: string;
   lastname: string;
   email: string;
-  role: 'ADMIN' | 'SHOP_MANAGER';
+  role: 'ADMIN' | 'SHOP_MANAGER' | 'CLIENT';
 }
 
 const BASE_URL = '/api/v1/auth';

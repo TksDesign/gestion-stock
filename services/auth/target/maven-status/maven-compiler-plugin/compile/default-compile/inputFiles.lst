@@ -6,6 +6,7 @@ C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\a
 C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\handler\ErrorResponse.java
 C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\user\Role.java
 C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\config\SecurityConfig.java
+C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\auth\CreateManagerRequest.java
 C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\auth\AuthenticationRequest.java
 C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\auth\CustomerClient.java
 C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\auth\src\main\java\com\franck\ecommerce\config\JwtAuthenticationFilter.java
