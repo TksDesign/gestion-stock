@@ -1,43 +1,59 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, effect, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { LucideAngularModule, Store as StoreIcon, MapPin, Activity, CalendarDays, Save, ShieldCheck } from 'lucide-angular';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 import { ShopSettingsActions } from '../../store/shop-settings/shop-settings.actions';
 import { selectShopData, selectShopLoading, selectShopUpdating } from '../../store/shop-settings/shop-settings.selectors';
 
 @Component({
   selector: 'app-manager-settings',
   standalone: true,
-  imports: [LucideAngularModule, FormsModule],
+  imports: [LucideAngularModule, FormsModule, ReactiveFormsModule, DatePipe],
   templateUrl: './manager-settings.component.html',
 })
 export class ManagerSettingsComponent implements OnInit {
   private readonly store = inject(Store);
+  private readonly fb = inject(FormBuilder);
 
   readonly icons = { Store: StoreIcon, MapPin, Activity, CalendarDays, Save, ShieldCheck };
 
   readonly shop = this.store.selectSignal(selectShopData);
   readonly isLoading = this.store.selectSignal(selectShopLoading);
-  readonly isPending = this.store.selectSignal(selectShopUpdating);
+  readonly isSaving = this.store.selectSignal(selectShopUpdating); // Renamed from isPending to isSaving
+
+  readonly form = this.fb.nonNullable.group({
+    name: ['', Validators.required],
+    description: [''],
+    street: [''],
+    city: [''],
+    zipCode: [''],
+  });
+
+  constructor() {
+    effect(() => {
+      const currentShop = this.shop();
+      if (currentShop) {
+        this.form.patchValue({
+          name: currentShop.name,
+          description: currentShop.description || '',
+          street: currentShop.street || '',
+          city: currentShop.city || '',
+          zipCode: currentShop.zipCode || ''
+        });
+      }
+    });
+  }
 
   ngOnInit() {
     this.store.dispatch(ShopSettingsActions.loadShop());
   }
 
-  handleSave(e: Event) {
-    e.preventDefault();
-    const form = e.target as HTMLFormElement;
-    const formData = new FormData(form);
-    
+  submit() {
+    if (this.form.invalid) return;
     this.store.dispatch(
       ShopSettingsActions.updateShop({
-        data: {
-          name: formData.get('name') as string,
-          description: formData.get('description') as string,
-          street: formData.get('street') as string,
-          city: formData.get('city') as string,
-          zipCode: formData.get('zipCode') as string,
-        }
+        data: this.form.getRawValue()
       })
     );
   }

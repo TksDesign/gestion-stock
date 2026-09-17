@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { ShopResponse } from '../features/shop/types/shop.types';
+import { ShopResponse } from '../../features/shop/types/shop.types';
 import { ShopSettingsActions } from './shop-settings.actions';
 
 export interface ShopSettingsState {

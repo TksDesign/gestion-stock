@@ -2,8 +2,8 @@ import { Injectable, inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, mergeMap, of, tap } from 'rxjs';
 import { ManagerStockActions } from './manager-stock.actions';
-import { ShopManagerService, CategoryService } from '../features/shop/api/shop.service';
-import { ToastService } from '../core/services/toast.service';
+import { ShopManagerService, CategoryService } from '../../features/shop/api/shop.service';
+import { ToastService } from '../../core/services/toast.service';
 
 @Injectable()
 export class ManagerStockEffects {

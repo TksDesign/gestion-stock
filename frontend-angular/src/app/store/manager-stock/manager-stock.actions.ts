@@ -1,5 +1,5 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
-import { StockAdjustmentRequest, StockItemRequest, StockItemResponse, CategoryResponse } from '../features/shop/types/shop.types';
+import { StockAdjustmentRequest, StockItemRequest, StockItemResponse, CategoryResponse } from '../../features/shop/types/shop.types';
 
 export const ManagerStockActions = createActionGroup({
   source: 'Manager Stock',

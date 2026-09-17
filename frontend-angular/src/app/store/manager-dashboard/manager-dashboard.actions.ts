@@ -1,5 +1,5 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
-import { DashboardResponse } from '../features/shop/types/shop.types';
+import { DashboardResponse } from '../../features/shop/types/shop.types';
 
 export const ManagerDashboardActions = createActionGroup({
   source: 'Manager Dashboard',

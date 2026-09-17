@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { DashboardResponse } from '../features/shop/types/shop.types';
+import { DashboardResponse } from '../../features/shop/types/shop.types';
 import { ManagerDashboardActions } from './manager-dashboard.actions';
 
 export interface ManagerDashboardState {

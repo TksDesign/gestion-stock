@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { SaleResponse, StockItemResponse } from '../features/shop/types/shop.types';
+import { SaleResponse, StockItemResponse } from '../../features/shop/types/shop.types';
 import { ManagerSalesActions } from './manager-sales.actions';
 
 export interface ManagerSalesState {

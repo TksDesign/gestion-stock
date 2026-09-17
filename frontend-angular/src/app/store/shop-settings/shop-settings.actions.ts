@@ -1,5 +1,5 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
-import { ShopRequest, ShopResponse } from '../features/shop/types/shop.types';
+import { ShopRequest, ShopResponse } from '../../features/shop/types/shop.types';
 
 export const ShopSettingsActions = createActionGroup({
   source: 'Shop Settings',

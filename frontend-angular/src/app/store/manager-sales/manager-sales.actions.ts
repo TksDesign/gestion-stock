@@ -1,5 +1,5 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
-import { SaleRequest, SaleResponse, StockItemResponse } from '../features/shop/types/shop.types';
+import { SaleRequest, SaleResponse, StockItemResponse } from '../../features/shop/types/shop.types';
 
 export const ManagerSalesActions = createActionGroup({
   source: 'Manager Sales',

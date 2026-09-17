@@ -1,11 +1,12 @@
 import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { LucideAngularModule, ShoppingCart, Receipt, CheckCircle2, Search, X, History, Plus, Minus } from 'lucide-angular';
+import { LucideAngularModule, ShoppingCart, Receipt, CheckCircle2, Search, X, History, Plus, Minus, Users } from 'lucide-angular';
 import { ToastService } from '../../core/services/toast.service';
 import { ManagerSalesActions } from '../../store/manager-sales/manager-sales.actions';
 import { selectSalesStockItems, selectSalesHistory, selectSalesStockLoading, selectSalesHistoryLoading, selectSalesCreating } from '../../store/manager-sales/manager-sales.selectors';
 import { StockItemResponse } from '../../features/shop/types/shop.types';
+import { CustomerOrdersPanelComponent } from './customer-orders-panel.component';
 
 type CartItem = {
   stockItemId: number;
@@ -17,14 +18,14 @@ type CartItem = {
 @Component({
   selector: 'app-manager-sales',
   standalone: true,
-  imports: [FormsModule, LucideAngularModule],
+  imports: [FormsModule, LucideAngularModule, CustomerOrdersPanelComponent],
   templateUrl: './manager-sales.component.html',
 })
 export class ManagerSalesComponent implements OnInit {
   private readonly store = inject(Store);
   private readonly toast = inject(ToastService);
 
-  readonly icons = { ShoppingCart, Receipt, CheckCircle2, Search, X, History, Plus, Minus };
+  readonly icons = { ShoppingCart, Receipt, CheckCircle2, Search, X, History, Plus, Minus, Users };
 
   readonly stockItems = this.store.selectSignal(selectSalesStockItems);
   readonly sales = this.store.selectSignal(selectSalesHistory);
@@ -34,6 +35,9 @@ export class ManagerSalesComponent implements OnInit {
 
   readonly cart = signal<CartItem[]>([]);
   readonly searchQuery = signal('');
+  readonly tab = signal<'pos' | 'orders'>('pos');
+
+  readonly onlineOrdersCount = computed(() => this.sales().length); // Using total length as a placeholder
 
   readonly filteredItems = computed(() => {
     const q = this.searchQuery().toLowerCase();
@@ -93,7 +97,7 @@ export class ManagerSalesComponent implements OnInit {
     this.cart.set([]);
   }
 
-  getCartQuantity(itemId: number): number {
+  cartQuantityFor(itemId: number): number {
     return this.cart().find((c) => c.stockItemId === itemId)?.quantity || 0;
   }
 }
