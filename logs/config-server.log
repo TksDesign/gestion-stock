@@ -7,37 +7,30 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.2.5)
 
-2026-09-17T11:47:21.185+01:00  INFO 24632 --- [config-server] [           main] c.f.c.ConfigServerApplication            : Starting ConfigServerApplication v0.0.1-SNAPSHOT using Java 17.0.20.1 with PID 24632 (C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\config-server\target\config-server-0.0.1-SNAPSHOT.jar started by SAMA_PC in C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\config-server)
-2026-09-17T11:47:21.189+01:00  INFO 24632 --- [config-server] [           main] c.f.c.ConfigServerApplication            : The following 1 profile is active: "native"
-2026-09-17T11:47:22.645+01:00  INFO 24632 --- [config-server] [           main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=db215e97-977c-3847-b676-3c40335a84d2
-2026-09-17T11:47:23.054+01:00  INFO 24632 --- [config-server] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8888 (http)
-2026-09-17T11:47:23.074+01:00  INFO 24632 --- [config-server] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2026-09-17T11:47:23.074+01:00  INFO 24632 --- [config-server] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
-2026-09-17T11:47:23.123+01:00  INFO 24632 --- [config-server] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2026-09-17T11:47:23.130+01:00  INFO 24632 --- [config-server] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1841 ms
-2026-09-17T11:47:25.463+01:00  INFO 24632 --- [config-server] [           main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
-2026-09-17T11:47:25.601+01:00  INFO 24632 --- [config-server] [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
-2026-09-17T11:47:25.696+01:00  INFO 24632 --- [config-server] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8888 (http) with context path ''
-2026-09-17T11:47:26.905+01:00  INFO 24632 --- [config-server] [           main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
-2026-09-17T11:47:26.913+01:00  INFO 24632 --- [config-server] [           main] c.f.c.ConfigServerApplication            : Started ConfigServerApplication in 7.63 seconds (process running for 8.295)
-2026-09-17T11:47:45.470+01:00  INFO 24632 --- [config-server] [nio-8888-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-09-17T11:47:45.470+01:00  INFO 24632 --- [config-server] [nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2026-09-17T11:47:45.471+01:00  INFO 24632 --- [config-server] [nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2026-09-17T11:47:45.532+01:00  INFO 24632 --- [config-server] [nio-8888-exec-1] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'class path resource [configurations/discovery-service.yml]' via location 'classpath:/configurations/'
-2026-09-17T11:47:45.532+01:00  INFO 24632 --- [config-server] [nio-8888-exec-1] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'class path resource [configurations/application.yml]' via location 'classpath:/configurations/'
-2026-09-17T11:48:05.458+01:00  INFO 24632 --- [config-server] [nio-8888-exec-2] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'class path resource [configurations/auth-service.yml]' via location 'classpath:/configurations/'
-2026-09-17T11:48:05.458+01:00  INFO 24632 --- [config-server] [nio-8888-exec-2] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'class path resource [configurations/application.yml]' via location 'classpath:/configurations/'
-2026-09-17T11:48:11.378+01:00  INFO 24632 --- [config-server] [nio-8888-exec-3] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'class path resource [configurations/customer-service.yml]' via location 'classpath:/configurations/'
-2026-09-17T11:48:11.379+01:00  INFO 24632 --- [config-server] [nio-8888-exec-3] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'class path resource [configurations/application.yml]' via location 'classpath:/configurations/'
-2026-09-17T11:48:17.204+01:00  INFO 24632 --- [config-server] [nio-8888-exec-4] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'class path resource [configurations/notification-service.yml]' via location 'classpath:/configurations/'
-2026-09-17T11:48:17.204+01:00  INFO 24632 --- [config-server] [nio-8888-exec-4] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'class path resource [configurations/application.yml]' via location 'classpath:/configurations/'
-2026-09-17T11:48:23.078+01:00  INFO 24632 --- [config-server] [nio-8888-exec-5] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'class path resource [configurations/order-service.yml]' via location 'classpath:/configurations/'
-2026-09-17T11:48:23.082+01:00  INFO 24632 --- [config-server] [nio-8888-exec-5] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'class path resource [configurations/application.yml]' via location 'classpath:/configurations/'
-2026-09-17T11:48:28.129+01:00  INFO 24632 --- [config-server] [nio-8888-exec-6] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'class path resource [configurations/payment-service.yml]' via location 'classpath:/configurations/'
-2026-09-17T11:48:28.129+01:00  INFO 24632 --- [config-server] [nio-8888-exec-6] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'class path resource [configurations/application.yml]' via location 'classpath:/configurations/'
-2026-09-17T11:48:33.795+01:00  INFO 24632 --- [config-server] [nio-8888-exec-7] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'class path resource [configurations/product-service.yml]' via location 'classpath:/configurations/'
-2026-09-17T11:48:33.796+01:00  INFO 24632 --- [config-server] [nio-8888-exec-7] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'class path resource [configurations/application.yml]' via location 'classpath:/configurations/'
-2026-09-17T11:48:39.569+01:00  INFO 24632 --- [config-server] [nio-8888-exec-8] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'class path resource [configurations/shop-service.yml]' via location 'classpath:/configurations/'
-2026-09-17T11:48:39.569+01:00  INFO 24632 --- [config-server] [nio-8888-exec-8] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'class path resource [configurations/application.yml]' via location 'classpath:/configurations/'
-2026-09-17T11:48:44.568+01:00  INFO 24632 --- [config-server] [nio-8888-exec-9] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'class path resource [configurations/gateway-service.yml]' via location 'classpath:/configurations/'
-2026-09-17T11:48:44.569+01:00  INFO 24632 --- [config-server] [nio-8888-exec-9] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'class path resource [configurations/application.yml]' via location 'classpath:/configurations/'
+2026-09-17T11:13:06.038+01:00  INFO 21633 --- [config-server] [           main] c.f.c.ConfigServerApplication            : Starting ConfigServerApplication v0.0.1-SNAPSHOT using Java 17.0.12 with PID 21633 (/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/config-server/target/config-server-0.0.1-SNAPSHOT.jar started by daphane in /Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/config-server)
+2026-09-17T11:13:06.051+01:00  INFO 21633 --- [config-server] [           main] c.f.c.ConfigServerApplication            : The following 1 profile is active: "native"
+2026-09-17T11:13:08.901+01:00  INFO 21633 --- [config-server] [           main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=db215e97-977c-3847-b676-3c40335a84d2
+2026-09-17T11:13:09.478+01:00  INFO 21633 --- [config-server] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8888 (http)
+2026-09-17T11:13:09.500+01:00  INFO 21633 --- [config-server] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-09-17T11:13:09.500+01:00  INFO 21633 --- [config-server] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-09-17T11:13:09.594+01:00  INFO 21633 --- [config-server] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-09-17T11:13:09.596+01:00  INFO 21633 --- [config-server] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3405 ms
+2026-09-17T11:13:11.704+01:00  INFO 21633 --- [config-server] [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2026-09-17T11:13:11.804+01:00  WARN 21633 --- [config-server] [           main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2026-09-17T11:13:11.845+01:00  INFO 21633 --- [config-server] [           main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-09-17T11:13:11.933+01:00 ERROR 21633 --- [config-server] [           main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8888 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8888 or configure this application to listen on another port.
+

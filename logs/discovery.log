@@ -8,59 +8,88 @@ Standard Commons Logging discovery in action with spring-jcl: please remove comm
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.2.5)
 
-2026-09-17T11:47:47.071+01:00  INFO 9040 --- [discovery-service] [           main] c.franck.discovery.DiscoveryApplication  : Starting DiscoveryApplication v0.0.1-SNAPSHOT using Java 17.0.20.1 with PID 9040 (C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\discovery\target\discovery-0.0.1-SNAPSHOT.jar started by SAMA_PC in C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\discovery)
-2026-09-17T11:47:47.081+01:00  INFO 9040 --- [discovery-service] [           main] c.franck.discovery.DiscoveryApplication  : No active profile set, falling back to 1 default profile: "default"
-2026-09-17T11:47:47.121+01:00  INFO 9040 --- [discovery-service] [           main] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : http://localhost:8888
-2026-09-17T11:47:47.121+01:00  INFO 9040 --- [discovery-service] [           main] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=discovery-service, profiles=[default], label=null, version=null, state=null
-2026-09-17T11:47:48.229+01:00  INFO 9040 --- [discovery-service] [           main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=98db6e28-d996-3825-be7e-bfb4128bca32
-2026-09-17T11:47:48.283+01:00  WARN 9040 --- [discovery-service] [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig' of type [org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [lbRestClientPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
-2026-09-17T11:47:48.283+01:00  WARN 9040 --- [discovery-service] [           main] trationDelegate$BeanPostProcessorChecker : Bean 'deferringLoadBalancerInterceptor' of type [org.springframework.cloud.client.loadbalancer.DeferringLoadBalancerInterceptor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
-2026-09-17T11:47:48.667+01:00  INFO 9040 --- [discovery-service] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8761 (http)
-2026-09-17T11:47:48.680+01:00  INFO 9040 --- [discovery-service] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2026-09-17T11:47:48.680+01:00  INFO 9040 --- [discovery-service] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
-2026-09-17T11:47:48.731+01:00  INFO 9040 --- [discovery-service] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2026-09-17T11:47:48.731+01:00  INFO 9040 --- [discovery-service] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1610 ms
+2026-09-17T11:13:32.464+01:00  INFO 21803 --- [discovery-service] [           main] c.franck.discovery.DiscoveryApplication  : Starting DiscoveryApplication v0.0.1-SNAPSHOT using Java 17.0.12 with PID 21803 (/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/discovery/target/discovery-0.0.1-SNAPSHOT.jar started by daphane in /Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/discovery)
+2026-09-17T11:13:32.469+01:00  INFO 21803 --- [discovery-service] [           main] c.franck.discovery.DiscoveryApplication  : No active profile set, falling back to 1 default profile: "default"
+2026-09-17T11:13:32.716+01:00  INFO 21803 --- [discovery-service] [           main] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : http://localhost:8888
+2026-09-17T11:13:32.716+01:00  INFO 21803 --- [discovery-service] [           main] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=discovery-service, profiles=[default], label=null, version=null, state=null
+2026-09-17T11:13:35.077+01:00  INFO 21803 --- [discovery-service] [           main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=98db6e28-d996-3825-be7e-bfb4128bca32
+2026-09-17T11:13:35.189+01:00  WARN 21803 --- [discovery-service] [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig' of type [org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [lbRestClientPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
+2026-09-17T11:13:35.192+01:00  WARN 21803 --- [discovery-service] [           main] trationDelegate$BeanPostProcessorChecker : Bean 'deferringLoadBalancerInterceptor' of type [org.springframework.cloud.client.loadbalancer.DeferringLoadBalancerInterceptor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+2026-09-17T11:13:35.540+01:00  INFO 21803 --- [discovery-service] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8761 (http)
+2026-09-17T11:13:35.572+01:00  INFO 21803 --- [discovery-service] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-09-17T11:13:35.573+01:00  INFO 21803 --- [discovery-service] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-09-17T11:13:35.649+01:00  INFO 21803 --- [discovery-service] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-09-17T11:13:35.654+01:00  INFO 21803 --- [discovery-service] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2923 ms
 Standard Commons Logging discovery in action with spring-jcl: please remove commons-logging.jar from classpath in order to avoid potential conflicts
-2026-09-17T11:47:50.198+01:00  INFO 9040 --- [discovery-service] [           main] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON encoding codec LegacyJacksonJson
-2026-09-17T11:47:50.202+01:00  INFO 9040 --- [discovery-service] [           main] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON decoding codec LegacyJacksonJson
-2026-09-17T11:47:50.437+01:00  INFO 9040 --- [discovery-service] [           main] c.n.d.provider.DiscoveryJerseyProvider   : Using XML encoding codec XStreamXml
-2026-09-17T11:47:50.437+01:00  INFO 9040 --- [discovery-service] [           main] c.n.d.provider.DiscoveryJerseyProvider   : Using XML decoding codec XStreamXml
-2026-09-17T11:47:52.274+01:00  INFO 9040 --- [discovery-service] [           main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
-2026-09-17T11:47:53.796+01:00  INFO 9040 --- [discovery-service] [           main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
-2026-09-17T11:47:53.829+01:00  WARN 9040 --- [discovery-service] [           main] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
-2026-09-17T11:47:53.846+01:00  INFO 9040 --- [discovery-service] [           main] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
-2026-09-17T11:47:53.871+01:00  INFO 9040 --- [discovery-service] [           main] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
-2026-09-17T11:47:53.871+01:00  INFO 9040 --- [discovery-service] [           main] com.netflix.discovery.DiscoveryClient    : Client configured to neither register nor query for data.
-2026-09-17T11:47:53.879+01:00  INFO 9040 --- [discovery-service] [           main] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1789642073879 with initial instances count: 0
-2026-09-17T11:47:53.904+01:00  INFO 9040 --- [discovery-service] [           main] c.n.eureka.DefaultEurekaServerContext    : Initializing ...
-2026-09-17T11:47:53.904+01:00  WARN 9040 --- [discovery-service] [           main] c.n.eureka.cluster.PeerEurekaNodes       : The replica size seems to be empty. Check the route 53 DNS Registry
-2026-09-17T11:47:53.957+01:00  INFO 9040 --- [discovery-service] [           main] c.n.e.registry.AbstractInstanceRegistry  : Finished initializing remote region registries. All known remote regions: []
-2026-09-17T11:47:53.958+01:00  INFO 9040 --- [discovery-service] [           main] c.n.eureka.DefaultEurekaServerContext    : Initialized
-2026-09-17T11:47:53.964+01:00  INFO 9040 --- [discovery-service] [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
-2026-09-17T11:47:54.009+01:00  INFO 9040 --- [discovery-service] [           main] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application DISCOVERY-SERVICE with eureka with status UP
-2026-09-17T11:47:54.026+01:00  INFO 9040 --- [discovery-service] [       Thread-9] o.s.c.n.e.server.EurekaServerBootstrap   : isAws returned false
-2026-09-17T11:47:54.027+01:00  INFO 9040 --- [discovery-service] [       Thread-9] o.s.c.n.e.server.EurekaServerBootstrap   : Initialized server context
-2026-09-17T11:47:54.027+01:00  INFO 9040 --- [discovery-service] [       Thread-9] c.n.e.r.PeerAwareInstanceRegistryImpl    : Got 1 instances from neighboring DS node
-2026-09-17T11:47:54.027+01:00  INFO 9040 --- [discovery-service] [       Thread-9] c.n.e.r.PeerAwareInstanceRegistryImpl    : Renew threshold is: 1
-2026-09-17T11:47:54.027+01:00  INFO 9040 --- [discovery-service] [       Thread-9] c.n.e.r.PeerAwareInstanceRegistryImpl    : Changing status to UP
-2026-09-17T11:47:54.039+01:00  INFO 9040 --- [discovery-service] [       Thread-9] e.s.EurekaServerInitializerConfiguration : Started Eureka Server
-2026-09-17T11:47:54.044+01:00  INFO 9040 --- [discovery-service] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8761 (http) with context path ''
-2026-09-17T11:47:54.045+01:00  INFO 9040 --- [discovery-service] [           main] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8761
-2026-09-17T11:47:55.168+01:00  INFO 9040 --- [discovery-service] [           main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
-2026-09-17T11:47:55.185+01:00  INFO 9040 --- [discovery-service] [           main] c.franck.discovery.DiscoveryApplication  : Started DiscoveryApplication in 10.605 seconds (process running for 11.387)
-2026-09-17T11:48:15.429+01:00  INFO 9040 --- [discovery-service] [nio-8761-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-09-17T11:48:15.429+01:00  INFO 9040 --- [discovery-service] [nio-8761-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2026-09-17T11:48:15.429+01:00  INFO 9040 --- [discovery-service] [nio-8761-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
-2026-09-17T11:48:15.888+01:00  INFO 9040 --- [discovery-service] [nio-8761-exec-1] c.n.e.registry.AbstractInstanceRegistry  : Registered instance AUTH-SERVICE/localhost:auth-service:8095 with status UP (replication=false)
-2026-09-17T11:48:22.659+01:00  INFO 9040 --- [discovery-service] [nio-8761-exec-4] c.n.e.registry.AbstractInstanceRegistry  : Registered instance CUSTOMER-SERVICE/localhost:customer-service:8090 with status UP (replication=false)
-2026-09-17T11:48:28.828+01:00  INFO 9040 --- [discovery-service] [nio-8761-exec-6] c.n.e.registry.AbstractInstanceRegistry  : Registered instance NOTIFICATION-SERVICE/localhost:notification-service:8040 with status UP (replication=false)
-2026-09-17T11:48:52.542+01:00  INFO 9040 --- [discovery-service] [io-8761-exec-10] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-SERVICE/localhost:product-service:8050 with status UP (replication=false)
-2026-09-17T11:48:54.029+01:00  INFO 9040 --- [discovery-service] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
-2026-09-17T11:48:56.053+01:00  INFO 9040 --- [discovery-service] [nio-8761-exec-4] c.n.e.registry.AbstractInstanceRegistry  : Registered instance GATEWAY-SERVICE/localhost:gateway-service:8222 with status UP (replication=false)
-2026-09-17T11:48:57.926+01:00  INFO 9040 --- [discovery-service] [nio-8761-exec-6] c.n.e.registry.AbstractInstanceRegistry  : Registered instance SHOP-SERVICE/localhost:shop-service:8100 with status UP (replication=false)
-2026-09-17T11:49:22.021+01:00  INFO 9040 --- [discovery-service] [nio-8761-exec-1] c.n.e.registry.AbstractInstanceRegistry  : Registered instance ORDER-SERVICE/localhost:order-service:8070 with status UP (replication=false)
-2026-09-17T11:49:27.612+01:00  INFO 9040 --- [discovery-service] [io-8761-exec-10] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PAYMENT-SERVICE/localhost:payment-service:8060 with status UP (replication=false)
-2026-09-17T11:49:54.030+01:00  INFO 9040 --- [discovery-service] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 1ms
-2026-09-17T11:50:54.037+01:00  INFO 9040 --- [discovery-service] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 7ms
-2026-09-17T11:51:54.044+01:00  INFO 9040 --- [discovery-service] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 6ms
-2026-09-17T11:52:54.045+01:00  INFO 9040 --- [discovery-service] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 1ms
+2026-09-17T11:13:37.744+01:00  INFO 21803 --- [discovery-service] [           main] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON encoding codec LegacyJacksonJson
+2026-09-17T11:13:37.747+01:00  INFO 21803 --- [discovery-service] [           main] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON decoding codec LegacyJacksonJson
+2026-09-17T11:13:38.158+01:00  INFO 21803 --- [discovery-service] [           main] c.n.d.provider.DiscoveryJerseyProvider   : Using XML encoding codec XStreamXml
+2026-09-17T11:13:38.158+01:00  INFO 21803 --- [discovery-service] [           main] c.n.d.provider.DiscoveryJerseyProvider   : Using XML decoding codec XStreamXml
+2026-09-17T11:13:39.781+01:00  WARN 21803 --- [discovery-service] [           main] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-09-17T11:13:39.808+01:00  INFO 21803 --- [discovery-service] [           main] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2026-09-17T11:13:39.861+01:00  INFO 21803 --- [discovery-service] [           main] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2026-09-17T11:13:39.861+01:00  INFO 21803 --- [discovery-service] [           main] com.netflix.discovery.DiscoveryClient    : Client configured to neither register nor query for data.
+2026-09-17T11:13:39.874+01:00  INFO 21803 --- [discovery-service] [           main] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1789640019874 with initial instances count: 0
+2026-09-17T11:13:39.923+01:00  INFO 21803 --- [discovery-service] [           main] c.n.eureka.DefaultEurekaServerContext    : Initializing ...
+2026-09-17T11:13:39.925+01:00  WARN 21803 --- [discovery-service] [           main] c.n.eureka.cluster.PeerEurekaNodes       : The replica size seems to be empty. Check the route 53 DNS Registry
+2026-09-17T11:13:40.024+01:00  INFO 21803 --- [discovery-service] [           main] c.n.e.registry.AbstractInstanceRegistry  : Finished initializing remote region registries. All known remote regions: []
+2026-09-17T11:13:40.025+01:00  INFO 21803 --- [discovery-service] [           main] c.n.eureka.DefaultEurekaServerContext    : Initialized
+2026-09-17T11:13:40.042+01:00  INFO 21803 --- [discovery-service] [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2026-09-17T11:13:40.097+01:00  INFO 21803 --- [discovery-service] [           main] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application DISCOVERY-SERVICE with eureka with status UP
+2026-09-17T11:13:40.112+01:00  INFO 21803 --- [discovery-service] [           main] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application DISCOVERY-SERVICE with eureka with status DOWN
+2026-09-17T11:13:40.113+01:00  WARN 21803 --- [discovery-service] [           main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2026-09-17T11:13:40.113+01:00  INFO 21803 --- [discovery-service] [           main] c.n.eureka.DefaultEurekaServerContext    : Shutting down ...
+2026-09-17T11:13:40.133+01:00  INFO 21803 --- [discovery-service] [       Thread-9] o.s.c.n.e.server.EurekaServerBootstrap   : isAws returned false
+2026-09-17T11:13:40.137+01:00  INFO 21803 --- [discovery-service] [       Thread-9] o.s.c.n.e.server.EurekaServerBootstrap   : Initialized server context
+2026-09-17T11:13:40.137+01:00  INFO 21803 --- [discovery-service] [       Thread-9] c.n.e.r.PeerAwareInstanceRegistryImpl    : Got 1 instances from neighboring DS node
+2026-09-17T11:13:40.138+01:00  INFO 21803 --- [discovery-service] [       Thread-9] c.n.e.r.PeerAwareInstanceRegistryImpl    : Renew threshold is: 1
+2026-09-17T11:13:40.138+01:00  INFO 21803 --- [discovery-service] [       Thread-9] c.n.e.r.PeerAwareInstanceRegistryImpl    : Changing status to UP
+2026-09-17T11:13:40.140+01:00  INFO 21803 --- [discovery-service] [           main] c.n.eureka.DefaultEurekaServerContext    : Shut down
+2026-09-17T11:13:40.139+01:00 ERROR 21803 --- [discovery-service] [       Thread-9] o.s.c.n.e.server.EurekaServerBootstrap   : Cannot bootstrap eureka server :
+
+java.lang.IllegalStateException: Timer already cancelled.
+	at java.base/java.util.Timer.sched(Timer.java:409) ~[na:na]
+	at java.base/java.util.Timer.schedule(Timer.java:260) ~[na:na]
+	at com.netflix.eureka.registry.AbstractInstanceRegistry.postInit(AbstractInstanceRegistry.java:1223) ~[eureka-core-2.0.2.jar!/:2.0.2]
+	at com.netflix.eureka.registry.PeerAwareInstanceRegistryImpl.openForTraffic(PeerAwareInstanceRegistryImpl.java:260) ~[eureka-core-2.0.2.jar!/:2.0.2]
+	at org.springframework.cloud.netflix.eureka.server.InstanceRegistry.openForTraffic(InstanceRegistry.java:76) ~[spring-cloud-netflix-eureka-server-4.1.1.jar!/:4.1.1]
+	at org.springframework.cloud.netflix.eureka.server.EurekaServerBootstrap.initEurekaServerContext(EurekaServerBootstrap.java:112) ~[spring-cloud-netflix-eureka-server-4.1.1.jar!/:4.1.1]
+	at org.springframework.cloud.netflix.eureka.server.EurekaServerBootstrap.contextInitialized(EurekaServerBootstrap.java:70) ~[spring-cloud-netflix-eureka-server-4.1.1.jar!/:4.1.1]
+	at org.springframework.cloud.netflix.eureka.server.EurekaServerInitializerConfiguration.lambda$start$0(EurekaServerInitializerConfiguration.java:67) ~[spring-cloud-netflix-eureka-server-4.1.1.jar!/:4.1.1]
+	at java.base/java.lang.Thread.run(Thread.java:842) ~[na:na]
+
+2026-09-17T11:13:40.158+01:00 ERROR 21803 --- [discovery-service] [       Thread-9] e.s.EurekaServerInitializerConfiguration : Could not initialize Eureka servlet context
+
+java.lang.RuntimeException: Cannot bootstrap eureka server :
+	at org.springframework.cloud.netflix.eureka.server.EurekaServerBootstrap.contextInitialized(EurekaServerBootstrap.java:76) ~[spring-cloud-netflix-eureka-server-4.1.1.jar!/:4.1.1]
+	at org.springframework.cloud.netflix.eureka.server.EurekaServerInitializerConfiguration.lambda$start$0(EurekaServerInitializerConfiguration.java:67) ~[spring-cloud-netflix-eureka-server-4.1.1.jar!/:4.1.1]
+	at java.base/java.lang.Thread.run(Thread.java:842) ~[na:na]
+Caused by: java.lang.IllegalStateException: Timer already cancelled.
+	at java.base/java.util.Timer.sched(Timer.java:409) ~[na:na]
+	at java.base/java.util.Timer.schedule(Timer.java:260) ~[na:na]
+	at com.netflix.eureka.registry.AbstractInstanceRegistry.postInit(AbstractInstanceRegistry.java:1223) ~[eureka-core-2.0.2.jar!/:2.0.2]
+	at com.netflix.eureka.registry.PeerAwareInstanceRegistryImpl.openForTraffic(PeerAwareInstanceRegistryImpl.java:260) ~[eureka-core-2.0.2.jar!/:2.0.2]
+	at org.springframework.cloud.netflix.eureka.server.InstanceRegistry.openForTraffic(InstanceRegistry.java:76) ~[spring-cloud-netflix-eureka-server-4.1.1.jar!/:4.1.1]
+	at org.springframework.cloud.netflix.eureka.server.EurekaServerBootstrap.initEurekaServerContext(EurekaServerBootstrap.java:112) ~[spring-cloud-netflix-eureka-server-4.1.1.jar!/:4.1.1]
+	at org.springframework.cloud.netflix.eureka.server.EurekaServerBootstrap.contextInitialized(EurekaServerBootstrap.java:70) ~[spring-cloud-netflix-eureka-server-4.1.1.jar!/:4.1.1]
+	... 2 common frames omitted
+
+2026-09-17T11:13:40.163+01:00  INFO 21803 --- [discovery-service] [           main] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
+2026-09-17T11:13:40.165+01:00  INFO 21803 --- [discovery-service] [           main] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient
+2026-09-17T11:13:40.213+01:00  INFO 21803 --- [discovery-service] [           main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-09-17T11:13:40.253+01:00 ERROR 21803 --- [discovery-service] [           main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8761 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8761 or configure this application to listen on another port.
+

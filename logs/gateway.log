@@ -7,56 +7,352 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.2.5)
 
-2026-09-17T11:48:46.530+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] com.franck.gateway.GatewayApplication    : Starting GatewayApplication v0.0.1-SNAPSHOT using Java 17.0.20.1 with PID 15408 (C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\gateway\target\gateway-0.0.1-SNAPSHOT.jar started by SAMA_PC in C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\gateway)
-2026-09-17T11:48:46.541+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] com.franck.gateway.GatewayApplication    : No active profile set, falling back to 1 default profile: "default"
-2026-09-17T11:48:46.776+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : http://localhost:8888
-2026-09-17T11:48:46.778+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=gateway-service, profiles=[default], label=null, version=null, state=null
-2026-09-17T11:48:49.106+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] o.s.cloud.context.scope.GenericScope     : BeanFactory id=67cbf054-e010-3cb6-bc1c-ce916f139041
-2026-09-17T11:48:49.258+01:00  WARN 15408 --- [gateway-service] [           main] [                                                 ] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig' of type [org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [lbRestClientPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
-2026-09-17T11:48:49.260+01:00  WARN 15408 --- [gateway-service] [           main] [                                                 ] trationDelegate$BeanPostProcessorChecker : Bean 'deferringLoadBalancerInterceptor' of type [org.springframework.cloud.client.loadbalancer.DeferringLoadBalancerInterceptor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
-2026-09-17T11:48:49.263+01:00  WARN 15408 --- [gateway-service] [           main] [                                                 ] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [loadBalancerWebClientBuilderBeanPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
-2026-09-17T11:48:49.265+01:00  WARN 15408 --- [gateway-service] [           main] [                                                 ] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [loadBalancerWebClientBuilderBeanPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
-2026-09-17T11:48:49.267+01:00  WARN 15408 --- [gateway-service] [           main] [                                                 ] trationDelegate$BeanPostProcessorChecker : Bean 'reactorDeferringLoadBalancerExchangeFilterFunction' of type [org.springframework.cloud.client.loadbalancer.reactive.DeferringLoadBalancerExchangeFilterFunction] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [loadBalancerWebClientBuilderBeanPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
-2026-09-17T11:48:51.539+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
-2026-09-17T11:48:52.790+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
-2026-09-17T11:48:53.435+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [After]
-2026-09-17T11:48:53.435+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Before]
-2026-09-17T11:48:53.435+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Between]
-2026-09-17T11:48:53.435+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Cookie]
-2026-09-17T11:48:53.436+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Header]
-2026-09-17T11:48:53.436+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Host]
-2026-09-17T11:48:53.436+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Method]
-2026-09-17T11:48:53.436+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Path]
-2026-09-17T11:48:53.436+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Query]
-2026-09-17T11:48:53.436+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [ReadBody]
-2026-09-17T11:48:53.436+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [RemoteAddr]
-2026-09-17T11:48:53.436+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [XForwardedRemoteAddr]
-2026-09-17T11:48:53.436+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Weight]
-2026-09-17T11:48:53.436+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [CloudFoundryRouteService]
-2026-09-17T11:48:54.988+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
-2026-09-17T11:48:55.046+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
-2026-09-17T11:48:55.385+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
-2026-09-17T11:48:55.412+01:00  WARN 15408 --- [gateway-service] [           main] [                                                 ] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
-2026-09-17T11:48:55.461+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
-2026-09-17T11:48:55.545+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
-2026-09-17T11:48:55.552+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2026-09-17T11:48:55.581+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
-2026-09-17T11:48:55.581+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
-2026-09-17T11:48:55.581+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
-2026-09-17T11:48:55.581+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Application is null : false
-2026-09-17T11:48:55.581+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
-2026-09-17T11:48:55.581+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
-2026-09-17T11:48:55.581+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
-2026-09-17T11:48:55.955+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : The response status is 200
-2026-09-17T11:48:55.959+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
-2026-09-17T11:48:55.963+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
-2026-09-17T11:48:55.969+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1789642135968 with initial instances count: 3
-2026-09-17T11:48:55.970+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application GATEWAY-SERVICE with eureka with status UP
-2026-09-17T11:48:55.971+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1789642135971, current=UP, previous=STARTING]
-2026-09-17T11:48:55.974+01:00  INFO 15408 --- [gateway-service] [nfoReplicator-0] [                                                 ] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_GATEWAY-SERVICE/localhost:gateway-service:8222: registering service...
-2026-09-17T11:48:56.054+01:00  INFO 15408 --- [gateway-service] [nfoReplicator-0] [                                                 ] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_GATEWAY-SERVICE/localhost:gateway-service:8222 - registration status: 204
-2026-09-17T11:48:56.420+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8222
-2026-09-17T11:48:56.424+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8222
-2026-09-17T11:48:57.594+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
-2026-09-17T11:48:58.748+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
-2026-09-17T11:48:58.786+01:00  INFO 15408 --- [gateway-service] [           main] [                                                 ] com.franck.gateway.GatewayApplication    : Started GatewayApplication in 15.938 seconds (process running for 17.485)
+2026-09-17T11:14:42.702+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] com.franck.gateway.GatewayApplication    : Starting GatewayApplication v0.0.1-SNAPSHOT using Java 17.0.12 with PID 22216 (/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/gateway/target/gateway-0.0.1-SNAPSHOT.jar started by daphane in /Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/gateway)
+2026-09-17T11:14:42.710+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] com.franck.gateway.GatewayApplication    : No active profile set, falling back to 1 default profile: "default"
+2026-09-17T11:14:42.861+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : http://localhost:8888
+2026-09-17T11:14:42.862+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=gateway-service, profiles=[default], label=null, version=null, state=null
+2026-09-17T11:14:53.113+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] o.s.cloud.context.scope.GenericScope     : BeanFactory id=67cbf054-e010-3cb6-bc1c-ce916f139041
+2026-09-17T11:14:53.814+01:00  WARN 22216 --- [gateway-service] [           main] [                                                 ] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig' of type [org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [lbRestClientPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
+2026-09-17T11:14:53.820+01:00  WARN 22216 --- [gateway-service] [           main] [                                                 ] trationDelegate$BeanPostProcessorChecker : Bean 'deferringLoadBalancerInterceptor' of type [org.springframework.cloud.client.loadbalancer.DeferringLoadBalancerInterceptor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+2026-09-17T11:14:53.823+01:00  WARN 22216 --- [gateway-service] [           main] [                                                 ] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [loadBalancerWebClientBuilderBeanPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
+2026-09-17T11:14:53.825+01:00  WARN 22216 --- [gateway-service] [           main] [                                                 ] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [loadBalancerWebClientBuilderBeanPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+2026-09-17T11:14:53.827+01:00  WARN 22216 --- [gateway-service] [           main] [                                                 ] trationDelegate$BeanPostProcessorChecker : Bean 'reactorDeferringLoadBalancerExchangeFilterFunction' of type [org.springframework.cloud.client.loadbalancer.reactive.DeferringLoadBalancerExchangeFilterFunction] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [loadBalancerWebClientBuilderBeanPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+2026-09-17T11:15:00.774+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [After]
+2026-09-17T11:15:00.775+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Before]
+2026-09-17T11:15:00.775+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Between]
+2026-09-17T11:15:00.775+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Cookie]
+2026-09-17T11:15:00.775+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Header]
+2026-09-17T11:15:00.775+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Host]
+2026-09-17T11:15:00.775+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Method]
+2026-09-17T11:15:00.775+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Path]
+2026-09-17T11:15:00.776+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Query]
+2026-09-17T11:15:00.776+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [ReadBody]
+2026-09-17T11:15:00.776+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [RemoteAddr]
+2026-09-17T11:15:00.776+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [XForwardedRemoteAddr]
+2026-09-17T11:15:00.776+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Weight]
+2026-09-17T11:15:00.776+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [CloudFoundryRouteService]
+2026-09-17T11:15:02.552+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2026-09-17T11:15:03.760+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
+2026-09-17T11:15:04.058+01:00  WARN 22216 --- [gateway-service] [           main] [                                                 ] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-09-17T11:15:04.259+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2026-09-17T11:15:04.462+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2026-09-17T11:15:04.472+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-09-17T11:15:04.560+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2026-09-17T11:15:04.560+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2026-09-17T11:15:04.561+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2026-09-17T11:15:04.561+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2026-09-17T11:15:04.562+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2026-09-17T11:15:04.562+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+2026-09-17T11:15:04.562+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2026-09-17T11:15:05.386+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2026-09-17T11:15:05.390+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
+2026-09-17T11:15:05.394+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2026-09-17T11:15:05.401+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1789640105400 with initial instances count: 7
+2026-09-17T11:15:05.403+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application GATEWAY-SERVICE with eureka with status UP
+2026-09-17T11:15:05.404+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1789640105404, current=UP, previous=STARTING]
+2026-09-17T11:15:05.406+01:00  INFO 22216 --- [gateway-service] [nfoReplicator-0] [                                                 ] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_GATEWAY-SERVICE/192.168.2.25:gateway-service:8222: registering service...
+2026-09-17T11:15:05.485+01:00  INFO 22216 --- [gateway-service] [nfoReplicator-0] [                                                 ] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_GATEWAY-SERVICE/192.168.2.25:gateway-service:8222 - registration status: 204
+2026-09-17T11:15:08.320+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application GATEWAY-SERVICE with eureka with status DOWN
+2026-09-17T11:15:08.320+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1789640108320, current=DOWN, previous=UP]
+2026-09-17T11:15:08.320+01:00  INFO 22216 --- [gateway-service] [nfoReplicator-0] [                                                 ] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_GATEWAY-SERVICE/192.168.2.25:gateway-service:8222: registering service...
+2026-09-17T11:15:08.321+01:00  WARN 22216 --- [gateway-service] [           main] [                                                 ] onfigReactiveWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2026-09-17T11:15:08.335+01:00  INFO 22216 --- [gateway-service] [nfoReplicator-0] [                                                 ] c.n.d.s.t.d.RedirectingEurekaHttpClient  : Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8761/eureka/} exception=I/O error on POST request for "http://localhost:8761/eureka/apps/GATEWAY-SERVICE": Socket closed stacktrace=org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://localhost:8761/eureka/apps/GATEWAY-SERVICE": Socket closed
+	at org.springframework.web.client.RestTemplate.createResourceAccessException(RestTemplate.java:915)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:895)
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:790)
+	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:672)
+	at org.springframework.cloud.netflix.eureka.http.RestTemplateEurekaHttpClient.register(RestTemplateEurekaHttpClient.java:77)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.execute(RedirectingEurekaHttpClient.java:91)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:120)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:820)
+	at com.netflix.discovery.InstanceInfoReplicator.run(InstanceInfoReplicator.java:121)
+	at com.netflix.discovery.InstanceInfoReplicator$1.run(InstanceInfoReplicator.java:101)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+Caused by: java.net.SocketException: Socket closed
+	at java.base/sun.nio.ch.NioSocketImpl.endRead(NioSocketImpl.java:253)
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:332)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:355)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:808)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:966)
+	at org.apache.hc.core5.http.impl.io.SessionInputBufferImpl.fillBuffer(SessionInputBufferImpl.java:149)
+	at org.apache.hc.core5.http.impl.io.SessionInputBufferImpl.readLine(SessionInputBufferImpl.java:280)
+	at org.apache.hc.core5.http.impl.io.AbstractMessageParser.parse(AbstractMessageParser.java:247)
+	at org.apache.hc.core5.http.impl.io.AbstractMessageParser.parse(AbstractMessageParser.java:54)
+	at org.apache.hc.core5.http.impl.io.DefaultBHttpClientConnection.receiveResponseHeader(DefaultBHttpClientConnection.java:299)
+	at org.apache.hc.core5.http.impl.io.HttpRequestExecutor.execute(HttpRequestExecutor.java:175)
+	at org.apache.hc.core5.http.impl.io.HttpRequestExecutor.execute(HttpRequestExecutor.java:218)
+	at org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager$InternalConnectionEndpoint.execute(PoolingHttpClientConnectionManager.java:712)
+	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.execute(InternalExecRuntime.java:216)
+	at org.apache.hc.client5.http.impl.classic.MainClientExec.execute(MainClientExec.java:116)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.ConnectExec.execute(ConnectExec.java:188)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.ProtocolExec.execute(ProtocolExec.java:192)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.HttpRequestRetryExec.execute(HttpRequestRetryExec.java:96)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.ContentCompressionExec.execute(ContentCompressionExec.java:152)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.RedirectExec.execute(RedirectExec.java:115)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.InternalHttpClient.doExecute(InternalHttpClient.java:170)
+	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:87)
+	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:55)
+	at org.apache.hc.client5.http.classic.HttpClient.executeOpen(HttpClient.java:183)
+	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:95)
+	at org.springframework.http.client.AbstractStreamingClientHttpRequest.executeInternal(AbstractStreamingClientHttpRequest.java:70)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
+	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:112)
+	at org.springframework.cloud.netflix.eureka.http.RestTemplateTransportClientFactory.lambda$restTemplate$0(RestTemplateTransportClientFactory.java:143)
+	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:88)
+	at org.springframework.http.client.InterceptingClientHttpRequest.executeInternal(InterceptingClientHttpRequest.java:72)
+	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:889)
+	... 21 more
+
+2026-09-17T11:15:08.336+01:00  WARN 22216 --- [gateway-service] [nfoReplicator-0] [                                                 ] c.n.d.s.t.d.RetryableEurekaHttpClient    : Request execution failed with message: I/O error on POST request for "http://localhost:8761/eureka/apps/GATEWAY-SERVICE": Socket closed
+2026-09-17T11:15:08.349+01:00  INFO 22216 --- [gateway-service] [nfoReplicator-0] [                                                 ] c.n.d.s.t.d.RedirectingEurekaHttpClient  : Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8761/eureka/}, exception=Connection pool shut down stacktrace=java.lang.IllegalStateException: Connection pool shut down
+	at org.apache.hc.core5.util.Asserts.check(Asserts.java:38)
+	at org.apache.hc.core5.pool.StrictConnPool.lease(StrictConnPool.java:176)
+	at org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager.lease(PoolingHttpClientConnectionManager.java:298)
+	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.acquireEndpoint(InternalExecRuntime.java:103)
+	at org.apache.hc.client5.http.impl.classic.ConnectExec.execute(ConnectExec.java:125)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.ProtocolExec.execute(ProtocolExec.java:192)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.HttpRequestRetryExec.execute(HttpRequestRetryExec.java:96)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.ContentCompressionExec.execute(ContentCompressionExec.java:152)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.RedirectExec.execute(RedirectExec.java:115)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.InternalHttpClient.doExecute(InternalHttpClient.java:170)
+	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:87)
+	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:55)
+	at org.apache.hc.client5.http.classic.HttpClient.executeOpen(HttpClient.java:183)
+	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:95)
+	at org.springframework.http.client.AbstractStreamingClientHttpRequest.executeInternal(AbstractStreamingClientHttpRequest.java:70)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
+	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:112)
+	at org.springframework.cloud.netflix.eureka.http.RestTemplateTransportClientFactory.lambda$restTemplate$0(RestTemplateTransportClientFactory.java:143)
+	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:88)
+	at org.springframework.http.client.InterceptingClientHttpRequest.executeInternal(InterceptingClientHttpRequest.java:72)
+	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:889)
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:790)
+	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:672)
+	at org.springframework.cloud.netflix.eureka.http.RestTemplateEurekaHttpClient.register(RestTemplateEurekaHttpClient.java:77)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.executeOnNewServer(RedirectingEurekaHttpClient.java:121)
+	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.execute(RedirectingEurekaHttpClient.java:80)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:120)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:820)
+	at com.netflix.discovery.InstanceInfoReplicator.run(InstanceInfoReplicator.java:121)
+	at com.netflix.discovery.InstanceInfoReplicator$1.run(InstanceInfoReplicator.java:101)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+
+2026-09-17T11:15:08.349+01:00  WARN 22216 --- [gateway-service] [nfoReplicator-0] [                                                 ] c.n.d.s.t.d.RetryableEurekaHttpClient    : Request execution failed with message: Connection pool shut down
+2026-09-17T11:15:08.349+01:00  WARN 22216 --- [gateway-service] [nfoReplicator-0] [                                                 ] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_GATEWAY-SERVICE/192.168.2.25:gateway-service:8222 - registration failed Cannot execute request on any known server
+
+com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112) ~[eureka-client-2.0.2.jar!/:2.0.2]
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56) ~[eureka-client-2.0.2.jar!/:2.0.2]
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59) ~[eureka-client-2.0.2.jar!/:2.0.2]
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77) ~[eureka-client-2.0.2.jar!/:2.0.2]
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56) ~[eureka-client-2.0.2.jar!/:2.0.2]
+	at com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:820) ~[eureka-client-2.0.2.jar!/:2.0.2]
+	at com.netflix.discovery.InstanceInfoReplicator.run(InstanceInfoReplicator.java:121) ~[eureka-client-2.0.2.jar!/:2.0.2]
+	at com.netflix.discovery.InstanceInfoReplicator$1.run(InstanceInfoReplicator.java:101) ~[eureka-client-2.0.2.jar!/:2.0.2]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264) ~[na:na]
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:842) ~[na:na]
+
+2026-09-17T11:15:08.356+01:00  WARN 22216 --- [gateway-service] [nfoReplicator-0] [                                                 ] c.n.discovery.InstanceInfoReplicator     : There was a problem with the instance info replicator
+
+com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112) ~[eureka-client-2.0.2.jar!/:2.0.2]
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56) ~[eureka-client-2.0.2.jar!/:2.0.2]
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59) ~[eureka-client-2.0.2.jar!/:2.0.2]
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77) ~[eureka-client-2.0.2.jar!/:2.0.2]
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56) ~[eureka-client-2.0.2.jar!/:2.0.2]
+	at com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:820) ~[eureka-client-2.0.2.jar!/:2.0.2]
+	at com.netflix.discovery.InstanceInfoReplicator.run(InstanceInfoReplicator.java:121) ~[eureka-client-2.0.2.jar!/:2.0.2]
+	at com.netflix.discovery.InstanceInfoReplicator$1.run(InstanceInfoReplicator.java:101) ~[eureka-client-2.0.2.jar!/:2.0.2]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264) ~[na:na]
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:842) ~[na:na]
+
+2026-09-17T11:15:09.374+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
+2026-09-17T11:15:12.379+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Unregistering ...
+2026-09-17T11:15:12.384+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] c.n.d.s.t.d.RedirectingEurekaHttpClient  : Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8761/eureka/}, exception=Connection pool shut down stacktrace=java.lang.IllegalStateException: Connection pool shut down
+	at org.apache.hc.core5.util.Asserts.check(Asserts.java:38)
+	at org.apache.hc.core5.pool.StrictConnPool.lease(StrictConnPool.java:176)
+	at org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager.lease(PoolingHttpClientConnectionManager.java:298)
+	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.acquireEndpoint(InternalExecRuntime.java:103)
+	at org.apache.hc.client5.http.impl.classic.ConnectExec.execute(ConnectExec.java:125)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.ProtocolExec.execute(ProtocolExec.java:192)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.HttpRequestRetryExec.execute(HttpRequestRetryExec.java:96)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.ContentCompressionExec.execute(ContentCompressionExec.java:152)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.RedirectExec.execute(RedirectExec.java:115)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.InternalHttpClient.doExecute(InternalHttpClient.java:170)
+	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:87)
+	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:55)
+	at org.apache.hc.client5.http.classic.HttpClient.executeOpen(HttpClient.java:183)
+	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:95)
+	at org.springframework.http.client.AbstractStreamingClientHttpRequest.executeInternal(AbstractStreamingClientHttpRequest.java:70)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
+	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:112)
+	at org.springframework.cloud.netflix.eureka.http.RestTemplateTransportClientFactory.lambda$restTemplate$0(RestTemplateTransportClientFactory.java:143)
+	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:88)
+	at org.springframework.http.client.InterceptingClientHttpRequest.executeInternal(InterceptingClientHttpRequest.java:72)
+	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:889)
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:790)
+	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:672)
+	at org.springframework.cloud.netflix.eureka.http.RestTemplateEurekaHttpClient.cancel(RestTemplateEurekaHttpClient.java:87)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
+	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.executeOnNewServer(RedirectingEurekaHttpClient.java:121)
+	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.execute(RedirectingEurekaHttpClient.java:80)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:120)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
+	at com.netflix.discovery.DiscoveryClient.unregister(DiscoveryClient.java:916)
+	at com.netflix.discovery.DiscoveryClient.shutdown(DiscoveryClient.java:892)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMethod.invoke(InitDestroyAnnotationBeanPostProcessor.java:457)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeDestroyMethods(InitDestroyAnnotationBeanPostProcessor.java:415)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeDestruction(InitDestroyAnnotationBeanPostProcessor.java:239)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:202)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.run(DisposableBeanAdapter.java:195)
+	at org.springframework.cloud.context.scope.GenericScope$BeanLifecycleWrapper.destroy(GenericScope.java:389)
+	at org.springframework.cloud.context.scope.GenericScope.destroy(GenericScope.java:136)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:211)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:587)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:559)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1202)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:520)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1195)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1186)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:637)
+	at org.springframework.boot.web.reactive.context.ReactiveWebServerApplicationContext.refresh(ReactiveWebServerApplicationContext.java:66)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
+	at com.franck.gateway.GatewayApplication.main(GatewayApplication.java:10)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:91)
+	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:53)
+	at org.springframework.boot.loader.launch.JarLauncher.main(JarLauncher.java:58)
+
+2026-09-17T11:15:12.384+01:00  WARN 22216 --- [gateway-service] [           main] [                                                 ] c.n.d.s.t.d.RetryableEurekaHttpClient    : Request execution failed with message: Connection pool shut down
+2026-09-17T11:15:12.385+01:00 ERROR 22216 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_GATEWAY-SERVICE/192.168.2.25:gateway-service:8222 - de-registration failedCannot execute request on any known server
+
+com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112) ~[eureka-client-2.0.2.jar!/:2.0.2]
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71) ~[eureka-client-2.0.2.jar!/:2.0.2]
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74) ~[eureka-client-2.0.2.jar!/:2.0.2]
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77) ~[eureka-client-2.0.2.jar!/:2.0.2]
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71) ~[eureka-client-2.0.2.jar!/:2.0.2]
+	at com.netflix.discovery.DiscoveryClient.unregister(DiscoveryClient.java:916) ~[eureka-client-2.0.2.jar!/:2.0.2]
+	at com.netflix.discovery.DiscoveryClient.shutdown(DiscoveryClient.java:892) ~[eureka-client-2.0.2.jar!/:2.0.2]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMethod.invoke(InitDestroyAnnotationBeanPostProcessor.java:457) ~[spring-beans-6.1.6.jar!/:6.1.6]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeDestroyMethods(InitDestroyAnnotationBeanPostProcessor.java:415) ~[spring-beans-6.1.6.jar!/:6.1.6]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeDestruction(InitDestroyAnnotationBeanPostProcessor.java:239) ~[spring-beans-6.1.6.jar!/:6.1.6]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:202) ~[spring-beans-6.1.6.jar!/:6.1.6]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.run(DisposableBeanAdapter.java:195) ~[spring-beans-6.1.6.jar!/:6.1.6]
+	at org.springframework.cloud.context.scope.GenericScope$BeanLifecycleWrapper.destroy(GenericScope.java:389) ~[spring-cloud-context-4.1.2.jar!/:4.1.2]
+	at org.springframework.cloud.context.scope.GenericScope.destroy(GenericScope.java:136) ~[spring-cloud-context-4.1.2.jar!/:4.1.2]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:211) ~[spring-beans-6.1.6.jar!/:6.1.6]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:587) ~[spring-beans-6.1.6.jar!/:6.1.6]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:559) ~[spring-beans-6.1.6.jar!/:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1202) ~[spring-beans-6.1.6.jar!/:6.1.6]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:520) ~[spring-beans-6.1.6.jar!/:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1195) ~[spring-beans-6.1.6.jar!/:6.1.6]
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1186) ~[spring-context-6.1.6.jar!/:6.1.6]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:637) ~[spring-context-6.1.6.jar!/:6.1.6]
+	at org.springframework.boot.web.reactive.context.ReactiveWebServerApplicationContext.refresh(ReactiveWebServerApplicationContext.java:66) ~[spring-boot-3.2.5.jar!/:3.2.5]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.2.5.jar!/:3.2.5]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.2.5.jar!/:3.2.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334) ~[spring-boot-3.2.5.jar!/:3.2.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-3.2.5.jar!/:3.2.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343) ~[spring-boot-3.2.5.jar!/:3.2.5]
+	at com.franck.gateway.GatewayApplication.main(GatewayApplication.java:10) ~[!/:0.0.1-SNAPSHOT]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:91) ~[gateway-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:53) ~[gateway-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.launch.JarLauncher.main(JarLauncher.java:58) ~[gateway-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+
+2026-09-17T11:15:12.392+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient
+2026-09-17T11:15:12.421+01:00  INFO 22216 --- [gateway-service] [           main] [                                                 ] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-09-17T11:15:12.462+01:00 ERROR 22216 --- [gateway-service] [           main] [                                                 ] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8222 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8222 or configure this application to listen on another port.
+
