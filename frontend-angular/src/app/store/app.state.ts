@@ -6,6 +6,7 @@ import { cartFeatureKey, cartReducer } from './cart/cart.reducer';
 import { FavoritesState, favoritesFeatureKey, favoritesReducer } from './favorites/favorites.reducer';
 import { ThemeState, themeFeatureKey, themeReducer } from './theme/theme.reducer';
 import { ManagerDashboardState, managerDashboardReducer } from './manager-dashboard/manager-dashboard.reducer';
+import { ManagerStockState, managerStockReducer } from './manager-stock/manager-stock.reducer';
 
 export interface AppState {
   [authFeatureKey]: AuthState;
@@ -13,6 +14,7 @@ export interface AppState {
   [favoritesFeatureKey]: FavoritesState;
   [themeFeatureKey]: ThemeState;
   managerDashboard: ManagerDashboardState;
+  managerStock: ManagerStockState;
 }
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -21,4 +23,5 @@ export const reducers: ActionReducerMap<AppState> = {
   [favoritesFeatureKey]: favoritesReducer,
   [themeFeatureKey]: themeReducer,
   managerDashboard: managerDashboardReducer,
+  managerStock: managerStockReducer,
 };

@@ -2,10 +2,11 @@ import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { LucideAngularModule, Plus, Search, Filter, Edit2, Trash2, Package } from 'lucide-angular';
-import { ShopManagerService, CategoryService } from '../../features/shop/api/shop.service';
-import { CategoryResponse, StockItemResponse } from '../../features/shop/types/shop.types';
-import { ToastService } from '../../core/services/toast.service';
+import { Store } from '@ngrx/store';
+import { StockItemResponse } from '../../features/shop/types/shop.types';
 import { ModalComponent } from '../../components/ui/modal.component';
+import { ManagerStockActions } from '../../store/manager-stock/manager-stock.actions';
+import { selectStockItems, selectStockCategories, selectStockLoading, selectStockCreating, selectStockUpdating } from '../../store/manager-stock/manager-stock.selectors';
 
 @Component({
   selector: 'app-manager-stock',
@@ -14,18 +15,17 @@ import { ModalComponent } from '../../components/ui/modal.component';
   templateUrl: './manager-stock.component.html',
 })
 export class ManagerStockComponent implements OnInit {
-  private readonly shopManagerService = inject(ShopManagerService);
-  private readonly categoryService = inject(CategoryService);
-  private readonly toast = inject(ToastService);
+  private readonly store = inject(Store);
   private readonly fb = inject(FormBuilder);
 
   readonly icons = { Plus, Search, Filter, Edit2, Trash2, Package };
 
-  readonly stockItems = signal<StockItemResponse[]>([]);
-  readonly categories = signal<CategoryResponse[]>([]);
-  readonly isLoading = signal(true);
-  readonly isCreating = signal(false);
-  readonly isUpdating = signal(false);
+  readonly stockItems = this.store.selectSignal(selectStockItems);
+  readonly categories = this.store.selectSignal(selectStockCategories);
+  readonly isLoading = this.store.selectSignal(selectStockLoading);
+  readonly isCreating = this.store.selectSignal(selectStockCreating);
+  readonly isUpdating = this.store.selectSignal(selectStockUpdating);
+  
   readonly isModalOpen = signal(false);
   readonly editingItem = signal<StockItemResponse | null>(null);
   readonly searchQuery = signal('');
@@ -62,18 +62,8 @@ export class ManagerStockComponent implements OnInit {
   });
 
   ngOnInit() {
-    this.loadStock();
-    this.categoryService.findAll().subscribe((data) => this.categories.set(data));
-  }
-
-  private loadStock() {
-    this.shopManagerService.getStock().subscribe({
-      next: (data) => {
-        this.stockItems.set(data);
-        this.isLoading.set(false);
-      },
-      error: () => this.isLoading.set(false),
-    });
+    this.store.dispatch(ManagerStockActions.loadStock());
+    this.store.dispatch(ManagerStockActions.loadCategories());
   }
 
   isLow(item: StockItemResponse): boolean {
@@ -94,16 +84,10 @@ export class ManagerStockComponent implements OnInit {
       this.createForm.markAllAsTouched();
       return;
     }
-    this.isCreating.set(true);
-    this.shopManagerService.createStockItem(this.createForm.getRawValue()).subscribe({
-      next: (item) => {
-        this.stockItems.update((list) => [...list, item]);
-        this.toast.success('Article ajouté au stock !');
-        this.isCreating.set(false);
-        this.isModalOpen.set(false);
-      },
-      error: () => this.isCreating.set(false),
-    });
+    this.store.dispatch(ManagerStockActions.createItem({ data: this.createForm.getRawValue() }));
+    // Note: in a real app we might close modal only on success using an Effect, 
+    // but for simplicity we close it immediately or wait for loading state.
+    this.isModalOpen.set(false);
   }
 
   openEditModal(item: StockItemResponse) {
@@ -127,33 +111,17 @@ export class ManagerStockComponent implements OnInit {
       this.editForm.markAllAsTouched();
       return;
     }
-    this.isUpdating.set(true);
-    this.shopManagerService.updateStockItem(item.id, this.editForm.getRawValue()).subscribe({
-      next: (updated) => {
-        this.stockItems.update((list) => list.map((i) => (i.id === updated.id ? updated : i)));
-        this.toast.success('Produit mis à jour !');
-        this.isUpdating.set(false);
-        this.editingItem.set(null);
-      },
-      error: () => {
-        this.toast.error('Erreur lors de la mise à jour du produit');
-        this.isUpdating.set(false);
-      },
-    });
+    this.store.dispatch(ManagerStockActions.updateItem({ id: item.id, data: this.editForm.getRawValue() }));
+    this.editingItem.set(null);
   }
 
   handleDelete(item: StockItemResponse) {
     if (!window.confirm(`Êtes-vous sûr de vouloir supprimer "${item.name}" du stock ?`)) return;
-    this.shopManagerService.deleteStockItem(item.id).subscribe(() => {
-      this.stockItems.update((list) => list.filter((i) => i.id !== item.id));
-      this.toast.success('Article supprimé.');
-    });
+    this.store.dispatch(ManagerStockActions.deleteItem({ id: item.id }));
   }
 
   handleAdjust(item: StockItemResponse, delta: number) {
     if (item.quantity + delta < 0) return;
-    this.shopManagerService.adjustQuantity(item.id, { delta }).subscribe((updated) => {
-      this.stockItems.update((list) => list.map((i) => (i.id === updated.id ? updated : i)));
-    });
+    this.store.dispatch(ManagerStockActions.adjustQuantity({ id: item.id, data: { delta } }));
   }
 }

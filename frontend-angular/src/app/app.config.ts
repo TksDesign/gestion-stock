@@ -11,6 +11,7 @@ import { reducers } from './store/app.state';
 import { metaReducers } from './store/persist.meta-reducer';
 import { environment } from '../environments/environment';
 import { ManagerDashboardEffects } from './store/manager-dashboard/manager-dashboard.effects';
+import { ManagerStockEffects } from './store/manager-stock/manager-stock.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,7 +19,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes, withComponentInputBinding()),
     provideHttpClient(withInterceptors([authInterceptor, errorInterceptor])),
     provideStore(reducers, { metaReducers }),
-    provideEffects([ManagerDashboardEffects]),
+    provideEffects([ManagerDashboardEffects, ManagerStockEffects]),
     provideStoreDevtools({ maxAge: 25, logOnly: environment.production }),
   ],
 };
