@@ -7,6 +7,7 @@ import { FavoritesState, favoritesFeatureKey, favoritesReducer } from './favorit
 import { ThemeState, themeFeatureKey, themeReducer } from './theme/theme.reducer';
 import { ManagerDashboardState, managerDashboardReducer } from './manager-dashboard/manager-dashboard.reducer';
 import { ManagerStockState, managerStockReducer } from './manager-stock/manager-stock.reducer';
+import { ManagerSalesState, managerSalesReducer } from './manager-sales/manager-sales.reducer';
 
 export interface AppState {
   [authFeatureKey]: AuthState;
@@ -15,6 +16,7 @@ export interface AppState {
   [themeFeatureKey]: ThemeState;
   managerDashboard: ManagerDashboardState;
   managerStock: ManagerStockState;
+  managerSales: ManagerSalesState;
 }
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -24,4 +26,5 @@ export const reducers: ActionReducerMap<AppState> = {
   [themeFeatureKey]: themeReducer,
   managerDashboard: managerDashboardReducer,
   managerStock: managerStockReducer,
+  managerSales: managerSalesReducer,
 };
