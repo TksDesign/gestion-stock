@@ -26,21 +26,6 @@ fi
 LOG_DIR="logs"
 SERVICES=("config-server" "discovery" "auth" "customer" "notification" "order" "payment" "product" "shop" "gateway")
 
-# Port de chaque service : sert à détecter/tuer une instance déjà en cours avant de
-# recompiler (le jar est verrouillé par le process Java tant qu'il tourne sur Windows,
-# ce qui fait échouer "mvnw clean" avec une erreur de suppression de fichier).
-declare -A SERVICE_PORTS=(
-    [config-server]=8888
-    [discovery]=8761
-    [auth]=8095
-    [customer]=8090
-    [notification]=8040
-    [order]=8070
-    [payment]=8060
-    [product]=8050
-    [shop]=8100
-    [gateway]=8222
-)
 
 # Colors for output
 RED='\033[0;31m'
@@ -55,9 +40,25 @@ echo -e "${GREEN}=== Démarrage du Backend Microservices ===${NC}"
 echo -e "\n${GREEN}=== Vérification des instances déjà en cours ===${NC}"
 stop_if_running() {
     local SERVICE=$1
-    local PORT=${SERVICE_PORTS[$SERVICE]}
+    local PORT=""
+    case "$SERVICE" in
+        config-server) PORT=8888 ;;
+        discovery) PORT=8761 ;;
+        auth) PORT=8095 ;;
+        customer) PORT=8090 ;;
+        notification) PORT=8040 ;;
+        order) PORT=8070 ;;
+        payment) PORT=8060 ;;
+        product) PORT=8050 ;;
+        shop) PORT=8100 ;;
+        gateway) PORT=8222 ;;
+    esac
+    
     local PID
-    PID=$(netstat -ano 2>/dev/null | grep ":$PORT " | grep LISTENING | awk '{print $NF}' | head -n 1 || true)
+    PID=$(lsof -t -i :"$PORT" 2>/dev/null | head -n 1 || true)
+    if [ -z "$PID" ]; then
+        PID=$(netstat -ano 2>/dev/null | grep ":$PORT " | grep LISTENING | awk '{print $NF}' | head -n 1 || true)
+    fi
     if [ -n "$PID" ]; then
         echo -e "${YELLOW}$SERVICE${NC} déjà en cours sur le port $PORT (PID $PID) — arrêt..."
         taskkill //F //PID "$PID" >/dev/null 2>&1 || kill -9 "$PID" 2>/dev/null || true

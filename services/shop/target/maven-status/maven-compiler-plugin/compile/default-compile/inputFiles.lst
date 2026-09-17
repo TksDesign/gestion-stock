@@ -1,57 +1,57 @@
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\catalog\CustomerOrderController.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\sale\SaleItemRepository.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\catalog\CatalogProductResponse.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\dashboard\DashboardService.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\sale\SaleItemResponse.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\sale\SaleItemStatus.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\handler\ErrorResponse.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\ShopApplication.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\handler\ResourceNotFoundException.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\shop\ShopController.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\catalog\CatalogPurchaseRequest.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\category\CategoryResponse.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\sale\SaleItem.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\category\CategoryController.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\sale\Sale.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\dashboard\DashboardController.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\stock\StockAdjustmentRequest.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\catalog\LegacyProduct.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\shop\ShopRequest.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\sale\SaleLineRequest.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\shop\ShopStatus.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\stock\StockItemRepository.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\shop\ShopService.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\sale\SaleSource.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\stock\StockItemRequest.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\kafka\Customer.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\sale\SaleController.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\stock\StockItem.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\kafka\OrderIngestionService.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\stock\StockController.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\handler\GlobalExceptionHandler.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\sale\SaleItemStatusUpdateRequest.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\shop\ShopResponse.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\catalog\CatalogPurchaseException.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\category\Category.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\stock\StockItemResponse.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\catalog\CatalogService.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\config\JwtService.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\sale\SaleRepository.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\sale\SaleService.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\catalog\LegacyProductMigrationRunner.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\stock\StockService.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\handler\BusinessException.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\sale\SaleResponse.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\shop\Shop.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\category\CategoryRepository.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\sale\SaleRequest.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\config\SecurityConfig.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\kafka\OrderConfirmation.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\config\JwtAuthenticationFilter.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\shop\CreateShopRequest.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\catalog\CatalogPurchaseResponse.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\config\AuthenticatedUser.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\catalog\CatalogController.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\shop\ShopRepository.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\dashboard\DashboardResponse.java
-C:\Users\SAMA_PC\Desktop\,\PROJETS K48\GESTION DE STOCK\gestion-stock\services\shop\src\main\java\com\franck\ecommerce\kafka\Product.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/shop/Shop.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/category/CategoryController.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/shop/CreateShopRequest.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/config/JwtAuthenticationFilter.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/sale/Sale.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/stock/StockItemRepository.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/sale/SaleResponse.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/sale/SaleItemResponse.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/sale/SaleService.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/catalog/CatalogService.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/shop/ShopRepository.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/sale/SaleController.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/handler/ResourceNotFoundException.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/catalog/CatalogPurchaseException.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/category/Category.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/stock/StockAdjustmentRequest.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/sale/SaleItemStatus.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/sale/SaleRequest.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/handler/ErrorResponse.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/catalog/CatalogPurchaseRequest.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/sale/SaleItemStatusUpdateRequest.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/catalog/LegacyProduct.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/sale/SaleRepository.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/config/SecurityConfig.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/catalog/CatalogPurchaseResponse.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/sale/SaleItemRepository.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/sale/SaleItem.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/shop/ShopController.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/handler/GlobalExceptionHandler.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/stock/StockItemResponse.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/stock/StockItemRequest.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/kafka/OrderIngestionService.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/dashboard/DashboardController.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/stock/StockService.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/catalog/CatalogProductResponse.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/ShopApplication.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/stock/StockItem.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/catalog/CatalogController.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/category/CategoryResponse.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/kafka/OrderConfirmation.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/dashboard/DashboardService.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/shop/ShopService.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/handler/BusinessException.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/config/AuthenticatedUser.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/dashboard/DashboardResponse.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/config/JwtService.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/shop/ShopResponse.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/shop/ShopRequest.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/sale/SaleSource.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/kafka/Customer.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/kafka/Product.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/catalog/CustomerOrderController.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/stock/StockController.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/catalog/LegacyProductMigrationRunner.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/shop/ShopStatus.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/sale/SaleLineRequest.java
+/Users/daphane/Documents/groupK48/devoir de fin/ms-stock-management-main/services/shop/src/main/java/com/franck/ecommerce/category/CategoryRepository.java
