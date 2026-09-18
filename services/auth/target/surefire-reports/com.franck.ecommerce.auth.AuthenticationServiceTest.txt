@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.franck.ecommerce.auth.AuthenticationServiceTest
+-------------------------------------------------------------------------------
+Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.466 s -- in com.franck.ecommerce.auth.AuthenticationServiceTest
