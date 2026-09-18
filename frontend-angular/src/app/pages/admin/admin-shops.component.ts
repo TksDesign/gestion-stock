@@ -115,7 +115,7 @@ export class AdminShopsComponent implements OnInit {
             });
         },
         error: (err) => {
-          this.toast.error(err.error?.error || 'Erreur lors de la création de la gérante');
+          this.toast.error(err.error?.errors?.error || 'Erreur lors de la création de la gérante');
           this.isCreating.set(false);
         },
       });
